@@ -1,0 +1,22 @@
+﻿
+.dushubiji {
+    line-height:30px;
+    padding:10px 10px 10px 20px;
+}
+    .dushubiji h4 {
+        font-weight:600;
+        color:#333333;
+    }
+    .dushubiji .smalltitle span{
+        padding-right:20px;
+        color:#808080;
+
+    }
+.chuangshirenshuo {
+    padding-left:20px;
+    line-height:30px;
+}
+
+.dushuying {
+    margin-top:20px;
+}

@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Resource/css/SkyWeb.css" />
+    <title>陪伴式成长读书会</title>
+</head>
+<body>
+    @Html.Partial("_PartialMenu")
+
+
+    
+
+    @RenderBody()
+
+
+
+    <div class="reg_footer container">
+        <a href="@Url.Action("NoticeView", "Notice", new { id=1})" target="_blank" class="a2color">
+            关于我们
+        </a> | <a href="@Url.Action("NoticeView", "Notice", new { id=2})" target="_blank" class="a2color">
+            服务协议
+        </a> | <a href="@Url.Action("NoticeView", "Notice", new { id=3})" target="_blank" class="a2color">
+            联系客服
+        </a>
+        <hr style="margin:5px 0;padding:0;">
+        Copyright © 2012-2018 版权所有. All Rights Reserved.
+    </div>
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>
