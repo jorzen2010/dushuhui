@@ -44,6 +44,23 @@ namespace dushuhui.Controllers
         {
             return View();
         }
+        public ActionResult UCenter()
+        {
+            return View();
+        }
+
+        public ActionResult Daka()
+        {
+            return View();
+        }
+        public ActionResult UCDushuying()
+        {
+            return View();
+        }
+        public ActionResult PeiduDushuying()
+        {
+            return View();
+        }
 
     }
 }

@@ -20,3 +20,22 @@
 .dushuying {
     margin-top:20px;
 }
+
+.uc-info {
+    height:50px;
+    line-height:30px
+}
+.uc-jieshao {
+    text-align:left;
+    line-height:30px;
+}
+.uc-menu {
+    margin-top:30px;
+    line-height:50px;
+}
+.dushuying-btn {
+    margin-top:25px;
+}
+.reg_footer {
+    margin-top:40px;
+}

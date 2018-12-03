@@ -253,6 +253,10 @@
     <Content Include="Views\Home\Shu.cshtml" />
     <Content Include="Views\Home\Ren.cshtml" />
     <Content Include="Views\Home\Dushuying.cshtml" />
+    <Content Include="Views\Home\UCenter.cshtml" />
+    <Content Include="Views\Home\Daka.cshtml" />
+    <Content Include="Views\Home\UCDushuying.cshtml" />
+    <Content Include="Views\Home\PeiduDushuying.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
