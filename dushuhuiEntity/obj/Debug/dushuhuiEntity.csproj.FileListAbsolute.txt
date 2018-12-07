@@ -1,0 +1,4 @@
+D:\MyPro\2018\dushuhui\dushuhuiEntity\bin\Debug\dushuhuiEntity.dll
+D:\MyPro\2018\dushuhui\dushuhuiEntity\bin\Debug\dushuhuiEntity.pdb
+D:\MyPro\2018\dushuhui\dushuhuiEntity\obj\Debug\dushuhuiEntity.dll
+D:\MyPro\2018\dushuhui\dushuhuiEntity\obj\Debug\dushuhuiEntity.pdb

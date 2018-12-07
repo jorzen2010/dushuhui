@@ -72,3 +72,11 @@ D:\MyPro\2018\dushuhui\dushuhui\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAcc
 D:\MyPro\2018\dushuhui\dushuhui\obj\Debug\dushuhui.csprojResolveAssemblyReference.cache
 D:\MyPro\2018\dushuhui\dushuhui\obj\Debug\dushuhui.dll
 D:\MyPro\2018\dushuhui\dushuhui\obj\Debug\dushuhui.pdb
+D:\MyPro\2018\dushuhui\dushuhui\bin\Common.dll
+D:\MyPro\2018\dushuhui\dushuhui\bin\DushuhuiDal.dll
+D:\MyPro\2018\dushuhui\dushuhui\bin\dushuhuiEntity.dll
+D:\MyPro\2018\dushuhui\dushuhui\bin\Microsoft.ApplicationBlocks.Data.dll
+D:\MyPro\2018\dushuhui\dushuhui\bin\ChnCharInfo.dll
+D:\MyPro\2018\dushuhui\dushuhui\bin\Common.pdb
+D:\MyPro\2018\dushuhui\dushuhui\bin\DushuhuiDal.pdb
+D:\MyPro\2018\dushuhui\dushuhui\bin\dushuhuiEntity.pdb
