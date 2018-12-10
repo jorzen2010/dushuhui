@@ -80,3 +80,7 @@ D:\MyPro\2018\dushuhui\dushuhui\bin\ChnCharInfo.dll
 D:\MyPro\2018\dushuhui\dushuhui\bin\Common.pdb
 D:\MyPro\2018\dushuhui\dushuhui\bin\DushuhuiDal.pdb
 D:\MyPro\2018\dushuhui\dushuhui\bin\dushuhuiEntity.pdb
+D:\MyPro\2018\dushuhui\dushuhui\bin\PagedList.dll
+D:\MyPro\2018\dushuhui\dushuhui\bin\PagedList.Mvc.dll
+D:\MyPro\2018\dushuhui\dushuhui\bin\PagedList.xml
+D:\MyPro\2018\dushuhui\dushuhui\bin\PagedList.Mvc.xml
