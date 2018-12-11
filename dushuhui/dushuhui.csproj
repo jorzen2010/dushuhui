@@ -8537,7 +8537,6 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Dushuhui\List.cshtml" />
-    <Content Include="Views\Book\booklist.cshtml" />
     <Content Include="Views\Book\Create.cshtml" />
     <Content Include="Views\Book\Edit.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
@@ -8582,11 +8581,11 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Dushuhui\BookList.cshtml" />
     <Content Include="Views\Dushuhui\Setting.cshtml" />
+    <Content Include="Views\Ren\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Biji\" />
-    <Folder Include="Views\Ren\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

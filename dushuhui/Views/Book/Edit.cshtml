@@ -1,7 +1,7 @@
-﻿@model psycoderEntity.Notice
+﻿@model dushuhuiEntity.Book
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    ViewBag.title = "系统消息";
+    ViewBag.title = "书目编辑";
 }
 @section Topcss {
 <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
@@ -29,64 +29,78 @@
 
                     </div>
                     <!-- /.box-header -->
-                    @using (Html.BeginForm("Edit", "AdminNotice", FormMethod.Post, new { @class = "form-horizontal", @name = "Edit", @id = "Edit" }))
+                    @using (Html.BeginForm("Edit", "Book", FormMethod.Post, new { @class = "form-horizontal", @name = "Edit", @id = "Edit" }))
                     {
                         @Html.AntiForgeryToken()
                          @Html.ValidationSummary(true)
                           @Html.HiddenFor(model=>model.Id)
                     <div class="box-body">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
-                                <div class="col-sm-9">
-                                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control", @placeholder = "标题最多允许64个字符，32个汉字"})
+                            <div class="col-md-12">
+
+
+                              
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.BookName, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.BookName, new { @class = "form-control"})
+                                        @Html.ValidationMessageFor(model => model.BookName)
+                                    </div>
                                 </div>
-                            </div>
 
-
-
-
-                           <div class="form-group">
-                                @Html.LabelFor(model => model.Content, new { @class = "control-label col-md-2" })
-                                <div class="col-sm-9">
-                                    <textarea id="Content" name="Content" style="height:500px;">@Html.Raw(Model.Content)</textarea>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.BookZuozhe, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.BookZuozhe, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BookZuozhe)
+                                    </div>
                                 </div>
-                            </div>
-                           
 
 
 
-                          
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Tags, new { @class = "control-label col-md-2" })
-                                <div class="col-sm-9">
-                                    @Html.TextBoxFor(model => model.Tags, new { @class = "form-control", @data_role = "tagsinput" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.BookYizhe, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.BookYizhe, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BookYizhe)
+                                    </div>
                                 </div>
-                            </div>
 
-                       
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Author, new { @class = "control-label col-md-2" })
-                                <div class="col-sm-9">
-                                    @Html.TextBoxFor(model => model.Author, new { @class = "form-control" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.BookChubanshe, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.BookChubanshe, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BookChubanshe)
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.HrefUrl, new { @class = "control-label col-md-2" })
-                                <div class="col-sm-9">
-                                    @Html.TextBoxFor(model => model.HrefUrl, new { @class = "form-control" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.BookISBN, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.BookISBN, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BookISBN)
+                                    </div>
                                 </div>
+
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.BookTuijian, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        <textarea id="BookTuijian" name="BookTuijian" style="height:500px;">@Html.Raw(Model.BookTuijian)</textarea>
+                                        @Html.ValidationMessageFor(model => model.BookTuijian)
+                                    </div>
+                                </div>
+
+
+
+
+                                @Html.HiddenFor(model => model.CreateTime, new { @Value = DateTime.Now })
+
                             </div>
-
-                            @Html.HiddenFor(model => model.CreateTime, new{ @Value=DateTime.Now})
-
 
 
                         </div>
-
-
-                    </div>
                     
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
@@ -118,7 +132,7 @@
 
         <script type="text/javascript">
  
-        var ue = UE.getEditor('Content');
+            var ue = UE.getEditor('BookTuijian');
           
         </script>
 }
