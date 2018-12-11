@@ -26,6 +26,13 @@ namespace DushuhuiDal
 
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Book> Books { get; set; }
+        public DbSet<Ren> Rens { get; set; }
+        public DbSet<Biji> Bijis { get; set; }
+        public DbSet<Ying> Yings { get; set; }
+        public DbSet<YingList> YingLists { get; set; }
+        public DbSet<News> News { get; set; }
+        public DbSet<Category> Categorys { get; set; }
+        public DbSet<Quanxian> Quanxians { get; set; }
 
 
 

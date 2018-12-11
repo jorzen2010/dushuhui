@@ -1,0 +1,137 @@
+﻿@model dushuhuiEntity.Book
+@{   Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.title = "系统消息";
+}
+@section Topcss {
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet">
+<link href="~/plugins/copper/css/cropper.css" rel="stylesheet" type="text/css" />
+<link href="~/plugins/copper/css/avatar.css" rel="stylesheet" type="text/css" />
+
+
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            新增 @ViewBag.title
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            新增 @ViewBag.title
+                        </h3>
+
+                    </div>
+                    <!-- /.box-header -->
+                    @using (Html.BeginForm("Create", "Book", FormMethod.Post, new { @class = "form-horizontal", @name = "Create", @id = "Create" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div class="box-body">
+                            <div class="col-md-12">
+
+
+                              
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.BookName, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.BookName, new { @class = "form-control"})
+                                        @Html.ValidationMessageFor(model => model.BookName)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.BookZuozhe, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.BookZuozhe, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BookZuozhe)
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.BookYizhe, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.BookYizhe, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BookYizhe)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.BookChubanshe, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.BookChubanshe, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BookChubanshe)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.BookISBN, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.BookISBN, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BookISBN)
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.BookTuijian, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        <textarea id="BookTuijian" name="BookTuijian" style="height:500px;"></textarea>
+                                        @Html.ValidationMessageFor(model => model.BookTuijian)
+                                    </div>
+                                </div>
+
+
+
+
+                                @Html.HiddenFor(model => model.CreateTime, new { @Value = DateTime.Now })
+
+                            </div>
+
+
+                        </div>
+
+                    <!-- /.box-body -->
+                        <div class="box-footer clearfix">
+                            <button class="btn btn-default">取消</button>
+                            <button type="submit" class="btn btn-primary pull-right">保存并发布</button>
+                        </div>
+
+                    }
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+
+
+@section BottomScripts {
+    <script type="text/javascript" src="~/plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>  
+    <script type="text/javascript" src="~/Resource/js/SkyWeb.js"></script>
+    <script type="text/javascript" src="~/Resource/js/SkyfileCopper.js"></script>
+    <script type="text/javascript" src="~/Resource/js/SkyInit.js"></script>
+    <script type="text/javascript">
+        var ue = UE.getEditor('BookTuijian');
+    </script>
+}

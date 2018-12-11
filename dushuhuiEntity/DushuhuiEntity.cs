@@ -24,12 +24,16 @@ namespace dushuhuiEntity
         public string BookISBN { get; set; }
         [Display(Name = "局长推荐")]
         public string BookTuijian { get; set; }
+        [Display(Name = "上线时间")]
+        public DateTime CreateTime { get; set; }
     }
 
     public class Ren
     {
         [Key]
         public int Id { get; set; }
+        [Display(Name = "头像")]
+        public string RenAvatar { get; set; }
         [Display(Name = "姓名")]
         public string RenName { get; set; }
         [Display(Name = "性别")]
