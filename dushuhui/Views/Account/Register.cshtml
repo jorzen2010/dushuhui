@@ -5,8 +5,8 @@
     <h3 style="font-weight:800">欢迎加入陪伴式成长读书会</h3>
     <div class="row" style="margin-top:30px">
         <div class="col-md-6">
-           
-            @using (Html.BeginForm("Create", "Ren", FormMethod.Post, new { @class = "form-horizontal", @name = "Create", @id = "Create" }))
+
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", @name = "Create", @id = "Create" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
@@ -14,57 +14,60 @@
                     <div class="col-md-12">
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.RenName, new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.RenUserEmail, new { @class = "control-label col-md-2" })
                             <div class="col-sm-6">
-                                @Html.TextBoxFor(model => model.RenName, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.RenName)
+                                @Html.TextBoxFor(model => model.RenUserEmail, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.RenUserEmail)
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.RenName, new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.RenPassword, new { @class = "control-label col-md-2" })
                             <div class="col-sm-6">
-                                @Html.TextBoxFor(model => model.RenName, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.RenName)
+                                @Html.TextBoxFor(model => model.RenPassword, new { @class = "form-control" })
+                               
+                                @Html.ValidationMessageFor(model => model.RenPassword)
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.RenName, new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.RenNickName, new { @class = "control-label col-md-2" })
                             <div class="col-sm-6">
-                                @Html.TextBoxFor(model => model.RenName, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.RenName)
+                                @Html.TextBoxFor(model => model.RenNickName, new { @class = "form-control" })
+                                <span><br>第一印象很重要，起个响亮的名号吧</span>
+                                @Html.ValidationMessageFor(model => model.RenNickName)
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+                            @Html.LabelFor(model => model.RenPhone, new { @class = "control-label col-md-2" })
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(model => model.RenPhone, new { @class = "form-control" })
+                                <span><br>使用手机接收注册验证码<br>
+                                验证的手机号如果没有绑定账号，会自动绑定当前账号。</span>
+                                @Html.ValidationMessageFor(model => model.RenPhone)
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.RenName, new { @class = "control-label col-md-2" })
-                            <div class="col-sm-6">
-                                @Html.TextBoxFor(model => model.RenName, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.RenName)
-                            </div>
-                        </div>
+                            <label class="control-label col-md-2" for="Yanzhengma">验证码</label>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.RenName, new { @class = "control-label col-md-2" })
-                            <div class="col-sm-6">
-                                @Html.TextBoxFor(model => model.RenName, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.RenName)
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.RenName, new { @class = "control-label col-md-2" })
                             <div class="col-sm-6">
-                                @Html.TextBoxFor(model => model.RenName, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.RenName)
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="Yanzhengma" id="Yanzhengma">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">获取验证码</button>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
 
+                        </div>*@
+                      
                         <div class="form-group">
-                           
+
                             <div class="col-sm-6 col-sm-offset-2">
-                              <button class="btn btn-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注册&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> 
+                                <button class="btn btn-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注册&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
                             </div>
                         </div>
 
@@ -83,7 +86,7 @@
                 <div class="col-md-12" style="line-height:30px;">
                     >&nbsp;已拥有账号<a href="">直接登录</a><br>
                     >&nbsp;<a href="">微信登录</a>
-</div>
+                </div>
             </div>
         </div>
     </div>
