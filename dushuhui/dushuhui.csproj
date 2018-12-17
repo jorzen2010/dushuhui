@@ -168,6 +168,7 @@
     <Compile Include="Controllers\BijiController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\DushuhuiController.cs" />
+    <Compile Include="Controllers\DushuyingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RenController.cs" />
     <Compile Include="Global.asax.cs">
@@ -8582,6 +8583,7 @@
     <Content Include="Views\Dushuhui\BookList.cshtml" />
     <Content Include="Views\Dushuhui\Setting.cshtml" />
     <Content Include="Views\Ren\Index.cshtml" />
+    <Content Include="Views\Dushuying\CreateYing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
