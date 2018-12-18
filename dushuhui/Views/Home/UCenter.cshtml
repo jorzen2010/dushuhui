@@ -1,77 +1,144 @@
-﻿
+﻿@using dushuhuiEntity;
+@{
+    Ren ren= ViewData["user"] as Ren;
+}
 
 <div class="container" style="margin-top:80px">
 
     <div class="row">
-        <div class="col-md-8">            
-            <h3 style="border-bottom:1px solid #dddddd;line-height:60px">读书笔记<span class="pull-right"><a class="btn btn-primary" href="@Url.Action("Daka","Home")">打卡写读书笔记</a></span></h3>
-            <div class="row">
-                <div class="dushubiji">
-                    <h4>如果爱，请深爱1</h4>
-                    <div class="smalltitle">
-                        <span>陪读人：赵征</span><span>读者：赵征</span><span>打卡时间：2018-02-03 23：56</span>
+        @*<div class="col-md-8">
+                <h3 style="border-bottom:1px solid #dddddd;line-height:60px">读书笔记<span class="pull-right"><a class="btn btn-primary" href="@Url.Action("Daka","Home")">打卡写读书笔记</a></span></h3>
+                <div class="row">
+                    <div class="dushubiji">
+                        <h4>如果爱，请深爱1</h4>
+                        <div class="smalltitle">
+                            <span>陪读人：赵征</span><span>读者：赵征</span><span>打卡时间：2018-02-03 23：56</span>
+                        </div>
+                        <div class="contentinfo">
+                            这是是这边呢书的江爱的阿斯顿发送到发手动阀手动阀是的阿斯顿发送到发手动阀手动阀阿萨德法师打发斯蒂芬 阿斯蒂芬阿道夫发
+                        </div>
                     </div>
-                    <div class="contentinfo">
-                        这是是这边呢书的江爱的阿斯顿发送到发手动阀手动阀是的阿斯顿发送到发手动阀手动阀阿萨德法师打发斯蒂芬 阿斯蒂芬阿道夫发
+                    <div class="dushubiji">
+                        <h4>如果爱，请深爱1</h4>
+                        <div class="smalltitle">
+                            <span>陪读人：赵征</span><span>读者：赵征</span><span>打卡时间：2018-02-03 23：56</span>
+                        </div>
+                        <div class="contentinfo">
+                            这是是这边呢书的江爱的阿斯顿发送到发手动阀手动阀是的阿斯顿发送到发手动阀手动阀阿萨德法师打发斯蒂芬 阿斯蒂芬阿道夫发
+                        </div>
+                    </div>
+                    <div class="dushubiji">
+                        <h4>如果爱，请深爱1</h4>
+                        <div class="smalltitle">
+                            <span>陪读人：赵征</span><span>读者：赵征</span><span>打卡时间：2018-02-03 23：56</span>
+                        </div>
+                        <div class="contentinfo">
+                            这是是这边呢书的江爱的阿斯顿发送到发手动阀手动阀是的阿斯顿发送到发手动阀手动阀阿萨德法师打发斯蒂芬 阿斯蒂芬阿道夫发
+                        </div>
+                    </div>
+                    <div class="dushubiji">
+                        <h4>如果爱，请深爱1</h4>
+                        <div class="smalltitle">
+                            <span>陪读人：赵征</span><span>读者：赵征</span><span>打卡时间：2018-02-03 23：56</span>
+                        </div>
+                        <div class="contentinfo">
+                            这是是这边呢书的江爱的阿斯顿发送到发手动阀手动阀是的阿斯顿发送到发手动阀手动阀阿萨德法师打发斯蒂芬 阿斯蒂芬阿道夫发
+                        </div>
                     </div>
                 </div>
-                <div class="dushubiji">
-                    <h4>如果爱，请深爱1</h4>
-                    <div class="smalltitle">
-                        <span>陪读人：赵征</span><span>读者：赵征</span><span>打卡时间：2018-02-03 23：56</span>
-                    </div>
-                    <div class="contentinfo">
-                        这是是这边呢书的江爱的阿斯顿发送到发手动阀手动阀是的阿斯顿发送到发手动阀手动阀阿萨德法师打发斯蒂芬 阿斯蒂芬阿道夫发
-                    </div>
-                </div>
-                <div class="dushubiji">
-                    <h4>如果爱，请深爱1</h4>
-                    <div class="smalltitle">
-                        <span>陪读人：赵征</span><span>读者：赵征</span><span>打卡时间：2018-02-03 23：56</span>
-                    </div>
-                    <div class="contentinfo">
-                        这是是这边呢书的江爱的阿斯顿发送到发手动阀手动阀是的阿斯顿发送到发手动阀手动阀阿萨德法师打发斯蒂芬 阿斯蒂芬阿道夫发
-                    </div>
-                </div>
-                <div class="dushubiji">
-                    <h4>如果爱，请深爱1</h4>
-                    <div class="smalltitle">
-                        <span>陪读人：赵征</span><span>读者：赵征</span><span>打卡时间：2018-02-03 23：56</span>
-                    </div>
-                    <div class="contentinfo">
-                        这是是这边呢书的江爱的阿斯顿发送到发手动阀手动阀是的阿斯顿发送到发手动阀手动阀阿萨德法师打发斯蒂芬 阿斯蒂芬阿道夫发
-                    </div>
-                </div>
+            </div>*@
+
+        <div class="col-md-8">
+
+            
+
+            <h3 class="webTitle">我参加的读书营</h3>
+            @if (ViewBag.Amoun > 0)
+            {
+                <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-warning">全部</button>
+                <button type="button" class="btn btn-default">已经报名</button>
+                <button type="button" class="btn btn-default">正在进行</button>
+                <button type="button" class="btn btn-default">已经结束</button>
             </div>
+                
+                 
+            <div class="row dushuying">
+                    <div class="col-md-4 text-center"><a href="#"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"></a></div>
+                    <div class="col-md-6" style="line-height:25px;">
+                        带领人：赵征<br />
+                        书目：《非暴力沟通》<br />
+                        开营时间：2018-09-09 <br />
+                        作者: [美]玛利亚·森普尔 <br />
+                        读书营简介： iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
+                        TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。<br />
+                        <button class="btn btn-danger">立刻报名</button>
+                    </div>
+                </div>
+            }
+            else
+            { 
+             <div class="row text-center">
+
+                <div class="box-body no-info">
+                    你尚未参加读书营<br>
+                    <a href="@Url.Action("dushuying","Home")">点击选择一个读书营吧</a>
+                </div>
+
+            </div>
+
+            }
+            
+
+          
+
         </div>
         <div class="col-md-4">
-          
+
             <div class="row text-center">
                 <div class="col-md-12">
                     <img src="/Resource/img/zz.jpg" alt="..." class="img-thumbnail img-circle" style="width:50%">
-                    <h3>赵征</h3>
+                    <h3>@ren.RenNickName</h3>
                     <span style="height:50px;line-height:30px">会写代码的心理咨询师</span>
                     <table class="table">
                         <tr>
-                            <td><h4>79</h4><span>打卡</span></td>
-                            <td style="border-right: 2px solid #eeeeee; border-left: 2px solid #eeeeee"><h4>79</h4><span>粉丝</span></td>
-                            <td><h4>79</h4><span>关注</span></td>
+                            <td><h4>0</h4><span>打卡</span></td>
+                            <td style="border-right: 2px solid #eeeeee; border-left: 2px solid #eeeeee"><h4>0</h4><span>读书营</span></td>
+                            <td><h4>0</h4><span>关注</span></td>
                         </tr>
                     </table>
                     <div class="uc-jieshao">
                         会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师
                     </div>
-                    <div class="uc-menu">
-                        <a class="btn btn-block btn-lg btn-info" href="@Url.Action("UCDushuying","Home")">我参加的读书营</a>
-                        <button class="btn btn-block btn-lg btn-danger">我的读书打卡笔记</button>
-                    </div>
-                    <h4>陪读人专属功能区</h4>
-                    <div class="uc-menu">
-                        
-                        <a class="btn btn-block btn-lg btn-success" href="@Url.Action("UCDushuying","Home")">新增书单</a>
-                        <a class="btn btn-block btn-lg btn-success" href="@Url.Action("UCDushuying","Home")">申请举办读书会</a>
-                        
-                    </div>
+                    <ul class="uc-menu">
+                        <li>
+                            <a class="btn btn-block btn-lg btn-info" href="@Url.Action("UCDushuying","Home")">我参加的读书营</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-block btn-lg btn-info">我的读书打卡笔记</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-block btn-lg btn-success" href="@Url.Action("UCDushuying","Home")">申请成为陪读人</a>
+
+                        </li>
+                        @if (Session["peiduren"]=="true")
+                        { <li>
+                            <a class="btn btn-block btn-lg btn-success" href="@Url.Action("UCDushuying","Home")">新增书单</a>
+
+                        </li>
+                       
+                            <li>
+                            <a class="btn btn-block btn-lg btn-success" href="@Url.Action("UCDushuying","Home")">申请举办读书会</a>
+
+                        </li>  
+                        }
+                       
+                        <li>
+                            <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Logout","Account")">退出登陆</a>
+                        </li>
+
+
+                    </ul>
                 </div>
             </div>
         </div>

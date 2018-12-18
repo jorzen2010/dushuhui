@@ -31,10 +31,25 @@
 }
 .uc-menu {
     margin-top:30px;
-    line-height:50px;
+   list-style-type:none;
 }
+    .uc-menu li {
+         line-height:60px;
+         height:60px;
+    }
 .dushuying-btn {
     margin-top:25px;
+}
+.no-info {
+    margin-top:30px;
+    padding-top:50px;
+    font-size:24px;
+    color:#808080;
+    line-height:60px;
+}
+.webTitle {
+    margin:30px 0px;
+    font-weight:600;
 }
 .reg_footer {
     margin-top:40px;

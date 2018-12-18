@@ -74,6 +74,22 @@ namespace DushuhuiDal
              }
          }
 
+
+         private GenericRepository<YingList> YingListsRepository;
+
+         public GenericRepository<YingList> yinglistsRepository
+         {
+             get
+             {
+
+                 if (this.YingListsRepository == null)
+                 {
+                     this.YingListsRepository = new GenericRepository<YingList>(context);
+                 }
+                 return YingListsRepository;
+             }
+         }
+
         
 
         public void Save()

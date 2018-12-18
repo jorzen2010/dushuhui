@@ -62,6 +62,8 @@ namespace dushuhuiEntity
 
         [Display(Name = "注册时间")]
         public DateTime CreateTime { get; set; }
+        [Display(Name = "用户状态")]
+        public bool Status { get; set; }
 
 
     }
@@ -111,13 +113,12 @@ namespace dushuhuiEntity
         [Key]
         public int Id { get; set; }
         [Display(Name = "参加人")]
-        public int CId { get; set; }
+        public int RId { get; set; }
         [Display(Name = "读书营")]
         public string YingBId { get; set; }
         [Display(Name = "状态")]
         public string Status { get; set; }
-        [Display(Name = "结束时间")]
-        public string YingEndTime { get; set; }
+
     }
 
     public class News
