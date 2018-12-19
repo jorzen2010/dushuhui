@@ -32,6 +32,8 @@
 .uc-menu {
     margin-top:30px;
    list-style-type:none;
+   margin-left:0;
+    padding-left:0;
 }
     .uc-menu li {
          line-height:60px;

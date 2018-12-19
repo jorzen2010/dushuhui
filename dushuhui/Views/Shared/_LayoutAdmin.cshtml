@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Starter</title>
+    <title>陪读书局</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="/AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -253,8 +253,8 @@ desired effect
                     <li class="header">导航</li>
                     <!-- Optionally, you can add icons to the links -->
                     <li><a href="@Url.Action("Index","Book")"><i class="fa fa-book"></i> <span>书目管理</span></a></li>
-                    <li><a href="#"><i class="fa fa-user"></i> <span>用户管理</span></a></li>
-                    <li><a href="#"><i class="fa fa-address-card"></i> <span>读书营管理</span></a></li>
+                    <li><a href="@Url.Action("Index","Ren")"><i class="fa fa-user"></i> <span>用户管理</span></a></li>
+                    <li><a href="@Url.Action("Index","Ying")"><i class="fa fa-address-card"></i> <span>读书营管理</span></a></li>
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-cog"></i> <span>系统管理</span>
@@ -263,9 +263,10 @@ desired effect
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#">网站设置</a></li>
-                            <li><a href="#">分类设置</a></li>
-                            <li><a href="#">权限设置</a></li>
+                            <li><a href="@Url.Action("Setting","Dushuhui")">网站设置</a></li>
+                            <li><a href="@Url.Action("Index","Category")">分类设置</a></li>
+                            <li><a href="@Url.Action("Index","Quanxian")">权限设置</a></li>
+                            <li><a href="@Url.Action("Index","Notice")">系统消息</a></li>
                         </ul>
                     </li>
                 </ul>

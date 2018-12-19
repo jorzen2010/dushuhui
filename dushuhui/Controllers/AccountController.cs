@@ -91,7 +91,7 @@ namespace dushuhui.Controllers
                     System.Web.HttpContext.Current.Session["peiduren"]="false";
                     System.Web.HttpContext.Current.Session["admin"] = "false";
 
-                    if (ren.RenQuanxian.Contains("peiduren"))
+                    if (ren.RenQuanxian.Contains("peiduren")&&ren.PeiduStatus=="success")
                     {
                         System.Web.HttpContext.Current.Session["peiduren"] = "true";
                     }
@@ -104,7 +104,7 @@ namespace dushuhui.Controllers
 
                     if (string.IsNullOrEmpty(reurnUrl))
                     {
-                        return RedirectToAction("Ucenter", "Home");
+                        return RedirectToAction("Ucenter", "Ucenter");
                     }
                     else
                     {

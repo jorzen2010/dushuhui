@@ -172,3 +172,5 @@ E:\2018\dushuhui\dushuhui\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.r
 E:\2018\dushuhui\dushuhui\obj\Debug\dushuhui.csprojResolveAssemblyReference.cache
 E:\2018\dushuhui\dushuhui\obj\Debug\dushuhui.dll
 E:\2018\dushuhui\dushuhui\obj\Debug\dushuhui.pdb
+D:\MyPro\2018\dushuhui\dushuhui\bin\DushuhuiService.dll
+D:\MyPro\2018\dushuhui\dushuhui\bin\DushuhuiService.pdb

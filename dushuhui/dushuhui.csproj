@@ -167,10 +167,15 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BijiController.cs" />
     <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DushuhuiController.cs" />
     <Compile Include="Controllers\DushuyingController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NoticeController.cs" />
     <Compile Include="Controllers\RenController.cs" />
+    <Compile Include="Controllers\UcenterBaseController.cs" />
+    <Compile Include="Controllers\UcenterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -8541,6 +8546,7 @@
     <Content Include="Views\Book\Create.cshtml" />
     <Content Include="Views\Book\Edit.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
     <None Include="Views\Dushuhui\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -8575,7 +8581,7 @@
     <Content Include="Views\Home\Shu.cshtml" />
     <Content Include="Views\Home\Ren.cshtml" />
     <Content Include="Views\Home\Dushuying.cshtml" />
-    <Content Include="Views\Home\UCenter.cshtml" />
+    <Content Include="Views\Ucenter\UCenter.cshtml" />
     <Content Include="Views\Home\Daka.cshtml" />
     <Content Include="Views\Home\UCDushuying.cshtml" />
     <Content Include="Views\Home\PeiduDushuying.cshtml" />
@@ -8584,10 +8590,17 @@
     <Content Include="Views\Dushuhui\Setting.cshtml" />
     <Content Include="Views\Ren\Index.cshtml" />
     <Content Include="Views\Dushuying\CreateYing.cshtml" />
+    <Content Include="Views\Notice\Create.cshtml" />
+    <Content Include="Views\Notice\Edit.cshtml" />
+    <Content Include="Views\Notice\Index.cshtml" />
+    <Content Include="Views\Ucenter\ShenqingPeiduren.cshtml" />
+    <Content Include="Views\Ucenter\CreateDushuying.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="plugins\sweetalert2\" />
     <Folder Include="Views\Biji\" />
+    <Folder Include="Views\UcenterBase\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -8608,6 +8621,10 @@
     <ProjectReference Include="..\dushuhuiEntity\dushuhuiEntity.csproj">
       <Project>{faca0af7-0079-4ff3-92ec-bc5c0bba5b6f}</Project>
       <Name>dushuhuiEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DushuhuiService\DushuhuiService.csproj">
+      <Project>{36a82e2b-d40f-455c-9dda-a720c2c7ac5c}</Project>
+      <Name>DushuhuiService</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

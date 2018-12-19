@@ -1,4 +1,4 @@
-﻿@model StaticPagedList<dushuhuiEntity.Book>
+﻿@model StaticPagedList<dushuhuiEntity.Ren>
 @using PagedList;
 @using PagedList.Mvc;
 @{
@@ -7,7 +7,7 @@
 }
 @section Topcss {
     <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
-<link href="~/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
 
 
 }
@@ -28,9 +28,9 @@
                     <div class="box-header">
                         <h3 class="box-title">
                             <a class="btn btn-primary btn-sm" href="@Url.Action("Create", "Book")"><i class="fa fa-plus"></i> 新增 @ViewBag.title</a>
-                
+
                         </h3>
-                        
+
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive no-padding">
@@ -41,40 +41,46 @@
                                         序号
                                     </th>
                                     <th class="col-sm-2">
-                                        标题
+                                        昵称
                                     </th>
                                     <th class="col-sm-2">
-                                        作者
+                                        邮箱
                                     </th>
-                                    
-                                   
+                                    <th class="col-sm-2">
+                                        权限
+                                    </th>
+
+
                                     <th class="col-sm-2">操作</th>
-                                  
+
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Id)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.BookName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.BookZuozhe)
-                                    </td>
-                                   
-                                    
-                                    <td>
-                                        <a class="btn btn-success btn-sm" href="@Url.Action("Edit", "Book", new { id=item.Id})"><i class="fa fa-pencil"></i> 编辑</a>
-                                        <button class="btn btn-danger btn-sm" type="button" onclick="delconfirm('@item.Id','/Book/DeleteConfirmed/','/Book/Index')"><span class="glyphicon glyphicon-trash"></span> 彻底删除</button>
-                                        @Html.AntiForgeryToken()
-                                    </td>
-                                   
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.RenNickName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.RenUserEmail)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.RenQuanxian)
+                                        </td>
 
-                                </tr>
+
+                                        <td>
+                                            <a class="btn btn-success btn-sm" href="@Url.Action("Edit", "Ren", new { id=item.Id})"><i class="fa fa-pencil"></i> 编辑</a>
+                                            <button class="btn btn-danger btn-sm" type="button" onclick="delconfirm('@item.Id','/Ren/DeleteConfirmed/','/Ren/Index')"><span class="glyphicon glyphicon-trash"></span> 彻底删除</button>
+                                            @Html.AntiForgeryToken()
+                                        </td>
+
+
+                                    </tr>
 
                                 }
 
@@ -112,12 +118,12 @@
 
 
 @section BottomScripts {
-<script type="text/javascript" src="/plugins/bootbox.min.js"></script>
-<script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
 
     <script type="text/javascript">
 
-        function DeleteItem(id,status, url, tourl) {
+        function DeleteItem(id, status, url, tourl) {
             bootbox.confirm({
                 buttons: {
                     confirm: {
@@ -145,7 +151,7 @@
                             data: {
                                 id: id,
                                 __RequestVerificationToken: token,
-                                status:status,
+                                status: status,
                             },
                             success: function (msg) {
                                 if (msg.MessageStatus == 'true') {
@@ -170,6 +176,6 @@
         }
 
 
-      
+
     </script>
 }

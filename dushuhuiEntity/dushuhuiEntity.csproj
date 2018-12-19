@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Notice.cs" />
     <Compile Include="Setting.cs" />
     <Compile Include="SystemEntity.cs" />
     <Compile Include="DushuhuiEntity.cs" />

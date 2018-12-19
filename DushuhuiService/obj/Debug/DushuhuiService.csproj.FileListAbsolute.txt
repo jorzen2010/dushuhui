@@ -1,0 +1,16 @@
+D:\MyPro\2018\dushuhui\DushuhuiService\bin\Debug\DushuhuiService.dll
+D:\MyPro\2018\dushuhui\DushuhuiService\bin\Debug\DushuhuiService.pdb
+D:\MyPro\2018\dushuhui\DushuhuiService\bin\Debug\Common.dll
+D:\MyPro\2018\dushuhui\DushuhuiService\bin\Debug\DushuhuiDal.dll
+D:\MyPro\2018\dushuhui\DushuhuiService\bin\Debug\dushuhuiEntity.dll
+D:\MyPro\2018\dushuhui\DushuhuiService\bin\Debug\Microsoft.ApplicationBlocks.Data.dll
+D:\MyPro\2018\dushuhui\DushuhuiService\bin\Debug\ChnCharInfo.dll
+D:\MyPro\2018\dushuhui\DushuhuiService\bin\Debug\EntityFramework.dll
+D:\MyPro\2018\dushuhui\DushuhuiService\bin\Debug\Common.pdb
+D:\MyPro\2018\dushuhui\DushuhuiService\bin\Debug\DushuhuiDal.pdb
+D:\MyPro\2018\dushuhui\DushuhuiService\bin\Debug\dushuhuiEntity.pdb
+D:\MyPro\2018\dushuhui\DushuhuiService\bin\Debug\EntityFramework.xml
+D:\MyPro\2018\dushuhui\DushuhuiService\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\MyPro\2018\dushuhui\DushuhuiService\obj\Debug\DushuhuiService.csprojResolveAssemblyReference.cache
+D:\MyPro\2018\dushuhui\DushuhuiService\obj\Debug\DushuhuiService.dll
+D:\MyPro\2018\dushuhui\DushuhuiService\obj\Debug\DushuhuiService.pdb

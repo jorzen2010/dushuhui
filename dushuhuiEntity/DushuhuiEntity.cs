@@ -14,6 +14,8 @@ namespace dushuhuiEntity
         public int Id { get; set; }
         [Display(Name = "书名")]
         public string BookName { get; set; }
+        [Display(Name = "书图片")]
+        public string Cover { get; set; }
         [Display(Name = "作者")]
         public string BookZuozhe { get; set; }
         [Display(Name = "译者")]
@@ -22,6 +24,8 @@ namespace dushuhuiEntity
         public string BookChubanshe { get; set; }
         [Display(Name = "ISBN")]
         public string BookISBN { get; set; }
+        [Display(Name = "标签")]
+        public string Tags { get; set; }
         [Display(Name = "局长推荐")]
         public string BookTuijian { get; set; }
         [Display(Name = "上线时间")]
@@ -64,6 +68,8 @@ namespace dushuhuiEntity
         public DateTime CreateTime { get; set; }
         [Display(Name = "用户状态")]
         public bool Status { get; set; }
+        [Display(Name = "陪读人状态")]
+        public string PeiduStatus { get; set; }
 
 
     }

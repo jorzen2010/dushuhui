@@ -90,6 +90,36 @@ namespace DushuhuiDal
              }
          }
 
+         private GenericRepository<Category> CategorysRepository;
+
+         public GenericRepository<Category> categorysRepository
+         {
+             get
+             {
+
+                 if (this.CategorysRepository == null)
+                 {
+                     this.CategorysRepository = new GenericRepository<Category>(context);
+                 }
+                 return CategorysRepository;
+             }
+         }
+
+         private GenericRepository<Notice> NoticesRepository;
+
+         public GenericRepository<Notice> noticesRepository
+         {
+             get
+             {
+
+                 if (this.NoticesRepository == null)
+                 {
+                     this.NoticesRepository = new GenericRepository<Notice>(context);
+                 }
+                 return NoticesRepository;
+             }
+         }
+
         
 
         public void Save()

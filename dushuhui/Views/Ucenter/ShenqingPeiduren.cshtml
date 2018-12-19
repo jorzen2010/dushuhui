@@ -1,0 +1,148 @@
+﻿@using dushuhuiEntity;
+@model dushuhuiEntity.Notice
+@{
+    Ren ren = ViewData["user"] as Ren;
+}
+
+
+<div class="container" style="margin-top:80px">
+
+    <div class="row">
+       
+        <div class="col-md-8">
+
+            <h3 class="webTitle">@Model.Title</h3>
+         
+            <div class="box-body">
+                @Html.Raw(Model.Content)
+            </div>@Html.AntiForgeryToken()
+            <div class="box-footer text-center" style="padding:50px 100px">
+                <button class="btn btn-danger btn-block btn-lg" onclick="Shenqing('@ren.Id', '/Ren/Shenqing/', '/Account/Logout')">申请成为陪读人</button> 
+            </div>
+          
+
+        </div>
+        <div class="col-md-4">
+
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <img src="/Resource/img/zz.jpg" alt="..." class="img-thumbnail img-circle" style="width:50%">
+                    <h3>@ren.RenNickName</h3>
+                    <span style="height:50px;line-height:30px">会写代码的心理咨询师</span>
+                    <table class="table">
+                        <tr>
+                            <td><h4>0</h4><span>打卡</span></td>
+                            <td style="border-right: 2px solid #eeeeee; border-left: 2px solid #eeeeee"><h4>0</h4><span>读书营</span></td>
+                            <td><h4>0</h4><span>关注</span></td>
+                        </tr>
+                    </table>
+                    <div class="uc-jieshao">
+                        会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师
+                    </div>
+                    <ul class="uc-menu">
+                        <li>
+                            <a class="btn btn-block btn-lg btn-info" href="@Url.Action("UCDushuying","Home")">我参加的读书营</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-block btn-lg btn-info">我的读书打卡笔记</a>
+                        </li>
+                      
+                        @if (Session["peiduren"]=="true")
+                        { <li>
+                            <a class="btn btn-block btn-lg btn-success" href="@Url.Action("UCDushuying","Home")">新增书单</a>
+
+                        </li>
+                       
+                            <li>
+                            <a class="btn btn-block btn-lg btn-success" href="@Url.Action("UCDushuying","Home")">申请举办读书会</a>
+
+                        </li>  
+                        }
+                        else
+                        {
+                              <li>
+                            <a class="btn btn-block btn-lg btn-success" href="@Url.Action("ShenqingPeiduren", "Ucenter")">申请成为陪读人</a>
+
+                        </li> 
+                        }
+                       
+                        <li>
+                            <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Logout","Account")">退出登陆</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section BottomScripts {
+    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+
+    <script type="text/javascript">
+
+        function Shenqing(id, url, tourl) {
+            bootbox.confirm({
+                buttons: {
+                    confirm: {
+                        label: '确定',
+                        className: 'btn-danger'
+                    },
+                    cancel: {
+                        label: '取消',
+                        className: 'btn-default'
+                    }
+                },
+                message: '你正在申请陪读人，请联系微信：sky20100 支付费用并开通相关功能！',
+                callback: function (result) {
+                    if (result) {
+                        var token = $('[name=__RequestVerificationToken]').val();
+                        var headers = {};
+                        //防伪标记放入headers
+                        //也可以将防伪标记放入data
+                        headers["__RequestVerificationToken"] = token;
+                        $.ajax({
+                            url: url,
+                            headers: headers,
+                            type: 'post',
+                            timeout: 3000,
+                            data: {
+                                id: id,
+                                __RequestVerificationToken: token
+                            },
+                            success: function (msg) {
+                                if (msg.MessageStatus == 'true') {
+                                    //window.location.reload();
+                                    window.location.href = tourl;
+                                }
+                                else {
+                                    alertconfirm('申请陪读人失败');
+                                }
+                            },
+                            error: function (e) {
+                                alertconfirm('出现意外错误，申请失败！');
+                            }
+                        });
+                    }
+                    else {
+                        // alertconfirm('您已经取消删除了');
+                    }
+                },
+                title: "申请成功确认框",
+            });
+        }
+
+
+
+    </script>
+}
+
+
+
+
+
+

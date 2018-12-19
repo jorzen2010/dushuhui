@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="~/Resource/css/SkyWeb.css" />
+    @RenderSection("TopCss", required: false)
+    @RenderSection("TopScripts", required: false)
     <title>陪伴式成长读书会</title>
 </head>
 <body>
@@ -26,6 +28,7 @@
     </div>
     <script src="/Scripts/jquery-1.10.2.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
-
+    <script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
+    @RenderSection("BottomScripts", required: false)
 </body>
 </html>
