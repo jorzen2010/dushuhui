@@ -30,7 +30,6 @@ namespace DushuhuiDal
         public DbSet<Biji> Bijis { get; set; }
         public DbSet<Ying> Yings { get; set; }
         public DbSet<YingList> YingLists { get; set; }
-        public DbSet<News> News { get; set; }
         public DbSet<Category> Categorys { get; set; }
         public DbSet<Quanxian> Quanxians { get; set; }
         public DbSet<Notice> Notices { get; set; }

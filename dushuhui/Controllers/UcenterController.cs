@@ -8,6 +8,7 @@ using PagedList.Mvc;
 using DushuhuiDal;
 using Common;
 using dushuhuiEntity;
+using DushuhuiService;
 
 namespace dushuhui.Controllers
 {
@@ -65,6 +66,48 @@ namespace dushuhui.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+        }
+
+        public ActionResult CreateDushuying(int id)
+        {
+            BookService book = new BookService();
+            ViewData["booklist"]=book.GetBookSelectList();
+
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult CreateDushuying(Ying ying)
+        {
+
+
+            if (ModelState.IsValid)
+            {
+                unitOfWork.yingsRepository.Insert(ying);
+                unitOfWork.Save();
+                return RedirectToAction("Ucenter", "Ucenter");
+            }
+
+            BookService book = new BookService();
+            ViewData["booklist"] = book.GetBookSelectList();
+
+            return View(ying);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult Create(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                unitOfWork.booksRepository.Insert(book);
+                unitOfWork.Save();
+                return RedirectToAction("Index", "Book");
+            }
+
+            return View(book);
         }
 
 	}

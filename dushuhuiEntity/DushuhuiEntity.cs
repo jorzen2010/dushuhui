@@ -101,10 +101,12 @@ namespace dushuhuiEntity
     {
         [Key]
         public int Id { get; set; }
+        [Display(Name = "读书会名称")]
+        public string YingTitle { get; set; }
          [Display(Name = "陪读人")]
-        public string YingRId { get; set; }
+        public int YingRId { get; set; }
          [Display(Name = "书目")]
-        public string YingBId { get; set; }
+        public int YingBId { get; set; }
          [Display(Name = "开始时间")]
         public string YingStartTime { get; set; }
          [Display(Name = "结束时间")]
@@ -127,16 +129,6 @@ namespace dushuhuiEntity
 
     }
 
-    public class News
-    {
-        [Key]
-        public int Id { get; set; }
-        public string NewsTitle { get; set; }
-        public string NewContent { get; set; }
-        public string NewsTime { get; set; }
-        public string NewsRId { get; set; }
-        public string NewsFabuzhe { get; set; }
-    }
-
+   
 
 }

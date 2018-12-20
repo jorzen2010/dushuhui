@@ -1,29 +1,79 @@
-﻿
+﻿@model dushuhuiEntity.Ying
+
+@section Topcss {
+    <link href="~/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+}
 <div class="container" style="margin-top:80px">
 
     <div class="row">
-        <div class="col-md-8">            
-            <form>
-                <div class="form-group">
-                    <h3>陪伴式成长读书营第8期</h3> 
-                    <span class="daka">书目：非暴力沟通</span><span class="daka">陪读人：赵老师</span> <span class="daka">打卡：第56次 共56次</span>
-                </div>
-                <div class="form-group">                  
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="输入打卡文章标题">
-                </div>
-                <div class="form-group">
-                   
-                    <textarea class="form-control" rows="20" placeholder="输入打卡内容"></textarea>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> 私密（仅限陪读人和自己可见）
-                    </label>
-                </div>
+        <div class="col-md-8">     
+            
+               @using (Html.BeginForm("CreateDushuying", "Ucenter", FormMethod.Post, new { @class = "form-horizontal", @name = "Create", @id = "Create" }))
+                    {
+                    @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        <h3>创建我的读书营</h3> 
+                    </div>
+                   @Html.HiddenFor(model => model.YingRId, new { @Value=Session["uid"].ToString()})
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.YingTitle, new { @class = "control-label col-md-2" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.YingTitle, new { @class = "form-control", @placeholder = "读书营标题" })
+                            @Html.ValidationMessageFor(model => model.YingTitle)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.YingBId, new { @class = "control-label col-md-2" })
+                        <div class="col-sm-9">
+                            @Html.DropDownListFor(model => model.YingBId, ViewData["booklist"] as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.YingBId)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.YingStartTime, new { @class = "control-label col-md-2" })
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(model => model.YingStartTime, new { @class = "form-control", @placeholder = "读书会开始时间" })
+                            @Html.ValidationMessageFor(model => model.YingStartTime)
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.YingEndTime, new { @class = "control-label col-md-2" })
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(model => model.YingEndTime, new { @class = "form-control", @placeholder = "读书会结束时间" })
+                            @Html.ValidationMessageFor(model => model.YingEndTime)
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.YingPay, new { @class = "control-label col-md-2" })
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(model => model.YingPay, new { @class = "form-control", @placeholder = "读书营费用" })
+                            @Html.ValidationMessageFor(model => model.YingPay)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.YingInfo, new { @class = "control-label col-md-2" })
+                        <div class="col-sm-9">
+                            @Html.TextAreaFor(model => model.YingInfo, new { @class = "form-control", @placeholder = "读书营介绍" })
+                            @Html.ValidationMessageFor(model => model.YingInfo)
+                        </div>
+                    </div>
+                   <div class="form-group">
+                      
+                        <div class="col-sm-11">
+                            <button type="submit" class="btn btn-primary pull-right">立刻创建</button>
+                        </div>
+                    </div>
+                    }
                 
-                <button type="submit" class="btn btn-primary pull-right">保存提交</button>
-            </form>
-        </div>
+            </div>
         <div class="col-md-4">
           
             <div class="row text-center">
@@ -47,5 +97,16 @@
     </div>
 
 </div>
+
+@section BottomScripts {
+<script type="text/javascript" src="~/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="~/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <script type="text/javascript">
+        $('#YingStartTime,#YingEndTime').datepicker({
+            format: 'yyyy-mm-dd',
+            startDate: '-3d'
+        });
+    </script>
+}
 
 
