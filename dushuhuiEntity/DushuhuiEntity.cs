@@ -123,7 +123,7 @@ namespace dushuhuiEntity
         [Display(Name = "参加人")]
         public int RId { get; set; }
         [Display(Name = "读书营")]
-        public string YingBId { get; set; }
+        public int YingId { get; set; }
         [Display(Name = "状态")]
         public string Status { get; set; }
 

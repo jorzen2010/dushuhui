@@ -30,5 +30,13 @@ namespace DushuhuiService
             }
             return items;
         }
+
+        public static Ying GetYingById(int id)
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+            Ying ying = unitOfWork.yingsRepository.GetByID(id);
+
+            return ying;
+        }
     }
 }

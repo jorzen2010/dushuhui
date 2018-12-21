@@ -29,7 +29,7 @@ namespace dushuhui.Controllers
 
                 Pager pager = new Pager();
                 pager.table = "YingList";
-                pager.strwhere = "1=1";
+                pager.strwhere = "RId="+int.Parse(Session["uid"].ToString());
                 pager.PageSize = 2;
                 pager.PageNo = page ?? 1;
                 pager.FieldKey = "Id";
@@ -56,8 +56,6 @@ namespace dushuhui.Controllers
                 int uid = int.Parse(Session["uid"].ToString());
                 Ren ren = unitOfWork.rensRepository.GetByID(uid);
                 ViewData["user"] = ren;
-
-                id = 2;
                 Notice notice = unitOfWork.noticesRepository.GetByID(id);
 
                 return View(notice);
@@ -68,7 +66,7 @@ namespace dushuhui.Controllers
             }
         }
 
-        public ActionResult CreateDushuying(int id)
+        public ActionResult CreateDushuying()
         {
             BookService book = new BookService();
             ViewData["booklist"]=book.GetBookSelectList();
@@ -86,6 +84,12 @@ namespace dushuhui.Controllers
             {
                 unitOfWork.yingsRepository.Insert(ying);
                 unitOfWork.Save();
+                YingList yinglist = new YingList();
+                yinglist.RId = ying.YingRId;
+                yinglist.YingId = ying.Id;
+                yinglist.Status = "success";
+                unitOfWork.yinglistsRepository.Insert(yinglist);
+                unitOfWork.Save();
                 return RedirectToAction("Ucenter", "Ucenter");
             }
 
@@ -95,20 +99,7 @@ namespace dushuhui.Controllers
             return View(ying);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [ValidateInput(false)]
-        public ActionResult Create(Book book)
-        {
-            if (ModelState.IsValid)
-            {
-                unitOfWork.booksRepository.Insert(book);
-                unitOfWork.Save();
-                return RedirectToAction("Index", "Book");
-            }
-
-            return View(book);
-        }
+        
 
 	}
 }
