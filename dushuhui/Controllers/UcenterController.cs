@@ -99,7 +99,30 @@ namespace dushuhui.Controllers
             return View(ying);
         }
 
-        
+
+        public ActionResult Daka(int yid)
+        {
+            Ying ying = unitOfWork.yingsRepository.GetByID(yid);
+            ViewData["dakaying"] = ying;
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult Daka(Biji biji)
+        {
+            if (ModelState.IsValid)
+            {
+                unitOfWork.bijisRepository.Insert(biji);
+                unitOfWork.Save();
+                return RedirectToAction("Ucenter", "Ucenter");
+            }
+            Ying ying = unitOfWork.yingsRepository.GetByID(biji.BijiYId);
+            ViewData["dakaying"] = ying;
+            return View(biji);
+        }
 
 	}
 }

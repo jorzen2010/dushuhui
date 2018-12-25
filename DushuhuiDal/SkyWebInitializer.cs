@@ -92,52 +92,8 @@ namespace DushuhuiDal
 
 
 
-            #region 初始化配置
 
-            var NoticeTitle = new System.Text.StringBuilder(942);
-            protocol.AppendLine(@"<p> 当您申请用户时，表示您已经同意遵守本规章。");
-            protocol.AppendLine(@"    欢迎您加入本站点参加交流和讨论，本站点为公共论坛，为维护网上公共秩序和社会稳定，请您自觉遵守以下条款：</p>");
-            protocol.AppendLine(@"   <ul> ");
-            protocol.AppendLine(@"       <li>一、不得利用本站危害国家安全、泄露国家秘密，不得侵犯国家社会集体的和公民的合法权益，不得利用本站制作、复制和传播下列信息：");
-            protocol.AppendLine(@"           <ol>");
-            protocol.AppendLine(@"               <li>（一）煽动抗拒、破坏宪法和法律、行政法规实施的；</li>");
-            protocol.AppendLine(@"               <li>（二）煽动颠覆国家政权，推翻社会主义制度的；</li>");
-            protocol.AppendLine(@"               <li>（三）煽动分裂国家、破坏国家统一的；</li>");
-            protocol.AppendLine(@"               <li>（四）煽动民族仇恨、民族歧视，破坏民族团结的；</li>");
-            protocol.AppendLine(@"               <li>（五）捏造或者歪曲事实，散布谣言，扰乱社会秩序的；</li>");
-            protocol.AppendLine(@"               <li>（六）宣扬封建迷信、淫秽、色情、赌博、暴力、凶杀、恐怖、教唆犯罪的；</li>");
-            protocol.AppendLine(@"               <li>（七）公然侮辱他人或者捏造事实诽谤他人的，或者进行其他恶意攻击的；</li>");
-            protocol.AppendLine(@"               <li>（八）损害国家机关信誉的；</li>");
-            protocol.AppendLine(@"               <li>（九）其他违反宪法和法律行政法规的；</li>");
-            protocol.AppendLine(@"               <li>（十）进行商业广告行为的。</li>");
-            protocol.AppendLine(@"           </ol>");
-            protocol.AppendLine(@"       </li>");
-            protocol.AppendLine(@"    <li>二、互相尊重，对自己的言论和行为负责。</li>");
-            protocol.AppendLine(@"    <li>三、禁止在申请用户时使用相关本站的词汇，或是带有侮辱、毁谤、造谣类的或是有其含义的各种语言进行注册用户，否则我们会将其删除。</li>");
-            protocol.AppendLine(@"    <li>四、禁止以任何方式对本站进行各种破坏行为。</li>");
-            protocol.AppendLine(@"   <li> 五、如果您有违反国家相关法律法规的行为，本站概不负责，您的登录论坛信息均被记录无疑，必要时，我们会向相关的国家管理部门提供此类信息。</li>");
-            protocol.AppendLine(@"   </ul>");
-
-          
-
-            context.Notices.Add(new Notice
-            {
-                Title = "申请公函",
-                Tags = "申请公函",
-                Content = NoticeTitle.ToString(),
-                Category =3,
-                Cover = "/Resource/img/nophoto.png",
-                Author = "官方",
-                HrefUrl = "",
-                CreateTime = System.DateTime.Now,
-               
-
-            });
-
-            context.SaveChanges();
-            #endregion 初始化配置
-
-
+           
 
 
 
@@ -179,6 +135,112 @@ namespace DushuhuiDal
             CategoryList.ForEach(j => context.Categorys.Add(j));
             context.SaveChanges();
             #endregion 
+
+            
+            #region 默认分类
+
+            var QuanxianList = new List<Quanxian>
+            {
+                new Quanxian{
+                    QuanxianName="xueyuan",
+                    QuanxianInfo="学员",
+
+                },
+                 new Quanxian{
+                    QuanxianName="peiduren",
+                    QuanxianInfo="陪读人",
+
+                },
+                 new Quanxian{
+                    QuanxianName="guanliyuan",
+                    QuanxianInfo="管理员",
+
+                },
+               
+            };
+            QuanxianList.ForEach(j => context.Quanxians.Add(j));
+            context.SaveChanges();
+            #endregion 
+
+
+
+            #region 初始化配置
+
+            var NoticeTitle = new System.Text.StringBuilder(942);
+            NoticeTitle.AppendLine(@"<p> 当您申请用户时，表示您已经同意遵守本规章。");
+            NoticeTitle.AppendLine(@"    欢迎您加入本站点参加交流和讨论，本站点为公共论坛，为维护网上公共秩序和社会稳定，请您自觉遵守以下条款：</p>");
+            NoticeTitle.AppendLine(@"   <ul> ");
+            NoticeTitle.AppendLine(@"       <li>一、不得利用本站危害国家安全、泄露国家秘密，不得侵犯国家社会集体的和公民的合法权益，不得利用本站制作、复制和传播下列信息：");
+            NoticeTitle.AppendLine(@"           <ol>");
+            NoticeTitle.AppendLine(@"               <li>（一）煽动抗拒、破坏宪法和法律、行政法规实施的；</li>");
+            NoticeTitle.AppendLine(@"               <li>（二）煽动颠覆国家政权，推翻社会主义制度的；</li>");
+            NoticeTitle.AppendLine(@"               <li>（三）煽动分裂国家、破坏国家统一的；</li>");
+            NoticeTitle.AppendLine(@"               <li>（四）煽动民族仇恨、民族歧视，破坏民族团结的；</li>");
+            NoticeTitle.AppendLine(@"               <li>（五）捏造或者歪曲事实，散布谣言，扰乱社会秩序的；</li>");
+            NoticeTitle.AppendLine(@"               <li>（六）宣扬封建迷信、淫秽、色情、赌博、暴力、凶杀、恐怖、教唆犯罪的；</li>");
+            NoticeTitle.AppendLine(@"               <li>（七）公然侮辱他人或者捏造事实诽谤他人的，或者进行其他恶意攻击的；</li>");
+            NoticeTitle.AppendLine(@"               <li>（八）损害国家机关信誉的；</li>");
+            NoticeTitle.AppendLine(@"               <li>（九）其他违反宪法和法律行政法规的；</li>");
+            NoticeTitle.AppendLine(@"               <li>（十）进行商业广告行为的。</li>");
+            NoticeTitle.AppendLine(@"           </ol>");
+            NoticeTitle.AppendLine(@"       </li>");
+            NoticeTitle.AppendLine(@"    <li>二、互相尊重，对自己的言论和行为负责。</li>");
+            NoticeTitle.AppendLine(@"    <li>三、禁止在申请用户时使用相关本站的词汇，或是带有侮辱、毁谤、造谣类的或是有其含义的各种语言进行注册用户，否则我们会将其删除。</li>");
+            NoticeTitle.AppendLine(@"    <li>四、禁止以任何方式对本站进行各种破坏行为。</li>");
+            NoticeTitle.AppendLine(@"   <li> 五、如果您有违反国家相关法律法规的行为，本站概不负责，您的登录论坛信息均被记录无疑，必要时，我们会向相关的国家管理部门提供此类信息。</li>");
+            NoticeTitle.AppendLine(@"   </ul>");
+
+      
+            context.Notices.Add(new Notice
+            {
+                Title = "陪读书局",
+                Content = NoticeTitle.ToString(),
+                Tags="系统消息",
+                Cover = "/Resource/img/nophoto.png",
+                Category=3,
+                Author="官方",
+                CreateTime=System.DateTime.Now,
+                HrefUrl="http://www.baidu.com"
+
+
+            });
+
+            context.SaveChanges();
+
+            #endregion 初始化配置
+
+
+            #region 初始化配置
+
+            context.Rens.Add(new Ren
+            {
+                RenQuanxian="xueyuan,peiduren,guanliyuan",
+                RenUserEmail="jorzen2010@163.com",
+                RenPassword=CommonTools.ToMd5("111111"),
+                RenNickName="赵征",
+                CreateTime=DateTime.Now,
+                Status=true,
+                PeiduStatus="success",
+            });
+
+            context.SaveChanges();
+
+            #endregion 初始化配置
+
+            #region 初始化配置
+
+            context.Books.Add(new Book
+            {
+                BookName="非暴力沟通",
+                Cover = "/Resource/img/nophoto.png",
+                CreateTime=DateTime.Now,
+            });
+
+            context.SaveChanges();
+
+            #endregion 初始化配置
+
+           
         }
     }
 }

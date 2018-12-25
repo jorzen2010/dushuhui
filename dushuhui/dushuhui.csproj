@@ -165,6 +165,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\YingController.cs" />
     <Compile Include="Controllers\BijiController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -8582,7 +8583,6 @@
     <Content Include="Views\Home\Ren.cshtml" />
     <Content Include="Views\Home\Dushuying.cshtml" />
     <Content Include="Views\Ucenter\UCenter.cshtml" />
-    <Content Include="Views\Home\Daka.cshtml" />
     <Content Include="Views\Home\UCDushuying.cshtml" />
     <Content Include="Views\Home\PeiduDushuying.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
@@ -8595,6 +8595,8 @@
     <Content Include="Views\Notice\Index.cshtml" />
     <Content Include="Views\Ucenter\ShenqingPeiduren.cshtml" />
     <Content Include="Views\Ucenter\CreateDushuying.cshtml" />
+    <Content Include="Views\Ucenter\Daka.cshtml" />
+    <Content Include="Views\Ying\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -31,12 +31,12 @@ namespace DushuhuiService
             return items;
         }
 
-        public static Ying GetYingById(int id)
+        public static Book GetBookById(int id)
         {
             UnitOfWork unitOfWork = new UnitOfWork();
-            Ying ying = unitOfWork.yingsRepository.GetByID(id);
+            Book book = unitOfWork.booksRepository.GetByID(id);
 
-            return ying;
+            return book;
         }
     }
 }

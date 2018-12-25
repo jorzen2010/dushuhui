@@ -70,7 +70,36 @@ namespace dushuhui.Controllers
                 unitOfWork.Save();
 
                 msg.MessageStatus = "true";
-                msg.MessageInfo = "删除成功";
+                msg.MessageInfo = "申请成功";
+            }
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Shenhe(int id,string status)
+        {
+
+
+            Message msg = new Message();
+            if (id == null)
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "找不到ID";
+            }
+            else
+            {
+
+                Ren ren = unitOfWork.rensRepository.GetByID(id);
+
+                ren.PeiduStatus = status;
+                unitOfWork.rensRepository.Update(ren);
+                unitOfWork.Save();
+
+                msg.MessageStatus = "true";
+                msg.MessageInfo = "审核成功";
             }
 
             return Json(msg, JsonRequestBehavior.AllowGet);

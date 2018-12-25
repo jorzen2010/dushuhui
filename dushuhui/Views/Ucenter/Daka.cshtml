@@ -1,0 +1,119 @@
+﻿@using dushuhuiEntity;
+@using DushuhuiService;
+@model dushuhuiEntity.Biji
+@{
+    Ying ying = ViewData["dakaying"] as Ying;
+}
+@section Topcss {
+
+    <link href="~/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet">
+
+
+
+}
+<div class="container" style="margin-top:80px">
+
+    <div class="row">
+        <div class="col-md-8">
+            @using (Html.BeginForm("Daka", "Ucenter", FormMethod.Post, new { @class = "form-horizontal", @name = "Create", @id = "Create" }))
+            {
+                 @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                <div class="form-group">
+                    <h3>@ying.YingTitle</h3>
+                    <span class="daka">书目：@BookService.GetBookById(ying.YingBId).BookName</span><span class="daka">陪读人：@RenService.GetRenById(ying.YingRId).RenNickName</span>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.TextBoxFor(model => model.BijiTitle, new { @class = "form-control", @placeholder = "输入打卡文章标题" })
+                    @Html.ValidationMessageFor(model => model.BijiTitle)
+                </div>
+
+                <div class="form-group">
+                    <textarea id="BijiContent" name="BijiContent" style="height:500px;"></textarea>
+                    @Html.ValidationMessageFor(model => model.BijiContent)
+                </div>
+
+                
+                  <div class="form-group">
+                                    @Html.LabelFor(model => model.Tags, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.Tags, new { @class = "form-control", @data_role = "tagsinput" })
+                                    </div>
+                                </div>
+                
+                
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> 私密（仅限陪读人和自己可见）
+                    </label>
+                </div>
+                @Html.HiddenFor(model => model.BijiZuozhe, new { @Value=Session["uid"]})
+                @Html.HiddenFor(model => model.BijiRId, new { @Value=ying.YingRId})
+                @Html.HiddenFor(model => model.BijiBId, new { @Value = ying.YingBId })
+                 @Html.HiddenFor(model => model.BijiYId, new { @Value = ying.Id })
+                @Html.HiddenFor(model => model.BijiEditTime, new { @Value = DateTime.Now })
+                 @Html.HiddenFor(model => model.BijiTime, new { @Value = DateTime.Now })
+                <button type="submit" class="btn btn-primary pull-right">保存提交</button>
+            }
+        </div>
+        <div class="col-md-4">
+
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <img src="/Resource/img/zz.jpg" alt="..." class="img-thumbnail img-circle" style="width:50%">
+                    <h3>赵征</h3>
+                    <span style="height:50px;line-height:30px">会写代码的心理咨询师</span>
+                    <table class="table">
+                        <tr>
+                            <td><h4>79</h4><span>打卡文章</span></td>
+                            <td style="border-right: 2px solid #eeeeee; border-left: 2px solid #eeeeee"><h4>79</h4><span>粉丝</span></td>
+                            <td><h4>79</h4><span>关注</span></td>
+                        </tr>
+                    </table>
+                    <div class="uc-jieshao">
+                        会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section BottomScripts {
+
+    <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
+    <script type="text/javascript" src="~/Resource/js/SkyWeb.js"></script>
+    <script type="text/javascript" src="~/Resource/js/SkyfileCopper.js"></script>
+    <script type="text/javascript" src="~/Resource/js/SkyInit.js"></script>
+    <script type="text/javascript">
+
+        var ue = UE.getEditor('BijiContent', {
+            toolbars: [
+                ['fullscreen',//全屏
+                     'bold',//粗体
+                     'italic',//斜体
+                     'forecolor', //字体颜色
+                     'fontfamily', //字体
+                     'fontsize', //字号
+                     'justifyleft', //居左对齐
+                     'justifyright', //居右对齐
+                     'justifycenter', //居中对齐
+                     'justifyjustify', //两端对齐
+                     'blockquote',//引用
+                     'link', //超链接
+                     'emotion', //表情
+                ]
+            ],
+            autoHeightEnabled: true,
+            autoFloatEnabled: true
+        });
+    </script>
+
+}

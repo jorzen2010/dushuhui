@@ -64,47 +64,60 @@
                     <button type="button" class="btn btn-default">我创建的</button>
                 </div>
 
-                 foreach (var item in Model)
-               {
-                <div class="row dushuying">
-                    <div class="col-md-4 text-center"><a href="#"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"></a></div>
-                    <div class="col-md-6" style="line-height:25px;">
-                        读书会：@YingService.GetYingById(item.YingId).YingTitle<br />
-                        陪读人: @YingService.GetYingById(item.YingId).YingBId <br />
-                        书目：@YingService.GetYingById(item.YingId).YingRId<br />
-                        开营时间：@YingService.GetYingById(item.YingId).YingStartTime 至 @YingService.GetYingById(item.YingId).YingEndTime<br />
-                        费用: @YingService.GetYingById(item.YingId).YingPay 元<br />
-                        读书营简介：@YingService.GetYingById(item.YingId).YingInfo <br />
+                foreach (var item in Model)
+                {
+                    <div class="row dushuying">
+                        <div class="col-md-4 text-center"><a href="#"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"></a></div>
+                        <div class="col-md-6" style="line-height:25px;">
+                            读书会：@YingService.GetYingById(item.YingId).YingTitle<br />
+                            陪读人: @YingService.GetYingById(item.YingId).YingBId <br />
+                            书目：@YingService.GetYingById(item.YingId).YingRId<br />
+                            开营时间：@YingService.GetYingById(item.YingId).YingStartTime 至 @YingService.GetYingById(item.YingId).YingEndTime<br />
+                            费用: @YingService.GetYingById(item.YingId).YingPay 元<br />
+                            读书营简介：@YingService.GetYingById(item.YingId).YingInfo <br />
 
 
-                        @if (YingService.GetYingById(item.YingId).YingRId == int.Parse(Session["uid"].ToString()))
-                        {
-                              <button class="btn btn-warning" style="margin-top:20px;">报名管理</button>
-                        }
-
-                        @if (System.DateTime.Now > YingService.GetYingById(item.YingId).YingStartTime && System.DateTime.Now < YingService.GetYingById(item.YingId).YingEndTime)
-                        {
-                             if (item.Status == "success")
-                        { 
-                         <button class="btn btn-primary" style="margin-top:20px;">@item.Status 立刻打卡</button>
-                        }
-                         if (item.Status == "shenqing")
-                              { 
-                         <button class="btn btn-default" style="margin-top:20px;">本营已开始您未交费希望你下次抓紧时间哦</button>
-                              }
-                             
-                        }
-
-                       
-                        <button class="btn btn-warning" style="margin-top:20px;">@item.Status 未交费</button>
-                        <button class="btn btn-success" style="margin-top:20px;">@item.Status 已报名等待开营</button>
-                        <button class="btn btn-primary" style="margin-top:20px;">@item.Status 立刻打卡</button>
-                        <button class="btn btn-default" style="margin-top:20px;">@item.Status 本营已结束</button>
+                            @if (YingService.GetYingById(item.YingId).YingRId == int.Parse(Session["uid"].ToString()))
+                            {
+                                <button class="btn btn-warning" style="margin-top:20px;">报名管理</button>
+                            }
 
 
+                            @if (item.Status == "success")
+                            {
+                                if (System.DateTime.Now > YingService.GetYingById(item.YingId).YingStartTime && System.DateTime.Now < YingService.GetYingById(item.YingId).YingEndTime)
+                                {
+                                    <a class="btn btn-primary" style="margin-top:20px;" href="@Url.Action("Daka", "Ucenter", new { yid=item.Id})">立刻打卡</a>
+                                }
+
+                                if (System.DateTime.Now < YingService.GetYingById(item.YingId).YingStartTime)
+                                {
+                                    <button class="btn btn-success" style="margin-top:20px;">已报名等待开营</button>
+                                }
+
+                                if (System.DateTime.Now > YingService.GetYingById(item.YingId).YingEndTime)
+                                {
+                                    <button class="btn btn-default" style="margin-top:20px;">本营已结束</button>
+                                }
+
+                            }
+
+                            @if (item.Status == "shenqing")
+                            {
+                                if (System.DateTime.Now < YingService.GetYingById(item.YingId).YingStartTime)
+                                {
+                                    <button class="btn btn-success" style="margin-top:20px;">@item.Status 本营已开始您未交费希望你下次抓紧时间哦</button>
+                                }
+                                if (System.DateTime.Now < YingService.GetYingById(item.YingId).YingStartTime)
+                                {
+                                    <button class="btn btn-success" style="margin-top:20px;">@item.Status 请联系陪读人缴费</button>
+                                }
+
+                            }
+
+                        </div>
                     </div>
-                </div>
-                 }
+                }
             }
             else
             {
@@ -149,10 +162,10 @@
                         </li>
                         @if (Session["peiduren"] == "true")
                         {
-                        <li>
-                            <a class="btn btn-block btn-lg btn-success" href="@Url.Action("UCDushuying","Home")">新增书单</a>
+                            <li>
+                                <a class="btn btn-block btn-lg btn-success" href="@Url.Action("UCDushuying","Home")">新增书单</a>
 
-                        </li>
+                            </li>
 
                             <li>
                                 <a class="btn btn-block btn-lg btn-success" href="@Url.Action("CreateDushuying","Ucenter")">申请举办读书会</a>

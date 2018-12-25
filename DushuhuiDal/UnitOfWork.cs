@@ -120,6 +120,21 @@ namespace DushuhuiDal
              }
          }
 
+         private GenericRepository<Biji> BijisRepository;
+
+         public GenericRepository<Biji> bijisRepository
+         {
+             get
+             {
+
+                 if (this.BijisRepository == null)
+                 {
+                     this.BijisRepository = new GenericRepository<Biji>(context);
+                 }
+                 return BijisRepository;
+             }
+         }
+
         
 
         public void Save()

@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RenService.cs" />
     <Compile Include="YingService.cs" />
     <Compile Include="BookService.cs" />
     <Compile Include="CategoryService.cs" />

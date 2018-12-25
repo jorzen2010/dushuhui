@@ -91,11 +91,11 @@ namespace dushuhuiEntity
         [Display(Name = "内容")]
         public string BijiContent { get; set; }
         [Display(Name = "打卡时间")]
-        public string BijiTime { get; set; }
+        public DateTime BijiTime { get; set; }
         [Display(Name = "最后修改时间")]
-        public string BijiEditTime { get; set; }
-        [Display(Name = "打卡类型")]
-        public string BijiType { get; set; }
+        public DateTime BijiEditTime { get; set; }
+        [Display(Name = "标签")]
+        public string Tags { get; set; }
     }
     public class Ying
     {
@@ -108,9 +108,9 @@ namespace dushuhuiEntity
          [Display(Name = "书目")]
         public int YingBId { get; set; }
          [Display(Name = "开始时间")]
-        public string YingStartTime { get; set; }
+        public DateTime YingStartTime { get; set; }
          [Display(Name = "结束时间")]
-        public string YingEndTime { get; set; }
+         public DateTime YingEndTime { get; set; }
          [Display(Name = "读书营介绍")]
          public string YingInfo { get; set; }
          [Display(Name = "读书营费用")]

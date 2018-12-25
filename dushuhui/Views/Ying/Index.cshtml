@@ -1,0 +1,131 @@
+﻿@model StaticPagedList<dushuhuiEntity.Ying>
+@using PagedList;
+@using PagedList.Mvc;
+@using DushuhuiService;
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.title = "读书营管理";
+}
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+
+
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.title
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("Create", "Book")">全部</a>
+                            <a class="btn btn-default btn-sm" href="@Url.Action("Create", "Book")">未开始</a>
+                            <a class="btn btn-default btn-sm" href="@Url.Action("Create", "Book")">正在进行</a>
+                            <a class="btn btn-default btn-sm" href="@Url.Action("Create", "Book")">已结束</a>
+                
+                        </h3>
+                        
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="col-sm-1">
+                                        序号
+                                    </th>
+                                    <th class="col-sm-2">
+                                        标题
+                                    </th>
+                                    <th class="col-sm-2">
+                                        书目
+                                    </th>
+                                    
+                                    <th class="col-sm-2">
+                                        陪读人
+                                    </th>
+                                    <th class="col-sm-2">状态</th>
+                                  
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.YingTitle)
+                                    </td>
+                                    <td>
+                                        @BookService.GetBookById(item.YingBId).BookName
+
+                                    </td>
+                                    <td>
+                                        @RenService.GetRenById(item.YingRId).RenNickName
+                                    </td>
+                                    
+                                    <td>
+                                        <a class="btn btn-success btn-sm" href="@Url.Action("Edit", "Book", new { id=item.Id})"><i class="fa fa-pencil"></i> 查看本营学员</a>
+                                          @Html.AntiForgeryToken()
+                                    </td>
+                                   
+
+                                </tr>
+
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                        <ul class="pagination pagination-sm no-margin pull-right">
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { type = Request.QueryString["type"], page = page }),
+                            new PagedListRenderOptions
+                            {
+                                LinkToPreviousPageFormat = "上一页",
+                                LinkToNextPageFormat = "下一页",
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                MaximumPageNumbersToDisplay = 5,
+                                LinkToFirstPageFormat = "首页",
+                                LinkToLastPageFormat = "最后一页",
+                                PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+                            })
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+
+@section BottomScripts {
+<script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+
+    <script type="text/javascript">
+
+     
+      
+    </script>
+}
