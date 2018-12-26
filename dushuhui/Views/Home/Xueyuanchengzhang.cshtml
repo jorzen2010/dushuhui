@@ -1,47 +1,47 @@
-﻿
-
+﻿@model StaticPagedList<dushuhuiEntity.Biji>
+@using PagedList;
+@using PagedList.Mvc;
+@using DushuhuiService;
+@using Common;
 <div class="container" style="margin-top:80px">
 
     <div class="row">
-        <div class="col-md-8">            
+        <div class="col-md-8">
             <h3>学员成长</h3>
             <div class="row">
-                <div class="dushubiji">
-                    <h4>如果爱，请深爱1</h4>
-                    <div class="smalltitle">
-                        <span>陪读人：赵征</span><span>读者：赵征</span><span>打卡时间：2018-02-03 23：56</span>
+
+                @foreach (var item in Model)
+                {
+                    <div class="dushubiji" onclick="ToUrl(@item.Id)">
+                        <h4>@item.BijiTitle</h4>
+                        <div class="smalltitle">
+                            <span>来自：@YingService.GetYingById(item.BijiYId).YingTitle</span> <span>陪读人：@RenService.GetRenById(item.BijiRId).RenNickName</span>
+                            <br /><span>作者：@RenService.GetRenById(item.BijiZuozhe).RenNickName</span><span>打卡时间：@item.BijiTime</span>
+                        </div>
+                        <div class="contentinfo">
+                            @CommonTools.ReplaceHtmlTag(item.BijiContent, 100)
+                        </div>
                     </div>
-                    <div class="contentinfo">
-                        这是是这边呢书的江爱的阿斯顿发送到发手动阀手动阀是的阿斯顿发送到发手动阀手动阀阿萨德法师打发斯蒂芬 阿斯蒂芬阿道夫发
-                    </div>
+                }
+                <div class="box-footer text-center">
+                    <ul class="pagination pagination-sm no-margin">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Biji", "Ucenter", new { rid = Request.QueryString["rid"], page = page }),
+                            new PagedListRenderOptions
+                            {
+                                LinkToPreviousPageFormat = "上一页",
+                                LinkToNextPageFormat = "下一页",
+                                DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded,
+                                DisplayLinkToNextPage = PagedListDisplayMode.IfNeeded,
+                                MaximumPageNumbersToDisplay = 5,
+                                LinkToFirstPageFormat = "首页",
+                                LinkToLastPageFormat = "最后一页",
+                                PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+                            })
+                    </ul>
                 </div>
-                <div class="dushubiji">
-                    <h4>如果爱，请深爱1</h4>
-                    <div class="smalltitle">
-                        <span>陪读人：赵征</span><span>读者：赵征</span><span>打卡时间：2018-02-03 23：56</span>
-                    </div>
-                    <div class="contentinfo">
-                        这是是这边呢书的江爱的阿斯顿发送到发手动阀手动阀是的阿斯顿发送到发手动阀手动阀阿萨德法师打发斯蒂芬 阿斯蒂芬阿道夫发
-                    </div>
-                </div>
-                <div class="dushubiji">
-                    <h4>如果爱，请深爱1</h4>
-                    <div class="smalltitle">
-                        <span>陪读人：赵征</span><span>读者：赵征</span><span>打卡时间：2018-02-03 23：56</span>
-                    </div>
-                    <div class="contentinfo">
-                        这是是这边呢书的江爱的阿斯顿发送到发手动阀手动阀是的阿斯顿发送到发手动阀手动阀阿萨德法师打发斯蒂芬 阿斯蒂芬阿道夫发
-                    </div>
-                </div>
-                <div class="dushubiji">
-                    <h4>如果爱，请深爱1</h4>
-                    <div class="smalltitle">
-                        <span>陪读人：赵征</span><span>读者：赵征</span><span>打卡时间：2018-02-03 23：56</span>
-                    </div>
-                    <div class="contentinfo">
-                        这是是这边呢书的江爱的阿斯顿发送到发手动阀手动阀是的阿斯顿发送到发手动阀手动阀阿萨德法师打发斯蒂芬 阿斯蒂芬阿道夫发
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="col-md-4">
@@ -57,3 +57,18 @@
 </div>
 
 
+@section BottomScripts {
+    <script type="text/javascript">
+        $('.dushubiji').on("mouseover", function () {
+            $(this).addClass("dushuhuibg");
+            // alert("asdf");
+        }).on("mouseout", function () {
+            $(this).removeClass("dushuhuibg");
+
+        });
+        function ToUrl(id) {
+            var tourl = "/Home/BijiContent?bid=" + id
+            window.location.href = tourl;
+        }
+    </script>
+}

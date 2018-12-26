@@ -174,3 +174,5 @@ D:\MyPro\2018\dushuhui\dushuhui\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAcc
 D:\MyPro\2018\dushuhui\dushuhui\obj\Debug\dushuhui.csprojResolveAssemblyReference.cache
 D:\MyPro\2018\dushuhui\dushuhui\obj\Debug\dushuhui.dll
 D:\MyPro\2018\dushuhui\dushuhui\obj\Debug\dushuhui.pdb
+E:\2018\dushuhui\dushuhui\bin\DushuhuiService.dll
+E:\2018\dushuhui\dushuhui\bin\DushuhuiService.pdb

@@ -35,11 +35,22 @@ namespace dushuhui.Controllers
             return View(PageList);
         }
 
-        public ActionResult Peiduren()
+        public ActionResult Peiduren(int? page)
         {
-            return View();
+            Pager pager = new Pager();
+            pager.table = "Ren";
+            pager.strwhere = "1=1";
+            pager.PageSize = 12;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<Ren> dataList = DataConvertHelper<Ren>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<Ren>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(PageList);
         }
-        public ActionResult Dushubiji()
+        public ActionResult Dushuying()
         {
             return View();
         }
@@ -47,27 +58,55 @@ namespace dushuhui.Controllers
         {
             return View();
         }
-        public ActionResult Xueyuanchengzhang()
+        public ActionResult Xueyuanchengzhang(int? page)
         {
-            return View();
+            Pager pager = new Pager();
+            pager.table = "Biji";
+            pager.strwhere = "Tags like '%成长%'";
+            pager.PageSize = 15;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<Biji> dataList = DataConvertHelper<Biji>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<Biji>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(PageList);
         }
-        public ActionResult Shu()
+        public ActionResult Shu(int bid)
         {
-            return View();
+            Book book = unitOfWork.booksRepository.GetByID(bid);
+            return View(book);
         }
-        public ActionResult Ren()
+        public ActionResult Ren(int rid)
         {
-            return View();
+            Ren ren = unitOfWork.rensRepository.GetByID(rid);
+            return View(ren);
         }
-        public ActionResult Dushuying()
+        public ActionResult Dushubiji(int? page)
         {
-            return View();
+            Pager pager = new Pager();
+            pager.table = "Biji";
+            pager.strwhere = "1=1";
+            pager.PageSize = 15;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<Biji> dataList = DataConvertHelper<Biji>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<Biji>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(PageList);
+        }
+        public ActionResult BijiContent(int bid)
+        {
+            
+                Biji biji = unitOfWork.bijisRepository.GetByID(bid);
+
+                return View(biji);
+           
         }
        
-        public ActionResult Daka()
-        {
-            return View();
-        }
         public ActionResult UCDushuying()
         {
             return View();

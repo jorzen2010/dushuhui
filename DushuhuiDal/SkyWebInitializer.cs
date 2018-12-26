@@ -232,7 +232,7 @@ namespace DushuhuiDal
             context.Books.Add(new Book
             {
                 BookName="非暴力沟通",
-                Cover = "/Resource/img/nophoto.png",
+                Cover = "/Resource/img/shu.png",
                 CreateTime=DateTime.Now,
             });
 

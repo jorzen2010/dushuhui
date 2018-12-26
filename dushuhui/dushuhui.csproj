@@ -8600,6 +8600,7 @@
     <Content Include="Views\Ucenter\Biji.cshtml" />
     <Content Include="Views\Ucenter\DakaContent.cshtml" />
     <Content Include="Views\Ucenter\_PartialUcenterInfo.cshtml" />
+    <Content Include="Views\Home\BijiContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

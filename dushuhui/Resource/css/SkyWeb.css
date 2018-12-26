@@ -69,3 +69,11 @@
     background-color:#eeeeee;
     cursor:pointer ;
 }
+.shudan {
+    padding:15px 15px;
+}
+.shudan-active {
+    background-color:#eeeeee;
+    box-shadow: 10px 10px 5px #dddddd;
+    cursor:pointer ;
+}

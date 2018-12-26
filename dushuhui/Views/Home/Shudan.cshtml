@@ -10,34 +10,27 @@
             <h3>陪读书单</h3>
             <div class="row">
 
-@foreach (var item in Model)
-                                {
-                <div class="col-md-3 text-center"><a href="@Url.Action("Shu","Home")"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"></a><a href="#"><h4>@item.BookName</h4></a></div>
-               
+                @foreach (var item in Model)
+{
+    <div class="col-md-3 text-center shudan" onclick="ToUrl(@item.Id)">
+
+        <img src="@item.Cover" alt="..." class="img-thumbnail" style="width:100%">
+        <h4>@item.BookName</h4>
+    </div>
+
 }
-                 <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>故事的疗愈力量</h4></div>
-                <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>非暴力沟通</h4></div>
-                <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>空间简史</h4></div>
-                <div class="col-md-3 text-center"><a href="#"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"></a><a href="#"><h4>瞬变</h4></a></div>
-                <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>故事的疗愈力量</h4></div>
-                <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>非暴力沟通</h4></div>
-                <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>空间简史</h4></div>
-                <div class="col-md-3 text-center"><a href="#"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"></a><a href="#"><h4>瞬变</h4></a></div>
-                <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>故事的疗愈力量</h4></div>
-                <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>非暴力沟通</h4></div>
-                <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>空间简史</h4></div>
-        </div>
-            <div class="box-footer clearfix">
+            </div>
+            <div class="box-footer clearfix  text-center">
                 <ul class="pagination pagination-sm no-margin">
                     @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { type = Request.QueryString["type"], page = page }),
                             new PagedListRenderOptions
                             {
                                 LinkToPreviousPageFormat = "上一页",
                                 LinkToNextPageFormat = "下一页",
-                                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
-                                DisplayLinkToLastPage = PagedListDisplayMode.Always,
-                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded,
+                                DisplayLinkToNextPage = PagedListDisplayMode.IfNeeded,
                                 MaximumPageNumbersToDisplay = 5,
                                 LinkToFirstPageFormat = "首页",
                                 LinkToLastPageFormat = "最后一页",
@@ -59,3 +52,18 @@
 </div>
 
 
+@section BottomScripts {
+    <script type="text/javascript">
+        $('.shudan').on("mouseover", function () {
+            $(this).addClass("shudan-active");
+            // alert("asdf");
+        }).on("mouseout", function () {
+            $(this).removeClass("shudan-active");
+
+        });
+        function ToUrl(id) {
+            var tourl = "/Home/Shu?bid=" + id
+            window.location.href = tourl;
+        }
+    </script>
+}
