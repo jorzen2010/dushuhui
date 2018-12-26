@@ -1,4 +1,6 @@
-﻿
+﻿@model StaticPagedList<dushuhuiEntity.Book>
+@using PagedList;
+@using PagedList.Mvc;
 
 
 <div class="container" style="margin-top:80px">
@@ -7,8 +9,13 @@
         <div class="col-md-8">
             <h3>陪读书单</h3>
             <div class="row">
-                <div class="col-md-3 text-center"><a href="@Url.Action("Shu","Home")"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"></a><a href="#"><h4>瞬变</h4></a></div>
-                <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>故事的疗愈力量</h4></div>
+
+@foreach (var item in Model)
+                                {
+                <div class="col-md-3 text-center"><a href="@Url.Action("Shu","Home")"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"></a><a href="#"><h4>@item.BookName</h4></a></div>
+               
+}
+                 <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>故事的疗愈力量</h4></div>
                 <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>非暴力沟通</h4></div>
                 <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>空间简史</h4></div>
                 <div class="col-md-3 text-center"><a href="#"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"></a><a href="#"><h4>瞬变</h4></a></div>
@@ -20,7 +27,24 @@
                 <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>非暴力沟通</h4></div>
                 <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>空间简史</h4></div>
         </div>
-            
+            <div class="box-footer clearfix">
+                <ul class="pagination pagination-sm no-margin">
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { type = Request.QueryString["type"], page = page }),
+                            new PagedListRenderOptions
+                            {
+                                LinkToPreviousPageFormat = "上一页",
+                                LinkToNextPageFormat = "下一页",
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                MaximumPageNumbersToDisplay = 5,
+                                LinkToFirstPageFormat = "首页",
+                                LinkToLastPageFormat = "最后一页",
+                                PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+                            })
+                </ul>
+            </div>
         </div>
         <div class="col-md-4">
             <h3>创始人说</h3>

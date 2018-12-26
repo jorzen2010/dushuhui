@@ -11,3 +11,4 @@ D:\MyPro\2018\dushuhui\Common\bin\Debug\ChnCharInfo.dll
 D:\MyPro\2018\dushuhui\Common\bin\Debug\Microsoft.ApplicationBlocks.Data.dll
 D:\MyPro\2018\dushuhui\Common\obj\Debug\Common.dll
 D:\MyPro\2018\dushuhui\Common\obj\Debug\Common.pdb
+D:\MyPro\2018\dushuhui\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache

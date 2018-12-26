@@ -8597,12 +8597,13 @@
     <Content Include="Views\Ucenter\CreateDushuying.cshtml" />
     <Content Include="Views\Ucenter\Daka.cshtml" />
     <Content Include="Views\Ying\Index.cshtml" />
+    <Content Include="Views\Ucenter\Biji.cshtml" />
+    <Content Include="Views\Ucenter\DakaContent.cshtml" />
+    <Content Include="Views\Ucenter\_PartialUcenterInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="plugins\sweetalert2\" />
-    <Folder Include="Views\Biji\" />
-    <Folder Include="Views\UcenterBase\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

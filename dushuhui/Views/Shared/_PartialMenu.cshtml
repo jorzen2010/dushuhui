@@ -31,15 +31,34 @@
             @if (Session["uname"] != "" && Session["uname"] != null)
 {
 
-    <ul class="nav navbar-nav navbar-right hidden-sm">
-        <li><a href="@Url.Action("Ucenter", "Ucenter")">@Session["uname"]</a></li>  
+    @*<ul class="nav navbar-nav navbar-right hidden-sm">
+        <li><a href="@Url.Action("Ucenter", "Ucenter")">@Session["uname"]</a>
+
+        </li>  
         
-    </ul>      
-                
-                
+    </ul>*@
+    <ul class="nav navbar-nav navbar-right  hidden-sm">
+        <li class="dropdown">
+            <a href="@Url.Action("Ucenter", "Ucenter")" class="dropdown-toggle" data-toggle="dropdown">
+                @Session["uname"]
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#">设置</a></li>
+                <li><a href="#">我的笔记</a></li>
+                <li><a href="#">我的读书营</a></li>
+                <li class="divider"></li>
+                <li><a href="@Url.Action("Logout","Account")">退出</a></li>
+            </ul>
+        </li>
+
+    </ul>
+
+
+
 }
-else
-{
+            else
+            {
 <ul class="nav navbar-nav navbar-right hidden-sm">
     <li><a href="@Url.Action("Login", "Account")">登录</a></li>
     <li><a href="@Url.Action("Register","Account")">注册</a></li>

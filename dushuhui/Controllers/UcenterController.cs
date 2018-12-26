@@ -30,7 +30,7 @@ namespace dushuhui.Controllers
                 Pager pager = new Pager();
                 pager.table = "YingList";
                 pager.strwhere = "RId="+int.Parse(Session["uid"].ToString());
-                pager.PageSize = 2;
+                pager.PageSize = 15;
                 pager.PageNo = page ?? 1;
                 pager.FieldKey = "Id";
                 pager.FiledOrder = "Id desc";
@@ -122,6 +122,48 @@ namespace dushuhui.Controllers
             Ying ying = unitOfWork.yingsRepository.GetByID(biji.BijiYId);
             ViewData["dakaying"] = ying;
             return View(biji);
+        }
+
+        public ActionResult Biji(int? page,int rid)
+        {
+            Pager pager = new Pager();
+            pager.table = "Biji";
+            pager.strwhere = "BijiZuozhe="+rid;
+            pager.PageSize = 15;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<Biji> dataList = DataConvertHelper<Biji>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<Biji>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(PageList);
+        }
+
+
+        public ActionResult DakaContent(int bid)
+        {
+            if (Session["uid"].ToString() != "" && Session["uid"] != null)
+            {
+                int uid = int.Parse(Session["uid"].ToString());
+                Ren ren = unitOfWork.rensRepository.GetByID(uid);
+                ViewData["user"] = ren;
+                Biji biji = unitOfWork.bijisRepository.GetByID(bid);
+
+                return View(biji);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public ActionResult UcenterInfo(int id)
+        {
+             Ren ren = unitOfWork.rensRepository.GetByID(id);
+             ViewData["user"] = ren;
+
+             return View("~/Views/Ucenter/_PartialUcenterInfo.cshtml");
         }
 
 	}

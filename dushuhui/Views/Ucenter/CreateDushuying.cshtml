@@ -77,21 +77,8 @@
         <div class="col-md-4">
           
             <div class="row text-center">
-                <div class="col-md-12">
-                    <img src="/Resource/img/zz.jpg" alt="..." class="img-thumbnail img-circle" style="width:50%">
-                    <h3>赵征</h3>
-                    <span style="height:50px;line-height:30px">会写代码的心理咨询师</span>
-                    <table class="table">
-                        <tr>
-                            <td><h4>79</h4><span>打卡文章</span></td>
-                            <td style="border-right: 2px solid #eeeeee; border-left: 2px solid #eeeeee"><h4>79</h4><span>粉丝</span></td>
-                            <td><h4>79</h4><span>关注</span></td>
-                        </tr>
-                    </table>
-                    <div class="uc-jieshao">
-                        会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师
-                    </div>
-                </div>
+
+                @Html.Action("UcenterInfo", "Ucenter", new { id = Session["uid"] })
             </div>
         </div>
     </div>
@@ -99,12 +86,15 @@
 </div>
 
 @section BottomScripts {
-<script type="text/javascript" src="~/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
     <script type="text/javascript" src="~/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="~/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
+
     <script type="text/javascript">
         $('#YingStartTime,#YingEndTime').datepicker({
             format: 'yyyy-mm-dd',
-            startDate: '-3d'
+            startDate: '1d',
+            language: "zh-CN",
+            todayHighlight: true,
         });
     </script>
 }

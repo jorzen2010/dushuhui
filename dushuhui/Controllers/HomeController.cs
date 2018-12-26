@@ -18,10 +18,23 @@ namespace dushuhui.Controllers
         {
             return View();
         }
-        public ActionResult Shudan()
+        
+        public ActionResult Shudan(int? page)
         {
-            return View();
+            Pager pager = new Pager();
+            pager.table = "Book";
+            pager.strwhere = "1=1";
+            pager.PageSize = 12;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<Book> dataList = DataConvertHelper<Book>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<Book>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(PageList);
         }
+
         public ActionResult Peiduren()
         {
             return View();

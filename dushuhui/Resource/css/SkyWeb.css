@@ -50,9 +50,22 @@
     line-height:60px;
 }
 .webTitle {
-    margin:30px 0px;
+    margin:20px 0px;
     font-weight:600;
 }
+.bijismalltitle {
+    margin:10px 0px;
+    color:#808080;
+    line-height:30px;
+}
+    .bijismalltitle span {
+        margin-right:20px;
+    }
 .reg_footer {
     margin-top:40px;
+}
+
+.dushuhuibg {
+    background-color:#eeeeee;
+    cursor:pointer ;
 }

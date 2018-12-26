@@ -37,11 +37,8 @@
 
                 
                   <div class="form-group">
-                                    @Html.LabelFor(model => model.Tags, new { @class = "control-label col-md-2" })
-                                    <div class="col-sm-9">
-                                        @Html.TextBoxFor(model => model.Tags, new { @class = "form-control", @data_role = "tagsinput" })
-                                    </div>
-                                </div>
+                     @Html.TextBoxFor(model => model.Tags, new { @class = "form-control", @data_role = "tagsinput", @placeholder = "标签" })
+                 </div>
                 
                 
                 <div class="checkbox">
@@ -61,21 +58,8 @@
         <div class="col-md-4">
 
             <div class="row text-center">
-                <div class="col-md-12">
-                    <img src="/Resource/img/zz.jpg" alt="..." class="img-thumbnail img-circle" style="width:50%">
-                    <h3>赵征</h3>
-                    <span style="height:50px;line-height:30px">会写代码的心理咨询师</span>
-                    <table class="table">
-                        <tr>
-                            <td><h4>79</h4><span>打卡文章</span></td>
-                            <td style="border-right: 2px solid #eeeeee; border-left: 2px solid #eeeeee"><h4>79</h4><span>粉丝</span></td>
-                            <td><h4>79</h4><span>关注</span></td>
-                        </tr>
-                    </table>
-                    <div class="uc-jieshao">
-                        会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师
-                    </div>
-                </div>
+
+                @Html.Action("UcenterInfo", "Ucenter", new { id = Session["uid"] })
             </div>
         </div>
     </div>
@@ -97,7 +81,10 @@
         var ue = UE.getEditor('BijiContent', {
             toolbars: [
                 ['fullscreen',//全屏
-                     'bold',//粗体
+                     'undo', //撤销
+                     'redo', //重做
+                     'indent', //首行缩进
+                     'bold', //加粗
                      'italic',//斜体
                      'forecolor', //字体颜色
                      'fontfamily', //字体
@@ -112,7 +99,8 @@
                 ]
             ],
             autoHeightEnabled: true,
-            autoFloatEnabled: true
+            autoFloatEnabled: true,
+            elementPathEnabled:false,
         });
     </script>
 

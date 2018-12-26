@@ -25,54 +25,8 @@
         <div class="col-md-4">
 
             <div class="row text-center">
-                <div class="col-md-12">
-                    <img src="/Resource/img/zz.jpg" alt="..." class="img-thumbnail img-circle" style="width:50%">
-                    <h3>@ren.RenNickName</h3>
-                    <span style="height:50px;line-height:30px">会写代码的心理咨询师</span>
-                    <table class="table">
-                        <tr>
-                            <td><h4>0</h4><span>打卡</span></td>
-                            <td style="border-right: 2px solid #eeeeee; border-left: 2px solid #eeeeee"><h4>0</h4><span>读书营</span></td>
-                            <td><h4>0</h4><span>关注</span></td>
-                        </tr>
-                    </table>
-                    <div class="uc-jieshao">
-                        会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师会写代码的心理咨询师
-                    </div>
-                    <ul class="uc-menu">
-                        <li>
-                            <a class="btn btn-block btn-lg btn-info" href="@Url.Action("UCDushuying","Home")">我参加的读书营</a>
-                        </li>
-                        <li>
-                            <a class="btn btn-block btn-lg btn-info">我的读书打卡笔记</a>
-                        </li>
-                      
-                        @if (Session["peiduren"]=="true")
-                        { <li>
-                            <a class="btn btn-block btn-lg btn-success" href="@Url.Action("UCDushuying","Home")">新增书单</a>
 
-                        </li>
-                       
-                            <li>
-                            <a class="btn btn-block btn-lg btn-success" href="@Url.Action("UCDushuying","Home")">申请举办读书会</a>
-
-                        </li>  
-                        }
-                        else
-                        {
-                              <li>
-                            <a class="btn btn-block btn-lg btn-success" href="@Url.Action("ShenqingPeiduren", "Ucenter")">申请成为陪读人</a>
-
-                        </li> 
-                        }
-                       
-                        <li>
-                            <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Logout","Account")">退出登陆</a>
-                        </li>
-
-
-                    </ul>
-                </div>
+                @Html.Action("UcenterInfo", "Ucenter", new { id = Session["uid"] })
             </div>
         </div>
     </div>

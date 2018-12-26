@@ -1,0 +1,70 @@
+﻿@using dushuhuiEntity;
+@{
+    Layout = null;
+    Ren ren = ViewData["user"] as Ren;
+    
+}
+<div class="col-md-12">
+    <img src="/Resource/img/zz.jpg" alt="..." class="img-thumbnail img-circle" style="width:50%">
+    <h3>@ren.RenNickName</h3>
+    <span style="height:50px;line-height:30px">
+    @if (string.IsNullOrEmpty(ren.RenYijuhua))
+    {
+        @Html.Raw("我太懒了，一句话介绍都没有")
+    }
+    else
+    {
+         @ren.RenYijuhua
+    } </span>
+    <table class="table">
+        <tr>
+            <td><h4>79</h4><span>打卡</span></td>
+            <td style="border-right: 2px solid #eeeeee; border-left: 2px solid #eeeeee"><h4>79</h4><span>粉丝</span></td>
+            <td><h4>79</h4><span>关注</span></td>
+        </tr>
+    </table>
+    <div class="uc-jieshao">
+        @if (string.IsNullOrEmpty(ren.RenInfo))
+        {
+            @Html.Raw("本人很懒，什么也没留下")
+        }
+        else
+        {
+            @ren.RenInfo
+        }
+    </div>
+    <ul class="uc-menu">
+        <li>
+            <a class="btn btn-block btn-lg btn-info" href="@Url.Action("Ucenter", "Ucenter")">我参加的读书营</a>
+        </li>
+        <li>
+            <a class="btn btn-block btn-lg btn-info" href="@Url.Action("Biji", "Ucenter", new { rid=ren.Id})">我的读书打卡笔记</a>
+        </li>
+        @if (Session["peiduren"] == "true")
+        {
+            <li>
+                <a class="btn btn-block btn-lg btn-success" href="@Url.Action("ShenqingPeiduren", "Ucenter", new { id=1})">新增书单</a>
+
+            </li>
+
+            <li>
+                <a class="btn btn-block btn-lg btn-success" href="@Url.Action("CreateDushuying","Ucenter")">申请举办读书会</a>
+
+            </li>
+        }
+        else
+        {
+            <li>
+                <a class="btn btn-block btn-lg btn-success" href="@Url.Action("ShenqingPeiduren", "Ucenter", new { id=1})">申请成为陪读人</a>
+
+            </li>
+        }
+
+        <li>
+            <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Logout","Account")">退出登陆</a>
+        </li>
+
+
+    </ul>
+
+</div>
