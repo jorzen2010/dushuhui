@@ -15,46 +15,38 @@
             <h3 class="webTitle">我参加的读书营</h3>
             @if (ViewBag.Amount > 0)
             {
-                <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-warning">全部</button>
-                    <button type="button" class="btn btn-default">已经报名</button>
-                    <button type="button" class="btn btn-default">正在进行</button>
-                    <button type="button" class="btn btn-default">已经结束</button>
-                    <button type="button" class="btn btn-default">我创建的</button>
-                </div>
-
                 foreach (var item in Model)
                 {
                     <div class="row dushuying">
                         <div class="col-md-4 text-center"><a href="#"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"></a></div>
                         <div class="col-md-6" style="line-height:25px;">
-                            读书会：@YingService.GetYingById(item.YingId).YingTitle<br />
-                            陪读人: @YingService.GetYingById(item.YingId).YingBId <br />
-                            书目：@YingService.GetYingById(item.YingId).YingRId<br />
-                            开营时间：@YingService.GetYingById(item.YingId).YingStartTime 至 @YingService.GetYingById(item.YingId).YingEndTime<br />
-                            费用: @YingService.GetYingById(item.YingId).YingPay 元<br />
-                            读书营简介：@YingService.GetYingById(item.YingId).YingInfo <br />
+                            读书会：@YingService.GetYingById(item.YId).YingTitle<br />
+                            陪读人: @RenService.GetRenById(YingService.GetYingById(item.YId).YingRId).RenNickName <br />
+                            书目：@BookService.GetBookById(YingService.GetYingById(item.YId).YingBId).BookName<br />
+                            开营时间：@YingService.GetYingById(item.YId).YingStartTime.ToString("yyyy-MM-dd") 至 @YingService.GetYingById(item.YId).YingEndTime.ToString("yyyy-MM-dd")<br />
+                            费用: @YingService.GetYingById(item.YId).YingPay 元<br />
+                            读书营简介：@YingService.GetYingById(item.YId).YingInfo <br />
 
 
-                            @if (YingService.GetYingById(item.YingId).YingRId == int.Parse(Session["uid"].ToString()))
+                            @if (YingService.GetYingById(item.YId).YingRId == int.Parse(Session["uid"].ToString()))
                             {
-                                <button class="btn btn-warning" style="margin-top:20px;">报名管理</button>
+                                <a class="btn btn-warning" style="margin-top:20px;" href="@Url.Action("YingList", "Ucenter", new { yid = item.YId })">报名管理</a>
                             }
 
 
                             @if (item.Status == "success")
                             {
-                                if (System.DateTime.Now > YingService.GetYingById(item.YingId).YingStartTime && System.DateTime.Now < YingService.GetYingById(item.YingId).YingEndTime)
+                                if (System.DateTime.Now > YingService.GetYingById(item.YId).YingStartTime && System.DateTime.Now < YingService.GetYingById(item.YId).YingEndTime)
                                 {
                                     <a class="btn btn-primary" style="margin-top:20px;" href="@Url.Action("Daka", "Ucenter", new { yid=item.Id})">立刻打卡</a>
                                 }
 
-                                if (System.DateTime.Now < YingService.GetYingById(item.YingId).YingStartTime)
+                                if (System.DateTime.Now < YingService.GetYingById(item.YId).YingStartTime)
                                 {
                                     <button class="btn btn-success" style="margin-top:20px;">已报名等待开营</button>
                                 }
 
-                                if (System.DateTime.Now > YingService.GetYingById(item.YingId).YingEndTime)
+                                if (System.DateTime.Now > YingService.GetYingById(item.YId).YingEndTime)
                                 {
                                     <button class="btn btn-default" style="margin-top:20px;">本营已结束</button>
                                 }
@@ -63,13 +55,13 @@
 
                             @if (item.Status == "shenqing")
                             {
-                                if (System.DateTime.Now < YingService.GetYingById(item.YingId).YingStartTime)
+                                if (System.DateTime.Now < YingService.GetYingById(item.YId).YingStartTime)
                                 {
-                                    <button class="btn btn-success" style="margin-top:20px;">@item.Status 本营已开始您未交费希望你下次抓紧时间哦</button>
+                                    <button class="btn btn-success" style="margin-top:20px;">本营已开始您未交费希望你下次抓紧时间哦</button>
                                 }
-                                if (System.DateTime.Now < YingService.GetYingById(item.YingId).YingStartTime)
+                                if (System.DateTime.Now < YingService.GetYingById(item.YId).YingStartTime)
                                 {
-                                    <button class="btn btn-success" style="margin-top:20px;">@item.Status 请联系陪读人缴费</button>
+                                    <button class="btn btn-success" style="margin-top:20px;">请联系陪读人缴费</button>
                                 }
 
                             }
@@ -107,70 +99,48 @@
 </div>
 
 @section BottomScripts {
-    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
-    <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
-
     <script type="text/javascript">
 
-        function DeleteItem(id, status, url, tourl) {
-            bootbox.confirm({
-                buttons: {
-                    confirm: {
-                        label: '删除',
-                        className: 'btn-danger'
-                    },
-                    cancel: {
-                        label: '取消',
-                        className: 'btn-default'
-                    }
-                },
-                message: '申请成功，请联系微信：sky20100 \n 申请成为读书会成员',
-                callback: function (result) {
-                    if (result) {
-                        var token = $('[name=__RequestVerificationToken]').val();
-                        var headers = {};
-                        //防伪标记放入headers
-                        //也可以将防伪标记放入data
-                        headers["__RequestVerificationToken"] = token;
-                        $.ajax({
-                            url: url,
-                            headers: headers,
-                            type: 'post',
-                            timeout: 3000,
-                            data: {
-                                id: id,
-                                __RequestVerificationToken: token,
-                                status: status,
-                            },
-                            success: function (msg) {
-                                if (msg.MessageStatus == 'true') {
-                                    //window.location.reload();
-                                    window.location.href = tourl;
-                                }
-                                else {
-                                    alertconfirm('删除失败');
-                                }
-                            },
-                            error: function (e) {
-                                alertconfirm('出现意外错误，删除失败！');
-                            }
-                        });
-                    }
-                    else {
-                        // alertconfirm('您已经取消删除了');
-                    }
-                },
-                title: "申请成功确认框",
-            });
-        }
+
+        var xx = getUrlParam('type');
+
+        $('.dushuying-type-group button').each(function () {
+
+            var hrefurl = $(this).data("type");;
+
+            if (xx == hrefurl) {
+                $(this).addClass('btn-warning');
+
+            }
+        });
 
 
+
+        $('.dushuying-type').on("mouseover", function () {
+
+            var xx = getUrlParam('type');
+            var yy = $(this).data("type");
+            if (xx != yy) {
+                $(this).removeClass("btn-default");
+                $(this).addClass("btn-warning");
+            }
+
+            // alert("asdf");
+        }).on("mouseout", function () {
+            var xx = getUrlParam('type');
+            var yy = $(this).data("type");
+            if (xx != yy) {
+                $(this).removeClass("btn-warning");
+                $(this).addClass("btn-default");
+            }
+
+        }).on("click", function () {
+            var xx = getUrlParam('type');
+            var yy = $(this).data("type");
+            var tourl = "/Ucenter/Ucenter?type=" + yy;
+            window.location.href = tourl;
+
+        });
 
     </script>
 }
-
-
-
-
-
-

@@ -1,22 +1,25 @@
 ﻿
+
 <div class="container" style="margin-top:80px">
 
     <div class="row">
         <div class="col-md-8">    
             <h3>读书营</h3>     
-            <div class="btn-group" role="group" aria-label="...">
-                
-                <button type="button" class="btn btn-default">正在报名</button>
-                <button type="button" class="btn btn-warning">正在进行</button>
-                <button type="button" class="btn btn-default">已经结束</button>
-                
+            <div class="btn-group  dushuying-type-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default dushuying-type" onclick="ToUrl('all')" data-type="all">全部</button>
+                <button type="button" class="btn btn-default dushuying-type" onclick="ToUrl('wei')" data-type="wei">正在报名</button>
+                <button type="button" class="btn btn-default dushuying-type" onclick="ToUrl('ing')" data-type="ing">正在进行</button>
+                <button type="button" class="btn btn-default dushuying-type" onclick="ToUrl('end')" data-type="end">已经结束</button>
 
             </div>
             
+            @foreach (var item in Model)
+            {
             <div class="row dushuying">
                 <div class="col-md-4 text-center"><a href="#"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"></a></div>
                 <div class="col-md-6" style="line-height:25px;">
-                    带领人：赵征<br />
+                    读书营：@item.YingTitle<br />
+                    带领人：zz<br />
                     书目：《非暴力沟通》<br />
                     开营时间：2018-09-09 <br />
                     作者: [美]玛利亚·森普尔 <br />
@@ -25,7 +28,7 @@
                     <button class="btn btn-danger">立刻报名</button>
                 </div>
             </div>
-            
+            }
         </div>
         <div class="col-md-4">
             <h3>创始人说</h3>
@@ -40,3 +43,51 @@
 </div>
 
 
+@section BottomScripts {
+    <script type="text/javascript">
+       
+
+        var xx = getUrlParam('type');
+
+        $('.dushuying-type-group button').each(function () {
+
+            var hrefurl = $(this).data("type");;
+
+            if (xx == hrefurl) {
+                $(this).addClass('btn-warning');
+
+            }
+        });
+
+
+
+        $('.dushuying-type').on("mouseover", function () {
+
+            var xx = getUrlParam('type');
+            var yy = $(this).data("type");
+            if (xx != yy)
+            {
+                $(this).removeClass("btn-default");
+                $(this).addClass("btn-warning");
+            }
+            
+            // alert("asdf");
+        }).on("mouseout", function () {
+            var xx = getUrlParam('type');
+            var yy = $(this).data("type");
+            if (xx != yy)
+            {
+            $(this).removeClass("btn-warning");
+            $(this).addClass("btn-default");
+            }
+
+        }).on("click", function () {
+            var xx = getUrlParam('type');
+            var yy = $(this).data("type");
+            var tourl = "/Home/Dushuying?type=" + yy;
+            window.location.href = tourl;
+
+        });
+
+    </script>
+}

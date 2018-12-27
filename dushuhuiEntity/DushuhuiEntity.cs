@@ -123,9 +123,46 @@ namespace dushuhuiEntity
         [Display(Name = "参加人")]
         public int RId { get; set; }
         [Display(Name = "读书营")]
-        public int YingId { get; set; }
+        public int YId { get; set; }
         [Display(Name = "状态")]
         public string Status { get; set; }
+
+    }
+
+    public class Pinglun
+    {
+        [Key]
+        public int Id { get; set; }
+        [Display(Name = "评论人")]
+        public int PId { get; set; }
+        [Display(Name = "笔记作者")]
+        public int BijiId { get; set; }
+        [Display(Name = "读书营")]
+        public int YingId { get; set; }
+        [Display(Name = "书目")]
+        public int BId { get; set; }
+        [Display(Name = "陪读人")]
+        public int Peiduren { get; set; }
+        [Display(Name = "评论内容")]
+        public string PinglunContent { get; set; }
+        [Display(Name = "评论内容")]
+        public bool Dianzan { get; set; }
+
+    }
+
+    public class Dianzan
+    {
+        [Key]
+        public int Id { get; set; }
+        [Display(Name = "点赞人")]
+        public int PId { get; set; }
+        [Display(Name = "笔记作者")]
+        public int BijiId { get; set; }
+        [Display(Name = "读书营")]
+        public int YingId { get; set; }
+        [Display(Name = "书目")]
+        public int BId { get; set; }
+
 
     }
 

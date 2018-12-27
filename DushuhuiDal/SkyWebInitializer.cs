@@ -90,13 +90,6 @@ namespace DushuhuiDal
 
             #endregion 初始化配置
 
-
-
-
-           
-
-
-
             #region 默认分类
 
             var CategoryList = new List<Category>
@@ -135,9 +128,8 @@ namespace DushuhuiDal
             CategoryList.ForEach(j => context.Categorys.Add(j));
             context.SaveChanges();
             #endregion 
-
             
-            #region 默认分类
+            #region 权限设置
 
             var QuanxianList = new List<Quanxian>
             {
@@ -162,9 +154,7 @@ namespace DushuhuiDal
             context.SaveChanges();
             #endregion 
 
-
-
-            #region 初始化配置
+            #region 系统消息
 
             var NoticeTitle = new System.Text.StringBuilder(942);
             NoticeTitle.AppendLine(@"<p> 当您申请用户时，表示您已经同意遵守本规章。");
@@ -207,10 +197,9 @@ namespace DushuhuiDal
 
             context.SaveChanges();
 
-            #endregion 初始化配置
+            #endregion 系统消息
 
-
-            #region 初始化配置
+            #region 用户初始化
 
             context.Rens.Add(new Ren
             {
@@ -221,26 +210,29 @@ namespace DushuhuiDal
                 CreateTime=DateTime.Now,
                 Status=true,
                 PeiduStatus="success",
+                RenAvatar="/Resource/img/zz.jpg"
+
             });
 
             context.SaveChanges();
 
-            #endregion 初始化配置
+            #endregion 用户初始化
 
-            #region 初始化配置
+            #region 书目初始化
 
             context.Books.Add(new Book
             {
                 BookName="非暴力沟通",
                 Cover = "/Resource/img/shu.png",
                 CreateTime=DateTime.Now,
+                BookTuijian="本书特别牛逼"
             });
 
             context.SaveChanges();
 
-            #endregion 初始化配置
+            #endregion 书目初始化
 
-           
+
         }
     }
 }

@@ -86,7 +86,7 @@ namespace dushuhui.Controllers
                 unitOfWork.Save();
                 YingList yinglist = new YingList();
                 yinglist.RId = ying.YingRId;
-                yinglist.YingId = ying.Id;
+                yinglist.YId = ying.Id;
                 yinglist.Status = "success";
                 unitOfWork.yinglistsRepository.Insert(yinglist);
                 unitOfWork.Save();
@@ -165,6 +165,24 @@ namespace dushuhui.Controllers
 
              return View("~/Views/Ucenter/_PartialUcenterInfo.cshtml");
         }
+
+        public ActionResult YingList(int? page,int yid)
+        {
+            Pager pager = new Pager();
+            pager.table = "YingList";
+            pager.strwhere = "YId=" + yid;
+            pager.PageSize = 15;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<YingList> dataList = DataConvertHelper<YingList>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<YingList>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(PageList);
+
+        }
+
 
 	}
 }

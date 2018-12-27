@@ -38,5 +38,8 @@ namespace dushuhuiEntity
         [Display(Name = "链接地址")]
         public string HrefUrl { get; set; }
 
+        [Display(Name = "排序")]
+        public int Paixu { get; set; }
+
     }
 }

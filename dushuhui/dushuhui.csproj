@@ -8601,6 +8601,8 @@
     <Content Include="Views\Ucenter\DakaContent.cshtml" />
     <Content Include="Views\Ucenter\_PartialUcenterInfo.cshtml" />
     <Content Include="Views\Home\BijiContent.cshtml" />
+    <Content Include="Views\Home\Notice.cshtml" />
+    <Content Include="Views\Ucenter\YingList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

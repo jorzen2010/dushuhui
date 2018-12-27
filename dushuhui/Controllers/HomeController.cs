@@ -50,14 +50,74 @@ namespace dushuhui.Controllers
             var PageList = new StaticPagedList<Ren>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
             return View(PageList);
         }
-        public ActionResult Dushuying()
+
+        public ActionResult Dushuying(int? page,string type="all")
         {
-            return View();
+            Pager pager = new Pager();
+            pager.table = "Ying";
+
+            pager.strwhere = "1=1";
+
+            if (type == "all")
+            {
+                pager.strwhere = "1=1";
+            }else if (type == "wei")
+            {
+                pager.strwhere = "YingStartTime>'"+System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")+"'";
+            }else if (type == "ing")
+            {
+                pager.strwhere = "YingStartTime<'" + System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "' and YingEndTime>'" + System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "'";
+            }
+            else if (type == "end")
+            {
+                pager.strwhere = "YingEndTime<'" + System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "'";
+            }
+            else
+            {
+                type = "all";
+                pager.strwhere = "1=1";
+            }
+
+
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<Ying> dataList = DataConvertHelper<Ying>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<Ying>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(PageList);
         }
-        public ActionResult Chuangshirenshuo()
+
+        public ActionResult Chuangshirenshuo(int? page)
         {
-            return View();
+            Pager pager = new Pager();
+            pager.table = "Notice";
+            pager.strwhere = "1=1";
+            pager.PageSize = 12;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<Notice> dataList = DataConvertHelper<Notice>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<Notice>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+
+            return View(PageList);
         }
+
+
+        public ActionResult Notice(int nid)
+        {
+
+            Notice notice = unitOfWork.noticesRepository.GetByID(nid);
+
+            return View(notice);
+
+        }
+
+
         public ActionResult Xueyuanchengzhang(int? page)
         {
             Pager pager = new Pager();

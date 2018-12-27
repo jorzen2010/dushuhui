@@ -1,9 +1,7 @@
 ﻿@using dushuhuiEntity;
 @using DushuhuiService;
-@model dushuhuiEntity.Biji
-@{
-    Ren ren = ViewData["user"] as Ren;
-}
+@model dushuhuiEntity.Notice
+
 
 
 <div class="container" style="margin-top:80px">
@@ -11,15 +9,13 @@
 
         <div class="col-md-8">
 
-            <h3 class="webTitle">@Model.BijiTitle</h3>
+            <h3 class="webTitle">@Model.Title</h3>
             <div class="bijismalltitle">
-                <span>来自：@YingService.GetYingById(Model.BijiYId).YingTitle</span> 
-                <br/><span>陪读人：@RenService.GetRenById(Model.BijiRId).RenNickName</span>
-               <span>作者：@RenService.GetRenById(Model.BijiZuozhe).RenNickName</span><span>打卡时间：@Model.BijiTime.ToString("yyyy年MM月dd日 HH:mm:ss")</span>
+               <span>作者：@Model.Author </span><span>打卡时间：@Model.CreateTime.ToString("yyyy年MM月dd日 HH:mm:ss")</span>
             </div>
 
             <div class="box-body" style="word-break: break-all;line-height:30px;">
-                @Html.Raw(Model.BijiContent)
+                @Html.Raw(Model.Content)
             </div>
 
             <div class="box-footer">
@@ -39,10 +35,6 @@
 
 </div>
 
-@section BottomScripts {
-    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
-    <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
-}
 
 
 

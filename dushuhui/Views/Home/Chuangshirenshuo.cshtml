@@ -1,15 +1,46 @@
-﻿
+﻿@model StaticPagedList<dushuhuiEntity.Notice>
+@using PagedList;
+@using PagedList.Mvc;
+@using DushuhuiService;
+@using Common;
 
 <div class="container" style="margin-top:80px">
 
     <div class="row">
         <div class="col-md-8">
-            
             <h3>创始人说</h3>
             <div class="row">
-                <div class="chuangshirenshuo">
-                    大家问哈ad发送到发送到发送到发送到发送到发送到发送到发的阿萨德法师打发斯蒂芬爱的色放阿斯蒂芬阿斯顿发斯蒂芬阿斯顿发斯蒂芬爱的色放阿道夫爱的色放阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬爱的色放阿斯蒂芬阿萨德发阿萨德阿发
+                @foreach (var item in Model)
+                {
+                    <div class="dushubiji" onclick="ToUrl(@item.Id)">
+                        <h4>@item.Title</h4>
+                        <div class="smalltitle">
+                           <span>发布人：@item.Author</span><span>时间：@item.CreateTime.ToString("yyyy年MM月dd日")</span>
+                        </div>
+                        <div class="contentinfo">
+                            @CommonTools.ReplaceHtmlTag(item.Content, 100)
+                        </div>
+                    </div>
+                }
+                <div class="box-footer text-center">
+                    <ul class="pagination pagination-sm no-margin">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Chuangshirenshuo", "Home", new {  page = page }),
+                            new PagedListRenderOptions
+                            {
+                                LinkToPreviousPageFormat = "上一页",
+                                LinkToNextPageFormat = "下一页",
+                                DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded,
+                                DisplayLinkToNextPage = PagedListDisplayMode.IfNeeded,
+                                MaximumPageNumbersToDisplay = 5,
+                                LinkToFirstPageFormat = "首页",
+                                LinkToLastPageFormat = "最后一页",
+                                PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+                            })
+                    </ul>
                 </div>
+
             </div>
         </div>
         <div class="col-md-4">
@@ -25,3 +56,18 @@
 </div>
 
 
+@section BottomScripts {
+    <script type="text/javascript">
+        $('.dushubiji').on("mouseover", function () {
+            $(this).addClass("dushuhuibg");
+            // alert("asdf");
+        }).on("mouseout", function () {
+            $(this).removeClass("dushuhuibg");
+
+        });
+        function ToUrl(id) {
+            var tourl = "/Home/Notice?nid="+id
+            window.location.href = tourl;
+        }
+    </script>
+}
