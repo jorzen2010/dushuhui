@@ -15,7 +15,7 @@
                     <div class="form-group">
                         <h3>创建我的读书营</h3> 
                     </div>
-                   @Html.HiddenFor(model => model.YingRId, new { @Value=Session["uid"].ToString()})
+                   @Html.HiddenFor(model => model.Peiduren, new { @Value=Session["uid"].ToString()})
                     <div class="form-group">
                         @Html.LabelFor(model => model.YingTitle, new { @class = "control-label col-md-2" })
                         <div class="col-md-9">
@@ -25,10 +25,10 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.YingBId, new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Shumu, new { @class = "control-label col-md-2" })
                         <div class="col-sm-9">
-                            @Html.DropDownListFor(model => model.YingBId, ViewData["booklist"] as IEnumerable<SelectListItem>, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.YingBId)
+                            @Html.DropDownListFor(model => model.Shumu, ViewData["booklist"] as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Shumu)
                         </div>
                     </div>
 

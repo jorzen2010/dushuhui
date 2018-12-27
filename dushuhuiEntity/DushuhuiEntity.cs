@@ -83,11 +83,11 @@ namespace dushuhuiEntity
         [Display(Name = "作者")]
         public int BijiZuozhe { get; set; }
         [Display(Name = "陪读人")]
-        public int BijiRId { get; set; }
+        public int Peiduren { get; set; }
         [Display(Name = "书目")]
-        public int BijiBId { get; set; }
+        public int Shumu { get; set; }
         [Display(Name = "读书营")]
-        public int BijiYId { get; set; }
+        public int Dushuying { get; set; }
         [Display(Name = "内容")]
         public string BijiContent { get; set; }
         [Display(Name = "打卡时间")]
@@ -104,9 +104,9 @@ namespace dushuhuiEntity
         [Display(Name = "读书会名称")]
         public string YingTitle { get; set; }
          [Display(Name = "陪读人")]
-        public int YingRId { get; set; }
+        public int Peiduren { get; set; }
          [Display(Name = "书目")]
-        public int YingBId { get; set; }
+        public int Shumu { get; set; }
          [Display(Name = "开始时间")]
         public DateTime YingStartTime { get; set; }
          [Display(Name = "结束时间")]
@@ -121,11 +121,19 @@ namespace dushuhuiEntity
         [Key]
         public int Id { get; set; }
         [Display(Name = "参加人")]
-        public int RId { get; set; }
+        public int Canjiaren { get; set; }
         [Display(Name = "读书营")]
-        public int YId { get; set; }
+        public int Dushuying { get; set; }
+        [Display(Name = "书目")]
+        public int Shumu { get; set; }
+        [Display(Name = "陪读人")]
+        public int Peiduren { get; set; }
         [Display(Name = "状态")]
         public string Status { get; set; }
+        [Display(Name = "申请时间")]
+        public DateTime ShenqingTime { get; set; }
+        [Display(Name = "审核时间")]
+        public DateTime SuccessTime { get; set; }
 
     }
 
@@ -134,13 +142,13 @@ namespace dushuhuiEntity
         [Key]
         public int Id { get; set; }
         [Display(Name = "评论人")]
-        public int PId { get; set; }
+        public int Pinglunren { get; set; }
         [Display(Name = "笔记作者")]
-        public int BijiId { get; set; }
+        public int BijiZuozhe { get; set; }
         [Display(Name = "读书营")]
-        public int YingId { get; set; }
+        public int Dushuying { get; set; }
         [Display(Name = "书目")]
-        public int BId { get; set; }
+        public int Shumu { get; set; }
         [Display(Name = "陪读人")]
         public int Peiduren { get; set; }
         [Display(Name = "评论内容")]
@@ -155,13 +163,13 @@ namespace dushuhuiEntity
         [Key]
         public int Id { get; set; }
         [Display(Name = "点赞人")]
-        public int PId { get; set; }
+        public int Dianzanren { get; set; }
         [Display(Name = "笔记作者")]
-        public int BijiId { get; set; }
+        public int BijiZuozhe { get; set; }
         [Display(Name = "读书营")]
-        public int YingId { get; set; }
+        public int Dushuying { get; set; }
         [Display(Name = "书目")]
-        public int BId { get; set; }
+        public int Shumu { get; set; }
 
 
     }

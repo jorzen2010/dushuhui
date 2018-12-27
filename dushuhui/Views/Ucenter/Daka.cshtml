@@ -21,7 +21,7 @@
                         @Html.ValidationSummary(true)
                 <div class="form-group">
                     <h3>@ying.YingTitle</h3>
-                    <span class="daka">书目：@BookService.GetBookById(ying.YingBId).BookName</span><span class="daka">陪读人：@RenService.GetRenById(ying.YingRId).RenNickName</span>
+                    <span class="daka">书目：@BookService.GetBookById(ying.Shumu).BookName</span><span class="daka">陪读人：@RenService.GetRenById(ying.Peiduren).RenNickName</span>
                 </div>
 
 
@@ -47,9 +47,9 @@
                     </label>
                 </div>
                 @Html.HiddenFor(model => model.BijiZuozhe, new { @Value=Session["uid"]})
-                @Html.HiddenFor(model => model.BijiRId, new { @Value=ying.YingRId})
-                @Html.HiddenFor(model => model.BijiBId, new { @Value = ying.YingBId })
-                 @Html.HiddenFor(model => model.BijiYId, new { @Value = ying.Id })
+                @Html.HiddenFor(model => model.Peiduren, new { @Value=ying.Peiduren})
+                @Html.HiddenFor(model => model.Shumu, new { @Value = ying.Shumu })
+                 @Html.HiddenFor(model => model.Dushuying, new { @Value = ying.Id })
                 @Html.HiddenFor(model => model.BijiEditTime, new { @Value = DateTime.Now })
                  @Html.HiddenFor(model => model.BijiTime, new { @Value = DateTime.Now })
                 <button type="submit" class="btn btn-primary pull-right">保存提交</button>

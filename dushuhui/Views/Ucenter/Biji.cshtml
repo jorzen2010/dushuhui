@@ -15,7 +15,7 @@
                     <div class="dushubiji" onclick="ToUrl(@item.Id)">
                         <h4>@item.BijiTitle</h4>
                         <div class="smalltitle">
-                            <span>来自：@YingService.GetYingById(item.BijiYId).YingTitle</span> <span>陪读人：@RenService.GetRenById(item.BijiRId).RenNickName</span>
+                            <span>来自：@YingService.GetYingById(item.Dushuying).YingTitle</span> <span>陪读人：@RenService.GetRenById(item.Peiduren).RenNickName</span>
                             <br /><span>作者：@RenService.GetRenById(item.BijiZuozhe).RenNickName</span><span>打卡时间：@item.BijiTime</span>
                         </div>
                         <div class="contentinfo">
@@ -24,9 +24,9 @@
                     </div>
                 }
 
-
-
-                <div class="box-footer text-center">
+                @if (Model.PageCount > 1)
+                { 
+                    <div class="box-footer text-center">
                     <ul class="pagination pagination-sm no-margin">
                         @Html.PagedListPager((IPagedList)Model, page => Url.Action("Biji","Ucenter", new { rid = Request.QueryString["rid"], page = page }),
                             new PagedListRenderOptions
@@ -44,6 +44,9 @@
                             })
                     </ul>
                 </div>
+                }
+
+                
 
 
             </div>

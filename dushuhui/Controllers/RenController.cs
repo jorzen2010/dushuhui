@@ -84,13 +84,7 @@ namespace dushuhui.Controllers
 
 
             Message msg = new Message();
-            if (id == null)
-            {
-                msg.MessageStatus = "false";
-                msg.MessageInfo = "找不到ID";
-            }
-            else
-            {
+            
 
                 Ren ren = unitOfWork.rensRepository.GetByID(id);
 
@@ -100,7 +94,7 @@ namespace dushuhui.Controllers
 
                 msg.MessageStatus = "true";
                 msg.MessageInfo = "审核成功";
-            }
+          
 
             return Json(msg, JsonRequestBehavior.AllowGet);
         }

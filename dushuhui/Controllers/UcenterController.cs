@@ -29,7 +29,7 @@ namespace dushuhui.Controllers
 
                 Pager pager = new Pager();
                 pager.table = "YingList";
-                pager.strwhere = "RId="+int.Parse(Session["uid"].ToString());
+                pager.strwhere = "Dushuying=" + int.Parse(Session["uid"].ToString());
                 pager.PageSize = 15;
                 pager.PageNo = page ?? 1;
                 pager.FieldKey = "Id";
@@ -85,9 +85,13 @@ namespace dushuhui.Controllers
                 unitOfWork.yingsRepository.Insert(ying);
                 unitOfWork.Save();
                 YingList yinglist = new YingList();
-                yinglist.RId = ying.YingRId;
-                yinglist.YId = ying.Id;
+                yinglist.Canjiaren = ying.Peiduren;
+                yinglist.Dushuying = ying.Id;
                 yinglist.Status = "success";
+                yinglist.Peiduren = ying.Peiduren;
+                yinglist.Shumu = ying.Shumu;
+                yinglist.ShenqingTime = DateTime.Now;
+                yinglist.SuccessTime = DateTime.Now;
                 unitOfWork.yinglistsRepository.Insert(yinglist);
                 unitOfWork.Save();
                 return RedirectToAction("Ucenter", "Ucenter");
@@ -119,7 +123,7 @@ namespace dushuhui.Controllers
                 unitOfWork.Save();
                 return RedirectToAction("Ucenter", "Ucenter");
             }
-            Ying ying = unitOfWork.yingsRepository.GetByID(biji.BijiYId);
+            Ying ying = unitOfWork.yingsRepository.GetByID(biji.Dushuying);
             ViewData["dakaying"] = ying;
             return View(biji);
         }
@@ -170,8 +174,8 @@ namespace dushuhui.Controllers
         {
             Pager pager = new Pager();
             pager.table = "YingList";
-            pager.strwhere = "YId=" + yid;
-            pager.PageSize = 15;
+            pager.strwhere = "Dushuying=" + yid;
+            pager.PageSize = 2;
             pager.PageNo = page ?? 1;
             pager.FieldKey = "Id";
             pager.FiledOrder = "Id desc";

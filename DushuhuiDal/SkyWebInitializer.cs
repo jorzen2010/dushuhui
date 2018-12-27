@@ -207,10 +207,13 @@ namespace DushuhuiDal
                 RenUserEmail="jorzen2010@163.com",
                 RenPassword=CommonTools.ToMd5("111111"),
                 RenNickName="赵征",
+                RenSex="男",
                 CreateTime=DateTime.Now,
                 Status=true,
                 PeiduStatus="success",
-                RenAvatar="/Resource/img/zz.jpg"
+                RenAvatar="/Resource/img/zz.jpg",
+                RenYijuhua="本人很懒，什么也没留下",
+                RenInfo="本人很懒，什么也没留下",
 
             });
 

@@ -15,7 +15,7 @@
                     <div class="dushubiji" onclick="ToUrl(@item.Id)">
                         <h4>@item.BijiTitle</h4>
                         <div class="smalltitle">
-                            <span>来自：@YingService.GetYingById(item.BijiYId).YingTitle</span> <span>陪读人：@RenService.GetRenById(item.BijiRId).RenNickName</span>
+                            <span>来自：@YingService.GetYingById(item.Dushuying).YingTitle</span> <span>陪读人：@RenService.GetRenById(item.Dushuying).RenNickName</span>
                             <br /><span>作者：@RenService.GetRenById(item.BijiZuozhe).RenNickName</span><span>打卡时间：@item.BijiTime.ToString("yyyy年MM月dd日 HH:mm:ss")</span>
                         </div>
                         <div class="contentinfo">

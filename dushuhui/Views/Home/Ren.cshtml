@@ -11,19 +11,20 @@
                 <div class="col-md-4 text-center"><a href="#"><img src="/Resource/img/zz.jpg" alt="..." class="img-thumbnail" style="width:100%"></a></div>
                 <div class="col-md-4" style="line-height:25px;">
                     <h3>@Model.RenNickName <small>@Model.RenSex</small></h3>
-                    陪读人数: 56人<br />
-                    陪读书目: 3本<br />
+                    @CommonTools.ReplaceHtmlTag(Model.RenYijuhua, 60)<br>
                     个人介绍:@CommonTools.ReplaceHtmlTag(Model.RenInfo, 60)
+                    <button class="btn btn-danger" style="margin-top:10px;">报名加入TA的读书营</button>
                 </div>
+                <div class="col-md-4" style="line-height:30px;border-left:1px solid #cccccc">
+                    <h4>陪读更新</h4>
+                    读者: 36人<br />
+                    陪读人:<a href="#"> 3人</a><br />
+                    读书笔记: <a href="#">265篇</a><br />
 
-            </div>
-            <div class="row">
-               
-                <div class="col-md-2   col-md-offset-10 ">
-                    <a class="btn btn-danger pull-right" href="@Url.Action("PeiduDushuying", "Home")">报名加入TA的读书营</a>
                 </div>
             </div>
-            <h3>陪读书单</h3>
+         
+            @*<h3>陪读书单</h3>
             <div class="row">
                
         
@@ -33,8 +34,8 @@
                     <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>非暴力沟通</h4></div>
                     <div class="col-md-3 text-center"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"><h4>空间简史</h4></div>
 
-            </div>
-            <h3>读者成长</h3>
+            </div>*@
+            <h3>学员成长</h3>
             <div class="row">
                 <div class="col-md-12">
                    
