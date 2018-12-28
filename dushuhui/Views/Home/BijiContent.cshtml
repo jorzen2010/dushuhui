@@ -13,8 +13,8 @@
 
             <h3 class="webTitle">@Model.BijiTitle</h3>
             <div class="bijismalltitle">
-                <span>来自：@YingService.GetYingById(Model.BijiYId).YingTitle</span> 
-                <br/><span>陪读人：@RenService.GetRenById(Model.BijiRId).RenNickName</span>
+                <span>来自：@YingService.GetYingById(Model.Dushuying).YingTitle</span> 
+                <br/><span>陪读人：@RenService.GetRenById(Model.Peiduren).RenNickName</span>
                <span>作者：@RenService.GetRenById(Model.BijiZuozhe).RenNickName</span><span>打卡时间：@Model.BijiTime.ToString("yyyy年MM月dd日 HH:mm:ss")</span>
             </div>
 

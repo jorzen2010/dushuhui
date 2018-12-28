@@ -29,7 +29,12 @@
                         开营时间：@item.YingStartTime.ToString("yyyy-MM-dd") <br />
                         费用：@item.YingPay 元 <br />
                         读书营简介： @item.YingInfo<br />
-                        <button class="btn btn-danger" style="margin-top:20px;">立刻报名</button>
+
+                        @if (ViewBag.baomingbtn)
+                        {
+                              <button class="btn btn-danger" style="margin-top:20px;">立刻报名</button>
+                        }
+                       
                     </div>
                 </div>
             }

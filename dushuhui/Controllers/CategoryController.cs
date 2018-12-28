@@ -13,7 +13,7 @@ using Common;
 
 namespace dushuhui.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoryController : AdminBaseController
     {
         private SkyWebContext db = new SkyWebContext();
 

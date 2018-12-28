@@ -87,6 +87,14 @@ namespace dushuhui.Controllers
             pager = CommonDal.GetPager(pager);
             IList<Ying> dataList = DataConvertHelper<Ying>.ConvertToModel(pager.EntityDataTable);
             var PageList = new StaticPagedList<Ying>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+
+            ViewBag.baomingbtn = true;
+            if (Session["uid"] == null)
+            {
+                ViewBag.baomingbtn = false;
+            
+            }
+            
             return View(PageList);
         }
 

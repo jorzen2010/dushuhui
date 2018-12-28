@@ -2,28 +2,29 @@
 @{
     Layout = null;
     Ren ren = ViewData["user"] as Ren;
-    
+
 }
 <div class="col-md-12">
     <img src="/Resource/img/zz.jpg" alt="..." class="img-thumbnail img-circle" style="width:50%">
-    <h3>@ren.RenNickName</h3>
-    <span style="height:50px;line-height:30px">
-    @if (string.IsNullOrEmpty(ren.RenYijuhua))
-    {
-        @Html.Raw("我太懒了，一句话介绍都没有")
-    }
-    else
-    {
-         @ren.RenYijuhua
-    } </span>
+    <h3 class="text-huise">@ren.RenNickName</h3>
+    <span style="height:50px;line-height:30px" class="text-huise">
+        @if (string.IsNullOrEmpty(ren.RenYijuhua))
+        {
+            @Html.Raw("我太懒了，一句话介绍都没有")
+        }
+        else
+        {
+            @ren.RenYijuhua
+        }
+    </span>
     <table class="table">
         <tr>
-            <td><h4>79 篇</h4><span>读书笔记</span></td>
-            <td style="border-right: 2px solid #eeeeee; border-left: 2px solid #eeeeee"><h4>79 本</h4><span>读书营</span></td>
-            <td><h4>79 次</h4><span>成长记录</span></td>
+            <td><h4 class="text-huise">79 篇</h4><span class="text-huise">读书笔记</span></td>
+            <td style="border-right: 2px solid #eeeeee; border-left: 2px solid #eeeeee"><h4 class="text-huise">79 本</h4><span class="text-huise">读书营</span></td>
+            <td><h4 class="text-huise">79 次</h4><span class="text-huise">成长记录</span></td>
         </tr>
     </table>
-    <div class="uc-jieshao">
+    <div class="uc-jieshao text-huise">
         @if (string.IsNullOrEmpty(ren.RenInfo))
         {
             @Html.Raw("本人很懒，什么也没留下")
@@ -35,7 +36,7 @@
     </div>
     <ul class="uc-menu">
         <li>
-            <a class="btn btn-block btn-lg btn-info" href="@Url.Action("Ucenter", "Ucenter")">我参加的读书营</a>
+            <a class="btn btn-block btn-lg btn-warning" href="@Url.Action("Ucenter", "Ucenter")">我参加的读书营</a>
         </li>
         <li>
             <a class="btn btn-block btn-lg btn-info" href="@Url.Action("Biji", "Ucenter", new { rid=ren.Id})">我的读书打卡笔记</a>
@@ -48,7 +49,7 @@
             </li>
 
             <li>
-                <a class="btn btn-block btn-lg btn-success" href="@Url.Action("CreateDushuying","Ucenter")">申请举办读书会</a>
+                <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("CreateDushuying","Ucenter")">申请举办读书会</a>
 
             </li>
         }
@@ -60,9 +61,14 @@
             </li>
         }
 
-        <li>
-            <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Logout","Account")">退出登陆</a>
-        </li>
+        @if (Session["guanliyuan"] == "true")
+        {
+            <li>
+                <a class="btn btn-block btn-lg btn-primary" href="@Url.Action("Index", "Book")">进入管理后台</a>
+
+            </li>
+        }
+
 
 
     </ul>

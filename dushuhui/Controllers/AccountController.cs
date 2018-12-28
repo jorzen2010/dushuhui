@@ -88,16 +88,16 @@ namespace dushuhui.Controllers
 
                     System.Web.HttpContext.Current.Session["uid"] = ren.Id.ToString();
                     System.Web.HttpContext.Current.Session["uname"] = ren.RenUserEmail;
-                    System.Web.HttpContext.Current.Session["peiduren"]="false";
-                    System.Web.HttpContext.Current.Session["admin"] = "false";
+                    System.Web.HttpContext.Current.Session["guanliyuan"] = "false";
+                    System.Web.HttpContext.Current.Session["peiduren"] = "false";
 
                     if (ren.RenQuanxian.Contains("peiduren")&&ren.PeiduStatus=="success")
                     {
                         System.Web.HttpContext.Current.Session["peiduren"] = "true";
                     }
-                    if (ren.RenQuanxian.Contains("admin"))
+                    if (ren.RenQuanxian.Contains("guanliyuan"))
                     {
-                        System.Web.HttpContext.Current.Session["admin"] = "true";
+                        System.Web.HttpContext.Current.Session["guanliyuan"] = "true";
                     }
 
                     FormsAuthentication.SetAuthCookie(username, rememberme);
@@ -147,6 +147,9 @@ namespace dushuhui.Controllers
             ren.RenQuanxian = "xueyuan";
             ren.CreateTime = System.DateTime.Now;
             ren.RenPassword = CommonTools.ToMd5(ren.RenPassword);
+            ren.RenYijuhua = "本人很懒，什么也没留下";
+            ren.RenInfo = "本人很懒，什么也没留下";
+            ren.RenAvatar = "/Resource/img/avatar.jpg";
             if (ModelState.IsValid)
             {
                 unitOfWork.rensRepository.Insert(ren);

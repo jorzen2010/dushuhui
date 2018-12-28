@@ -11,7 +11,7 @@ using dushuhuiEntity;
 
 namespace dushuhui.Controllers
 {
-    public class BookController : Controller
+    public class BookController : AdminBaseController
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
         //

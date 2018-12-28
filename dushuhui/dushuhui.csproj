@@ -165,12 +165,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminBaseController.cs" />
     <Compile Include="Controllers\YingController.cs" />
-    <Compile Include="Controllers\BijiController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DushuhuiController.cs" />
-    <Compile Include="Controllers\DushuyingController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoticeController.cs" />
@@ -8589,7 +8588,6 @@
     <Content Include="Views\Dushuhui\BookList.cshtml" />
     <Content Include="Views\Dushuhui\Setting.cshtml" />
     <Content Include="Views\Ren\Index.cshtml" />
-    <Content Include="Views\Dushuying\CreateYing.cshtml" />
     <Content Include="Views\Notice\Create.cshtml" />
     <Content Include="Views\Notice\Edit.cshtml" />
     <Content Include="Views\Notice\Index.cshtml" />
@@ -8607,6 +8605,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="plugins\sweetalert2\" />
+    <Folder Include="Views\AdminBase\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

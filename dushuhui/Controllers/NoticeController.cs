@@ -12,7 +12,7 @@ using DushuhuiService;
 
 namespace dushuhui.Controllers
 {
-    public class NoticeController : Controller
+    public class NoticeController : AdminBaseController
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
         //

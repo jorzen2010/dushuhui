@@ -11,7 +11,7 @@ using dushuhuiEntity;
 
 namespace dushuhui.Controllers
 {
-    public class YingController : Controller
+    public class YingController : AdminBaseController
     {
         //
         // GET: /Biji/

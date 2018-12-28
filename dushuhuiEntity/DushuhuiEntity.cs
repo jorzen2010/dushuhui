@@ -26,6 +26,7 @@ namespace dushuhuiEntity
         public string BookISBN { get; set; }
         [Display(Name = "标签")]
         public string Tags { get; set; }
+        [Required(ErrorMessage="推荐语必须要写")]
         [Display(Name = "局长推荐")]
         public string BookTuijian { get; set; }
         [Display(Name = "上线时间")]
@@ -96,22 +97,25 @@ namespace dushuhuiEntity
         public DateTime BijiEditTime { get; set; }
         [Display(Name = "标签")]
         public string Tags { get; set; }
+        [Display(Name = "隐私设置")]
+        public bool Yinsi { get; set; }
     }
     public class Ying
     {
-        [Key]
-        public int Id { get; set; }
-        [Display(Name = "读书会名称")]
-        public string YingTitle { get; set; }
+         [Key]
+         public int Id { get; set; }
+         [Display(Name = "读书会名称")]
+         public string YingTitle { get; set; }
          [Display(Name = "陪读人")]
-        public int Peiduren { get; set; }
+         public int Peiduren { get; set; }
          [Display(Name = "书目")]
-        public int Shumu { get; set; }
+         public int Shumu { get; set; }
          [Display(Name = "开始时间")]
-        public DateTime YingStartTime { get; set; }
+         public DateTime YingStartTime { get; set; }
          [Display(Name = "结束时间")]
          public DateTime YingEndTime { get; set; }
          [Display(Name = "读书营介绍")]
+         [Required(ErrorMessage="介绍不能为空")]
          public string YingInfo { get; set; }
          [Display(Name = "读书营费用")]
          public float YingPay { get; set; }

@@ -53,15 +53,15 @@
                                 <div class="form-group ">
                                     @Html.LabelFor(model => model.Cover, new { @class = "control-label col-md-2" })
                                     <div class="col-sm-3">
-                                        <img src="/Resource/img/nophoto.png" style="width:100%;border:1px solid #cccccc" id="CoverPhoto" />
+                                        <img src="/Resource/img/shu.png" style="width:100%;border:1px solid #cccccc" id="CoverPhoto" />
                                     </div>
                                     <div class="col-sm-5">
-                                        <input type="hidden" name="Cover" id="Cover" value="/Resource/img/nophoto.png" />
+                                        <input type="hidden" name="Cover" id="Cover" value="/Resource/img/shu.png" />
                                         <button class="btn btn-default" id="coverImgBtn" type="button">
                                             选择文件
                                         </button>
 
-                                        <p>建议尺寸700*600px，JPG、PNG格式， 图片小于5M。 </p>
+                                        <p>建议尺寸246*352px，JPG、PNG格式， 图片小于5M。 </p>
                                     </div>
                                 </div>
 
@@ -151,7 +151,7 @@
                         <div class="img-container" style="width:870px;height:500px;">
 
                             <img id="image" src="/Resource/img/nophoto.png" alt="Picture">
-                            @*<input id="imageaspectRatio" type="hidden" />*@
+                            <input id="imageaspectRatio" type="hidden" />
                         </div>
 
                     </div>
@@ -260,8 +260,8 @@
     <script type="text/javascript" src="~/Resource/js/SkyInit.js"></script>
     <script type="text/javascript">
         var ue = UE.getEditor('BookTuijian');
-        //  $('#imageaspectRatio').val('1.33333');
-        $('#coverImgBtn').click(function () {
+          $('#imageaspectRatio').val('0.699');
+         $('#coverImgBtn').click(function () {
             $('#avatar-modal').modal('show');
             //这句的意思是将container的宽高值去掉，保证自适应效果。有个小bug是第一次使用的时候如果浏览器过小可能造成显示不完全。
             $(".img-container").removeAttr("style");
