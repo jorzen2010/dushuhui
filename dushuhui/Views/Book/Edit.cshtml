@@ -152,7 +152,7 @@
                         <div class="img-container" style="width:870px;height:500px;">
 
                             <img id="image" src="@Model.Cover" alt="Picture">
-                            @*<input id="imageaspectRatio" type="hidden" />*@
+                            <input id="imageaspectRatio" type="hidden" />
                         </div>
 
                     </div>
@@ -261,7 +261,7 @@
     <script type="text/javascript" src="~/Resource/js/SkyInit.js"></script>
     <script type="text/javascript">
         var ue = UE.getEditor('BookTuijian');
-        //  $('#imageaspectRatio').val('1.33333');
+        $('#imageaspectRatio').val('0.699');
         $('#coverImgBtn').click(function () {
             $('#avatar-modal').modal('show');
             //这句的意思是将container的宽高值去掉，保证自适应效果。有个小bug是第一次使用的时候如果浏览器过小可能造成显示不完全。

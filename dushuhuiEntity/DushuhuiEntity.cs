@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-
+using System.Web;
+using System.Web.Mvc;
 namespace dushuhuiEntity
 {
 
@@ -51,9 +52,10 @@ namespace dushuhuiEntity
         public string RenInfo { get; set; }
         [Display(Name = "权限")]
         public string RenQuanxian { get; set; }
-         [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "邮箱格式不正确")]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "邮箱格式不正确")]
         [Display(Name = "注册邮箱")]
         public string RenUserEmail { get; set; }
+        [Required(ErrorMessage = "请填写密码")]
         [Display(Name = "密码")]
         public string RenPassword { get; set; }
         [Display(Name = "微信Openid")]
@@ -64,7 +66,6 @@ namespace dushuhuiEntity
         public string RenPhone { get; set; }
         [Display(Name = "昵称")]
         public string RenNickName { get; set; }
-
         [Display(Name = "注册时间")]
         public DateTime CreateTime { get; set; }
         [Display(Name = "用户状态")]

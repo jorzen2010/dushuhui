@@ -150,6 +150,7 @@ namespace dushuhui.Controllers
             ren.RenYijuhua = "本人很懒，什么也没留下";
             ren.RenInfo = "本人很懒，什么也没留下";
             ren.RenAvatar = "/Resource/img/avatar.jpg";
+            ren.RenName = ren.RenNickName;
             if (ModelState.IsValid)
             {
                 unitOfWork.rensRepository.Insert(ren);
@@ -159,7 +160,35 @@ namespace dushuhui.Controllers
 
             return View(ren);
         }
-        
+
+
+        public JsonResult CheckEmailUser(string RenUserEmail)
+        {
+            var rens = unitOfWork.rensRepository.Get(filter: u => u.RenUserEmail == RenUserEmail);
+
+            if (rens.Count()==0)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            else 
+            {
+                return Json("此邮箱已经被注册！", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult CheckNickName(string RenNickName)
+        {
+            var rens = unitOfWork.rensRepository.Get(filter: u => u.RenNickName == RenNickName);
+
+            if (rens.Count() == 0)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("此昵称已经被使用，换一个呗！", JsonRequestBehavior.AllowGet);
+            }
+        }
 
     }
 }

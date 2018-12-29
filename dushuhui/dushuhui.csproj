@@ -8601,6 +8601,7 @@
     <Content Include="Views\Home\BijiContent.cshtml" />
     <Content Include="Views\Home\Notice.cshtml" />
     <Content Include="Views\Ucenter\YingList.cshtml" />
+    <Content Include="Views\Ucenter\AccountSetting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

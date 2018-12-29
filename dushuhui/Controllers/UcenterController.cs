@@ -183,8 +183,49 @@ namespace dushuhui.Controllers
             pager = CommonDal.GetPager(pager);
             IList<YingList> dataList = DataConvertHelper<YingList>.ConvertToModel(pager.EntityDataTable);
             var PageList = new StaticPagedList<YingList>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            ViewBag.yid = yid;
             return View(PageList);
 
+        }
+
+        public ActionResult AccountSetting() 
+        {
+            if (Session["uid"].ToString() != "" && Session["uid"] != null)
+            {
+                int uid = int.Parse(Session["uid"].ToString());
+                Ren ren = unitOfWork.rensRepository.GetByID(uid);
+              
+                return View(ren);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult AccountSetting(Ren ren)
+        {
+
+
+            if (ModelState.IsValid)
+            {
+                Ren nren = unitOfWork.rensRepository.GetByID(ren.Id);
+                nren.RenNickName = ren.RenNickName;
+                nren.RenName = ren.RenName;
+                nren.RenSex = ren.RenSex;
+                nren.RenBirthday = ren.RenBirthday;
+                nren.RenYijuhua = ren.RenYijuhua;
+                nren.RenInfo = ren.RenInfo;
+                nren.RenAvatar = ren.RenAvatar;
+                unitOfWork.rensRepository.Update(nren);
+                unitOfWork.Save();
+                return RedirectToAction("Ucenter", "Ucenter");
+            }
+
+            return View(ren);
         }
 
 

@@ -40,7 +40,7 @@
                 <li><a href="@Url.Action("Biji", "Ucenter", new { rid = Session["uid"] })">我的笔记</a></li>
                 <li><a href="@Url.Action("Ucenter", "Ucenter")">我的读书营</a></li>               
                 <li class="divider"></li>
-                <li><a href="#">设置</a></li>
+                <li><a href="@Url.Action("AccountSetting", "Ucenter")">账号设置</a></li>
                 <li class="divider"></li>
                 <li><a href="@Url.Action("Logout","Account")">退出</a></li>
             </ul>

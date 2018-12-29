@@ -12,7 +12,7 @@ function SkyfileCopper(ac,result) {
                 type: 'POST',
                 url: "/File/UploadImageBase64",
                 data: {
-                    id: $('#CustomerId').val(),
+                    id: $('#Id').val(),
                     img: result.toDataURL('image/jpeg'),
                     __RequestVerificationToken: token,
                     rootpath: "/FilesUpload",
@@ -23,8 +23,8 @@ function SkyfileCopper(ac,result) {
                 success: function (data) {
                     alert('头像修改上传成功！');
                     $('#getCroppedCanvasbtn').attr('data-skyac', "");
-                    $('#PsyAvatarSrc').attr('src', data.MessageUrl);
-                    $('#PsyAvatar').val(data.MessageUrl);
+                    $('#RenAvatarSrc').attr('src', data.MessageUrl);
+                    $('#RenAvatar').val(data.MessageUrl);
                     $('#avatar-modal').modal('hide');
                     $('#avatarImgBtn').parent().html("<button class='btn btn-xs btn-danger' onclick='editOk(this)' data-z='PsyAvatar'>确认修改</button>");
                 },

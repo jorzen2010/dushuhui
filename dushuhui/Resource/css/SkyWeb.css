@@ -84,3 +84,10 @@
 .text-huise {
     color:#bbbbbb;
 }
+
+
+
+
+.field-validation-error {
+    color:#ff0000;
+}

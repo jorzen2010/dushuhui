@@ -207,6 +207,7 @@ namespace DushuhuiDal
                 RenUserEmail="jorzen2010@163.com",
                 RenPassword=CommonTools.ToMd5("111111"),
                 RenNickName="赵征",
+                RenName = "赵征",
                 RenSex="男",
                 CreateTime=DateTime.Now,
                 Status=true,

@@ -1,5 +1,8 @@
 ﻿@model dushuhuiEntity.Ren
-
+@section Topcss {
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
+}
 
 <div class="container" style="margin-top:80px">
     <h3 style="font-weight:800">欢迎加入陪伴式成长读书会</h3>
@@ -31,6 +34,14 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="CategoryStatus" class="col-sm-2 control-label" style="padding-top:2px;">性别</label>
+                            <div class="col-sm-10">
+                                <input type="radio" name="RenSex" value="男">  男
+                                <input type="radio" name="RenSex" value="女" checked="checked"> 女
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             @Html.LabelFor(model => model.RenNickName, new { @class = "control-label col-md-2" })
                             <div class="col-sm-6">
                                 @Html.TextBoxFor(model => model.RenNickName, new { @class = "form-control" })
@@ -38,6 +49,8 @@
                                 @Html.ValidationMessageFor(model => model.RenNickName)
                             </div>
                         </div>
+
+                       
 
                         @*<div class="form-group">
                             @Html.LabelFor(model => model.RenPhone, new { @class = "control-label col-md-2" })
@@ -94,3 +107,13 @@
 </div>
 
 
+@section BottomScripts {
+
+    <script type="text/javascript" src="~/plugins/iCheck/icheck.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="~/Resource/js/SkyInit.js"></script>
+
+
+
+}
