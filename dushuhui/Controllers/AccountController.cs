@@ -190,5 +190,21 @@ namespace dushuhui.Controllers
             }
         }
 
+        public JsonResult CheckEndTime(string YingStartTime, string YingEndTime)
+        {
+
+            DateTime sTime = DateTime.Parse(YingStartTime);
+            DateTime eTime = DateTime.Parse(YingEndTime);
+
+            if (eTime>sTime)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("结束时间必须大于开始时间", JsonRequestBehavior.AllowGet);
+            }
+        }
+
     }
 }

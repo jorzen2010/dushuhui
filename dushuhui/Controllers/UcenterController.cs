@@ -29,7 +29,7 @@ namespace dushuhui.Controllers
 
                 Pager pager = new Pager();
                 pager.table = "YingList";
-                pager.strwhere = "Dushuying=" + int.Parse(Session["uid"].ToString());
+                pager.strwhere = "Canjiaren=" + int.Parse(Session["uid"].ToString());
                 pager.PageSize = 15;
                 pager.PageNo = page ?? 1;
                 pager.FieldKey = "Id";
@@ -153,7 +153,13 @@ namespace dushuhui.Controllers
                 Ren ren = unitOfWork.rensRepository.GetByID(uid);
                 ViewData["user"] = ren;
                 Biji biji = unitOfWork.bijisRepository.GetByID(bid);
-
+               
+                var dianzan = unitOfWork.bijiDianzansRepository.Get(filter: u => u.DianzanBiji == bid && u.Dianzanren == ren.Id && u.Dianzan ==true);
+                ViewBag.dianzan = false;
+                if (dianzan.Count() > 0)
+                {
+                    ViewBag.dianzan = true;
+                }
                 return View(biji);
             }
             else
@@ -168,6 +174,14 @@ namespace dushuhui.Controllers
              ViewData["user"] = ren;
 
              return View("~/Views/Ucenter/_PartialUcenterInfo.cshtml");
+        }
+
+        public ActionResult PinglunList(int bid)
+        {
+            var Pingluns = unitOfWork.bijiPinglunsRepository.Get(filter: u => u.PinglunBiji == bid, orderBy: q => q.OrderByDescending(u => u.Id));
+            ViewData["Pingluns"] = Pingluns;
+
+            return View("~/Views/Ucenter/_PartialPinglun.cshtml");
         }
 
         public ActionResult YingList(int? page,int yid)
@@ -205,7 +219,6 @@ namespace dushuhui.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ValidateInput(false)]
         public ActionResult AccountSetting(Ren ren)
         {
 
@@ -226,6 +239,120 @@ namespace dushuhui.Controllers
             }
 
             return View(ren);
+        }
+
+        //喜欢笔记
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult XihuanBiji(int BijiZuozhe, int Canyuren, int Dushuying, int Peiduren, int Shumu, int Biji, bool status)
+        {
+            BijiDianzan xihuan = new BijiDianzan();
+            xihuan.BijiZuozhe = BijiZuozhe;
+            xihuan.Dianzan = status;
+            xihuan.DianzanBiji = Biji;
+            xihuan.Dianzanren = Canyuren;
+            xihuan.Dushuying = Dushuying;
+            xihuan.Peiduren = Peiduren;
+            xihuan.Shumu = Shumu;
+            Message msg = new Message();
+            try
+            {
+                var dianzan = unitOfWork.bijiDianzansRepository.Get(filter: u => u.DianzanBiji == Biji && u.Dianzanren == Canyuren);
+
+                if (dianzan.Count() > 0)
+                {
+                    BijiDianzan _xihuan = dianzan.First();
+                    _xihuan.Dianzan = xihuan.Dianzan;
+                    _xihuan.CreateTime = System.DateTime.Now;
+                    unitOfWork.bijiDianzansRepository.Update(_xihuan);
+                }
+                else
+                {
+                    xihuan.CreateTime = System.DateTime.Now;
+                    unitOfWork.bijiDianzansRepository.Insert(xihuan);
+                }             
+                unitOfWork.Save();
+
+                msg.MessageStatus = "true";
+                msg.MessageInfo = "点赞成功";
+            }
+            catch {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "点赞失败";
+            }
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
+        //评论笔记
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult PinglunBiji(int BijiZuozhe, int Canyuren, int Dushuying, int Peiduren, int Shumu, int Biji, string Pinglun)
+        {
+            BijiPinglun pinglun = new BijiPinglun();
+            pinglun.BijiZuozhe = BijiZuozhe;
+            pinglun.PinglunContent = Pinglun;
+            pinglun.Pinglunren = Canyuren;
+            pinglun.PinglunBiji = Biji;
+            pinglun.Dushuying = Dushuying;
+            pinglun.Peiduren = Peiduren;
+            pinglun.Shumu = Shumu;
+            pinglun.CreateTime = DateTime.Now;
+            Message msg = new Message();
+           
+            try
+            {
+
+                unitOfWork.bijiPinglunsRepository.Insert(pinglun);
+                unitOfWork.Save();
+
+                msg.MessageStatus = "true";
+                msg.MessageInfo = "评论成功";
+            }
+            catch
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "评论失败";
+            }
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
+
+        //评论笔记
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult HuifuPinglun( string PinglunContent,int Pinglunren,int PinglunReplyren,int ReplyPinlun,int BijiZuozhe,int Peiduren,int Shumu,int PinglunBiji,int Dushuying)
+        {
+            PinglunReply huifupinglun = new PinglunReply();
+            huifupinglun.BijiZuozhe = BijiZuozhe;
+            huifupinglun.PinglunContent = PinglunContent;
+            huifupinglun.Pinglunren = Pinglunren;
+            huifupinglun.PinglunBiji = PinglunBiji;
+            huifupinglun.Dushuying = Dushuying;
+            huifupinglun.Peiduren = Peiduren;
+            huifupinglun.Shumu = Shumu;
+            huifupinglun.PinglunReplyren = PinglunReplyren;
+            huifupinglun.ReplyPinlun = ReplyPinlun;           
+            huifupinglun.CreateTime = DateTime.Now;
+            Message msg = new Message();
+
+            try
+            {
+
+                unitOfWork.pinglunReplysRepositorysRepository.Insert(huifupinglun);
+                unitOfWork.Save();
+
+                msg.MessageStatus = "true";
+                msg.MessageInfo = "回复评论成功";
+            }
+            catch
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "回复评论失败";
+            }
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
 

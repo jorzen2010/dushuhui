@@ -33,6 +33,10 @@ namespace DushuhuiDal
         public DbSet<Category> Categorys { get; set; }
         public DbSet<Quanxian> Quanxians { get; set; }
         public DbSet<Notice> Notices { get; set; }
+        public DbSet<BijiPinglun> BijiPingluns { get; set; }
+        public DbSet<PinglunReply> PinglunReplys { get; set; }
+        public DbSet<DianzanPinglun> DianzanPingluns { get; set; }
+        public DbSet<BijiDianzan> BijiDianzans { get; set; }
 
 
 

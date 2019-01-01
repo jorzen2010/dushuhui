@@ -120,6 +120,66 @@ namespace DushuhuiDal
              }
          }
 
+         private GenericRepository<BijiPinglun> BijiPinglunsRepository;
+
+         public GenericRepository<BijiPinglun> bijiPinglunsRepository
+         {
+             get
+             {
+
+                 if (this.BijiPinglunsRepository == null)
+                 {
+                     this.BijiPinglunsRepository = new GenericRepository<BijiPinglun>(context);
+                 }
+                 return BijiPinglunsRepository;
+             }
+         }
+
+         private GenericRepository<DianzanPinglun> DianzanPinglunsRepository;
+
+         public GenericRepository<DianzanPinglun> dianzanPinglunsRepository
+         {
+             get
+             {
+
+                 if (this.DianzanPinglunsRepository == null)
+                 {
+                     this.DianzanPinglunsRepository = new GenericRepository<DianzanPinglun>(context);
+                 }
+                 return DianzanPinglunsRepository;
+             }
+         }
+
+         private GenericRepository<BijiDianzan> BijiDianzansRepository;
+
+         public GenericRepository<BijiDianzan> bijiDianzansRepository
+         {
+             get
+             {
+
+                 if (this.BijiDianzansRepository == null)
+                 {
+                     this.BijiDianzansRepository = new GenericRepository<BijiDianzan>(context);
+                 }
+                 return BijiDianzansRepository;
+             }
+         }
+
+         private GenericRepository<PinglunReply> PinglunReplysRepository;
+
+         public GenericRepository<PinglunReply> pinglunReplysRepositorysRepository
+         {
+             get
+             {
+
+                 if (this.PinglunReplysRepository == null)
+                 {
+                     this.PinglunReplysRepository = new GenericRepository<PinglunReply>(context);
+                 }
+                 return PinglunReplysRepository;
+             }
+         }
+
          private GenericRepository<Biji> BijisRepository;
 
          public GenericRepository<Biji> bijisRepository

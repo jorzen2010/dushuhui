@@ -15,11 +15,13 @@
                     <div class="dushubiji" onclick="ToUrl(@item.Id)">
                         <h4>@item.BijiTitle</h4>
                         <div class="smalltitle">
-                            <span>来自：@YingService.GetYingById(item.Dushuying).YingTitle</span> <span>陪读人：@RenService.GetRenById(item.Dushuying).RenNickName</span>
-                            <br /><span>作者：@RenService.GetRenById(item.BijiZuozhe).RenNickName</span><span>打卡时间：@item.BijiTime.ToString("yyyy年MM月dd日 HH:mm:ss")</span>
+                            <span>来自：@YingService.GetYingById(item.Dushuying).YingTitle</span> <span>陪读人：@RenService.GetRenById(item.Dushuying).RenNickName</span> <span>打卡时间：@item.BijiTime.ToString("yyyy年MM月dd日 HH:mm:ss")</span>
                         </div>
                         <div class="contentinfo">
                             @CommonTools.ReplaceHtmlTag(item.BijiContent, 100)
+                        </div>
+                        <div class="footertitle">
+                           <span style="padding-top:5px;">作者：@RenService.GetRenById(item.BijiZuozhe).RenNickName</span><span class="pull-right"><span class="glyphicon glyphicon-comment"></span>评论0 &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-heart"></span>喜欢0</span>
                         </div>
                     </div>
                 }

@@ -1,6 +1,5 @@
 ﻿@model dushuhuiEntity.Ren
 @section Topcss {
-    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
     <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
 }
 
@@ -9,7 +8,7 @@
     <div class="row" style="margin-top:30px">
         <div class="col-md-6">
 
-            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", @name = "Create", @id = "Create" }))
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", @name = "RegForm", @id = "RegForm" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
@@ -113,7 +112,65 @@
     <script type="text/javascript" src="~/Scripts/jquery.validate.js"></script>
     <script type="text/javascript" src="~/plugins/bootbox.min.js"></script>
     <script type="text/javascript" src="~/Resource/js/SkyInit.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var validate = $("#RegForm").validate({
+            // debug: true, //调试模式取消submit的默认提交功能
+            errorClass: "field-validation-error", //默认为错误的样式类为：error
+            // focusInvalid: false, //当为false时，验证无效时，没有焦点响应
+            // onkeyup: false,
+            //submitHandler: function (form) {   //表单提交句柄,为一回调函数，带一个参数：form
+            //    alert("提交表单");
+            //    form.submit();   //提交表单
+            //},
 
+            rules: {
+                RenUserEmail: {
+                    required: true,
+                    email: true,
+                    remote:{ 
+                        type:"GET",
+                        contentType: "application/json;charset=UTF-8",                          
+                        url:"/Account/CheckEmailUser",//请求地址 
+                        //传递的参数,不写默认是当前校验的值 
+                    }
+                },
+                RenPassword: {
+                    required: true,
+                    rangelength: [3, 10]
+
+                },
+                RenNickName: {
+                    required: true,
+                    remote: {
+                        type: "GET",
+                        contentType: "application/json;charset=UTF-8",
+                        url: "/Account/CheckNickName",//请求地址 
+                        //传递的参数,不写默认是当前校验的值 
+                    }
+                    
+                },
+
+            },
+            messages: {
+                RenUserEmail: {
+                    required: "邮箱为必填",
+                    email: "EMail格式不正确"
+                },
+                RenPassword: {
+                    required: "密码不能为空",
+                    rangelength: $.format("密码最小长度:{0}, 最大长度:{1}。")
+                },
+                RenNickName: {
+                    required: "你还没给自己起名字呢",
+                    
+                }
+            }
+
+        });
+
+    });
+</script>
 
 
 }

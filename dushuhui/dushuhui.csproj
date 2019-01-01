@@ -39,6 +39,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="aliyun-net-sdk-core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AliyunMsg\aliyun-net-sdk-core.dll</HintPath>
+    </Reference>
+    <Reference Include="aliyun-net-sdk-dysmsapi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AliyunMsg\aliyun-net-sdk-dysmsapi.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -160,12 +168,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AliyunMsg\AliyunMsg.cs" />
+    <Compile Include="AliyunMsg\AliyunMsgModel.cs" />
+    <Compile Include="AliyunMsg\Program.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminBaseController.cs" />
+    <Compile Include="Controllers\TestMsgController.cs" />
     <Compile Include="Controllers\YingController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -6718,6 +6730,10 @@
     <Content Include="AdminLTE\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="AdminLTE\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="AdminLTE\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="AliyunMsg\aliyun-net-sdk-core.dll" />
+    <Content Include="AliyunMsg\aliyun-net-sdk-dysmsapi.dll" />
+    <Content Include="AliyunMsg\net2.0\aliyun-net-sdk-core.dll" />
+    <Content Include="AliyunMsg\net2.0\aliyun-net-sdk-dysmsapi.dll" />
     <Content Include="bootstrap\css\bootstrap-theme.css" />
     <Content Include="bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="bootstrap\css\bootstrap.css" />
@@ -8602,11 +8618,13 @@
     <Content Include="Views\Home\Notice.cshtml" />
     <Content Include="Views\Ucenter\YingList.cshtml" />
     <Content Include="Views\Ucenter\AccountSetting.cshtml" />
+    <Content Include="Views\Ucenter\_PartialPinglun.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="plugins\sweetalert2\" />
     <Folder Include="Views\AdminBase\" />
+    <Folder Include="Views\TestMsg\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -1,0 +1,60 @@
+﻿@using dushuhuiEntity;
+@using DushuhuiService;
+@{
+    Layout = null;
+
+}
+
+<h3>参与评论</h3>
+
+@if (Session["uname"] == null)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <h4>登陆后可发表表情</h4>
+        </div>
+    </div>
+}
+else
+{
+    
+    <div class="row">
+        <div class="col-md-12">
+            <textarea rows="5" style="width: 100%; border: 0px; background-color: #eeeeee; resize: none;padding:5px; margin-bottom:10px;" placeholder="请在此处输入你的评论" id="pinglun"></textarea>
+            <button type="button" class="btn btn-primary pull-right" id="biji-pinglun">&nbsp;&nbsp;&nbsp;&nbsp;发表评论&nbsp;&nbsp;&nbsp;&nbsp;</button>
+        </div>
+    </div>
+}
+
+<h3>评论</h3>
+
+@foreach (BijiPinglun pinglun in ViewData["Pingluns"] as List<BijiPinglun>)
+{
+    <div class="row">
+        <div class="col-md-12 biji-comment">
+            <div class="comment-avatar"><img src="/Resource/img/zz.jpg" class="img-circle" /></div>
+            <div class="comment-title"><strong>@RenService.GetRenById(pinglun.Pinglunren).RenNickName</strong><br /><span class="text-gray">评论于：@pinglun.CreateTime.ToString("yyyy-MM-dd hh:mm:ss")</span></div>
+            <div class="biji-comment-content">
+                @pinglun.PinglunContent
+                
+               <p>              
+                   <span class="comment-zan"><a href="javascript:void(0);"><span class="glyphicon glyphicon-thumbs-up"></span> 赞</a></span> &nbsp;&nbsp;&nbsp;&nbsp;
+                   <span class="huifu"><a href="javascript:void(0);"><span class="glyphicon glyphicon-comment"></span> 回复</a></span>  
+                   <input type="hidden" value="@pinglun.Pinglunren" id="Pinglunren" name="Pinglunren" />
+                   <input type="hidden" value="@pinglun.PinglunBiji" id="PinglunBiji" name="PinglunBiji" />
+                   <input type="hidden" value="@pinglun.Shumu" id="Shumu" name="Shumu" />
+                   <input type="hidden" value="@pinglun.Peiduren" id="Peiduren" name="Peiduren" />
+                   <input type="hidden" value="@pinglun.BijiZuozhe" id="BijiZuozhe" name="BijiZuozhe" />
+                   <input type="hidden" value="@pinglun.Id" id="ReplyPinlun" name="ReplyPinlun" />
+                   <input type="hidden" value="@pinglun.Dushuying" id="Dushuying" name="Dushuying" />
+                   <input type="hidden" value="@int.Parse(Session["uid"].ToString())" id="PinglunReplyren" name="PinglunReplyren" />
+               </p>
+               
+                    
+            </div>
+        </div>
+    </div>
+
+}
+
+

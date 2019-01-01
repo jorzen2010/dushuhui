@@ -52,10 +52,8 @@ namespace dushuhuiEntity
         public string RenInfo { get; set; }
         [Display(Name = "权限")]
         public string RenQuanxian { get; set; }
-        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "邮箱格式不正确")]
         [Display(Name = "注册邮箱")]
         public string RenUserEmail { get; set; }
-        [Required(ErrorMessage = "请填写密码")]
         [Display(Name = "密码")]
         public string RenPassword { get; set; }
         [Display(Name = "微信Openid")]
@@ -106,6 +104,7 @@ namespace dushuhuiEntity
          [Key]
          public int Id { get; set; }
          [Display(Name = "读书会名称")]
+         [Required(ErrorMessage = "名称不能为空")]
          public string YingTitle { get; set; }
          [Display(Name = "陪读人")]
          public int Peiduren { get; set; }
@@ -142,7 +141,7 @@ namespace dushuhuiEntity
 
     }
 
-    public class Pinglun
+    public class BijiPinglun
     {
         [Key]
         public int Id { get; set; }
@@ -156,14 +155,63 @@ namespace dushuhuiEntity
         public int Shumu { get; set; }
         [Display(Name = "陪读人")]
         public int Peiduren { get; set; }
+        [Display(Name = "笔记Id")]
+        public int PinglunBiji { get; set; }
         [Display(Name = "评论内容")]
         public string PinglunContent { get; set; }
-        [Display(Name = "评论内容")]
-        public bool Dianzan { get; set; }
+        [Display(Name = "评论时间")]
+        public DateTime CreateTime { get; set; }
+
 
     }
 
-    public class Dianzan
+    public class PinglunReply
+    {
+        [Key]
+        public int Id { get; set; }
+        [Display(Name = "评论人")]
+        public int Pinglunren { get; set; }
+        [Display(Name = "回复评论人")]
+        public int PinglunReplyren { get; set; }
+        [Display(Name = "评论Id")]
+        public int ReplyPinlun { get; set; }
+
+        [Display(Name = "笔记作者")]
+        public int BijiZuozhe { get; set; }
+        [Display(Name = "读书营")]
+        public int Dushuying { get; set; }
+        [Display(Name = "书目")]
+        public int Shumu { get; set; }
+        [Display(Name = "陪读人")]
+        public int Peiduren { get; set; }
+        [Display(Name = "笔记Id")]
+        public int PinglunBiji { get; set; }
+
+        [Display(Name = "评论内容")]
+        public string PinglunContent { get; set; }
+        [Display(Name = "评论时间")]
+        public DateTime CreateTime { get; set; }
+    
+    }
+
+    public class DianzanPinglun
+    {
+        [Key]
+        public int Id { get; set; }
+        [Display(Name = "评论人")]
+        public int Pinglunren { get; set; }
+        [Display(Name = "点赞人")]
+        public int DianzanPinglunren { get; set; }
+        [Display(Name = "评论Id")]
+        public int ReplyPinlun { get; set; }
+        [Display(Name = "点赞")]
+        public bool Dianzan { get; set; }
+        [Display(Name = "创建时间")]
+        public DateTime CreateTime { get; set; }
+ 
+    }
+
+    public class BijiDianzan
     {
         [Key]
         public int Id { get; set; }
@@ -175,8 +223,14 @@ namespace dushuhuiEntity
         public int Dushuying { get; set; }
         [Display(Name = "书目")]
         public int Shumu { get; set; }
-
-
+        [Display(Name = "陪读人")]
+        public int Peiduren { get; set; }
+        [Display(Name = "笔记Id")]
+        public int DianzanBiji { get; set; }
+        [Display(Name = "点赞")]
+        public bool Dianzan { get; set; }
+        [Display(Name = "创建时间")]
+        public DateTime CreateTime { get; set; }
     }
 
    

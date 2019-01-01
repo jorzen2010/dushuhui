@@ -2,6 +2,8 @@
 .dushubiji {
     line-height:30px;
     padding:10px 10px 10px 20px;
+    background-color:#fcfcfc;
+    border-radius:5px;
 }
     .dushubiji h4 {
         font-weight:600;
@@ -10,6 +12,14 @@
     .dushubiji .smalltitle span{
         padding-right:20px;
         color:#808080;
+
+    }
+
+    .dushubiji .footertitle span{
+        padding-right:5px;
+        color:#808080;
+        line-height:30px;
+        height:30px;
 
     }
 .chuangshirenshuo {
@@ -91,3 +101,43 @@
 .field-validation-error {
     color:#ff0000;
 }
+
+.biji-comment {
+    margin-top:10px;
+    border-bottom:1px solid #dddddd;
+    padding-bottom:10px;
+}
+.biji-comment .comment-avatar {
+    float:left;
+}
+.comment-avatar img {
+    width:35px;
+    height:35px;
+}
+.biji-comment .comment-title {
+    padding-left: 20px;
+    float: left;
+    line-height: 22px;
+    height: 45px;
+}
+.biji-comment-content{
+display:inline-block;
+margin-top:10px;
+word-break:break-all;
+width:100%;
+
+}
+    .biji-comment-content p {
+        padding-top:8px;
+    }
+.huifu a{
+    text-decoration:none;
+    color:#dddddd;
+
+}
+.comment-zan a{
+    text-decoration:none;
+    color:#dddddd;
+
+}
+

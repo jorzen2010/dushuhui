@@ -170,7 +170,8 @@ namespace dushuhui.Controllers
         {
             
                 Biji biji = unitOfWork.bijisRepository.GetByID(bid);
-
+                var Pingluns = unitOfWork.bijiPinglunsRepository.Get(filter: u => u.PinglunBiji == bid, orderBy: q => q.OrderByDescending(u => u.Id));
+                ViewData["Pingluns"] = Pingluns;
                 return View(biji);
            
         }

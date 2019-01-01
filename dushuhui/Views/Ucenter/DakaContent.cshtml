@@ -13,18 +13,51 @@
 
             <h3 class="webTitle">@Model.BijiTitle</h3>
             <div class="bijismalltitle">
-                <span>来自：@YingService.GetYingById(Model.Dushuying).YingTitle</span> 
-                <br/><span>陪读人：@RenService.GetRenById(Model.Peiduren).RenNickName</span>
-               <span>作者：@RenService.GetRenById(Model.BijiZuozhe).RenNickName</span><span>打卡时间：@Model.BijiTime</span>
+                <span>来自：@YingService.GetYingById(Model.Dushuying).YingTitle</span> <span>陪读人：@RenService.GetRenById(Model.Peiduren).RenNickName</span>
+                <br/> <span>作者：@RenService.GetRenById(Model.BijiZuozhe).RenNickName</span><span>打卡时间：@Model.BijiTime</span>
             </div>
 
             <div class="box-body" style="word-break: break-all;line-height:30px;">
                 @Html.Raw(Model.BijiContent)
+                @if (!String.IsNullOrEmpty(Model.Tags))
+                { 
+                 <p> 标签：@Model.Tags</p>
+                }
+               <p>
+                   <span style="color:#dddddd;">本文来自于 @YingService.GetYingById(Model.Dushuying).YingTitle</span>
+                   <span class="pull-right text-gray" style="color:#dddddd;">
+                       此内容由作者提供与本网站无关
+                   </span>
+               </p>
             </div>
 
-            <div class="box-footer">
-                标签：@Model.Tags
+
+            <div class="box-footer text-center">
+                @if (ViewBag.dianzan)
+                {
+                    <button type="button" class="btn btn-lg btn-danger" id="xihuanbiji" data-status="false" style="margin:20px 0px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-heart"></span> 喜欢&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </button>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-lg btn-default" id="xihuanbiji" data-status="true" style="margin:20px 0px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-heart-empty"></span> 喜欢&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </button>
+                }
+
+
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.BijiZuozhe)
+                @Html.HiddenFor(model => model.Dushuying)
+                @Html.HiddenFor(model => model.Peiduren)
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.Shumu)
+                <input type="hidden" value="@Session["uid"].ToString()" name="Canyuren" id="Canyuren" />
             </div>
+          
+                    
+            @Html.Action("PinglunList", "Ucenter", new { bid = Model.Id })
 
         </div>
         <div class="col-md-4">
@@ -41,8 +74,149 @@
 @section BottomScripts {
     <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
     <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
-}
+    <script type="text/javascript">
+    $(function () {
+        $('#xihuanbiji').click(function () {
+            var token = $('[name=__RequestVerificationToken]').val();
+            var headers = {};
+            headers["__RequestVerificationToken"] = token;
+            $.ajax({
+                type: "POST",
+                url: "/Ucenter/XihuanBiji",
+                data: {
+                    Canyuren: $("#Canyuren").val(),
+                    BijiZuozhe: $("#BijiZuozhe").val(),
+                    Dushuying: $("#Dushuying").val(),
+                    Peiduren: $("#Peiduren").val(),
+                    Shumu: $("#Shumu").val(),
+                    Biji: $("#Id").val(),
+                    __RequestVerificationToken: token,
+                    status: $(this).attr("data-status")
+                    },
+                    dataType: "json",
+                    success: function (msg) {
+                        if (msg.MessageStatus == 'true') {
+                            window.location.reload();
+                            //window.location.href = tourl;
+                        }
+                        else {
+                           // alertconfirm('感谢你的喜欢！');
+                        }
+                    },
+                    error: function (e) {
+                      //  alertconfirm('网络有问题，点赞失败，再点一次吧！');
+                    }
+                });
+            });
+    });
 
+    $("#biji-pinglun").on("click", function () {
+        var token = $('[name=__RequestVerificationToken]').val();
+        var headers = {};
+        headers["__RequestVerificationToken"] = token;
+        $.ajax({
+            type: "POST",
+            url: "/Ucenter/PinglunBiji",
+            data: {
+                Canyuren: $("#Canyuren").val(),
+                BijiZuozhe: $("#BijiZuozhe").val(),
+                Dushuying: $("#Dushuying").val(),
+                Peiduren: $("#Peiduren").val(),
+                Shumu: $("#Shumu").val(),
+                Biji: $("#Id").val(),
+                __RequestVerificationToken: token,
+                Pinglun:$("#pinglun").val()
+            },
+            dataType: "json",
+            success: function (msg) {
+                if (msg.MessageStatus == 'true') {
+                    $("#pinglun").val("");
+                    window.location.reload();
+                    //window.location.href = tourl;
+                }
+                else {
+                    // alertconfirm('感谢你的喜欢！');
+                }
+            },
+            error: function (e) {
+                //  alertconfirm('网络有问题，点赞失败，再点一次吧！');
+            }
+        });
+    });
+
+  
+    $(".huifu").on("click", function () {
+        if ($(this).parent().parent().find("#huifupinglun-p").length > 0) {
+            $("#huifupinglun-p").remove();
+        }
+        else {
+              $("#huifupinglun-p").remove();
+            
+              var html = "<p class=\"huifupinglun-p\" id=\"huifupinglun-p\"><textarea id=\"huifupinglun\" rows=\"3\" style=\"width: 100%; border: 0px; background-color: #eeeeee; resize: none;padding:5px; margin-bottom:10px;\" placeholder=\"请在此处输入你的评论\" ></textarea> <button type=\"button\" class=\"btn btn-warning pull-right\" onclick=\"huifupinglun(this)\">回复评论</button></p>"
+              $(this).parent().parent().after().append(html);
+        }
+        
+
+    });
+
+        
+    function huifupinglun(obj) {
+        var thisObj = $(obj);
+       
+        var PinglunContent = thisObj.parent().find("#huifupinglun").val();
+        var Pinglunren = thisObj.parent().parent().find("#Pinglunren").val();
+        var PinglunReplyren = thisObj.parent().parent().find("#PinglunReplyren").val();
+        var ReplyPinlun = thisObj.parent().parent().find("#ReplyPinlun").val();
+        var BijiZuozhe = thisObj.parent().parent().find("#BijiZuozhe").val();
+        var Peiduren = thisObj.parent().parent().find("#Peiduren").val();
+        var Shumu = thisObj.parent().parent().find("#Shumu").val();
+        var PinglunBiji = thisObj.parent().parent().find("#PinglunBiji").val();
+        var Dushuying = thisObj.parent().parent().find("#Dushuying").val();
+
+
+        var token = $('[name=__RequestVerificationToken]').val();
+        var headers = {};
+        headers["__RequestVerificationToken"] = token;
+        $.ajax({
+            type: "POST",
+            url: "/Ucenter/HuifuPinglun",
+            data: {
+                PinglunContent: PinglunContent,
+                Pinglunren: Pinglunren,
+                PinglunReplyren: PinglunReplyren,
+                ReplyPinlun: ReplyPinlun,
+                BijiZuozhe: BijiZuozhe,
+                Peiduren: Peiduren,
+                Shumu: Shumu,
+                PinglunBiji: PinglunBiji,
+                Dushuying: Dushuying,
+                __RequestVerificationToken: token,
+                
+            },
+            dataType: "json",
+            success: function (msg) {
+                if (msg.MessageStatus == 'true') {
+                    // $("#pinglun").val("");
+                    $(".huifupinglun-p").remove();
+                    window.location.reload();
+                    //window.location.href = tourl;
+                }
+                else {
+                    // alertconfirm('感谢你的喜欢！');
+                }
+            },
+            error: function (e) {
+                //  alertconfirm('网络有问题，点赞失败，再点一次吧！');
+            }
+        });
+
+      //  $(".huifupinglun-p").remove();
+      //  alert("评论内容：" + huifupinglun + "评论人：" + pinglunren);
+
+    }
+
+    </script>
+}
 
 
 

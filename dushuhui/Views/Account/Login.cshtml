@@ -7,7 +7,7 @@
     <div class="row" style="margin-top:30px">
         <div class="col-md-6">
 
-            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", @name = "Create", @id = "Create" }))
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", @name = "LoginForm", @id = "LoginForm" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
@@ -87,4 +87,46 @@
 
 </div>
 
+
+@section BottomScripts {
+    <script type="text/javascript" src="~/Scripts/jquery.validate.js"></script>
+
+    <script type="text/javascript">
+    $(function () {
+        var validate = $("#LoginForm").validate({
+           // debug: true, //调试模式取消submit的默认提交功能
+            errorClass: "field-validation-error", //默认为错误的样式类为：error
+           // focusInvalid: false, //当为false时，验证无效时，没有焦点响应
+           // onkeyup: false,
+            //submitHandler: function (form) {   //表单提交句柄,为一回调函数，带一个参数：form
+            //    alert("提交表单");
+            //    form.submit();   //提交表单
+            //},
+
+            rules: {
+                RenUserEmail: {
+                    required: true,
+                    email: true
+                },
+                RenPassword: {
+                    required: true
+                },
+
+            },
+            messages: {
+                RenUserEmail: {
+                    required: "邮箱为必填",
+                    email: "EMail格式不正确"
+                },
+                RenPassword: {
+                    required: "密码不能为空"
+                }
+            }
+
+        });
+
+    });
+</script>
+
+}
 
