@@ -4,6 +4,7 @@
     padding:10px 10px 10px 20px;
     background-color:#fcfcfc;
     border-radius:5px;
+    margin-bottom:10px;
 }
     .dushubiji h4 {
         font-weight:600;
@@ -132,12 +133,12 @@ width:100%;
     }
 .huifu a{
     text-decoration:none;
-    color:#dddddd;
+    color:#bbbbbb;
 
 }
 .comment-zan a{
     text-decoration:none;
-    color:#dddddd;
+    color:#bbbbbb;
 
 }
 

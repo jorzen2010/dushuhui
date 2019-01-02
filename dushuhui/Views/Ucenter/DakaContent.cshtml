@@ -215,6 +215,91 @@
 
     }
 
+
+    //$('.xihuanpinglun').click(function () {
+    //    var token = $('[name=__RequestVerificationToken]').val();
+    //    var headers = {};
+    //    headers["__RequestVerificationToken"] = token;
+    //    $.ajax({
+    //        type: "POST",
+    //        url: "/Ucenter/XihuanBiji",
+    //        data: {
+    //            Canyuren: $("#Canyuren").val(),
+    //            BijiZuozhe: $("#BijiZuozhe").val(),
+    //            Dushuying: $("#Dushuying").val(),
+    //            Peiduren: $("#Peiduren").val(),
+    //            Shumu: $("#Shumu").val(),
+    //            DianzanPinglun: $("#Id").val(),
+    //            __RequestVerificationToken: token,
+    //            status: $(this).attr("data-status")
+    //        },
+    //        dataType: "json",
+    //        success: function (msg) {
+    //            if (msg.MessageStatus == 'true') {
+    //                window.location.reload();
+    //                //window.location.href = tourl;
+    //            }
+    //            else {
+    //                // alertconfirm('感谢你的喜欢！');
+    //            }
+    //        },
+    //        error: function (e) {
+    //            //  alertconfirm('网络有问题，点赞失败，再点一次吧！');
+    //        }
+    //    });
+    //    alert("点赞评论");
+    //});
+
+
+    function dainzanPinglun(obj) {
+        var thisObj = $(obj);
+
+        var status = thisObj.attr("data-status");
+        var BijiZuozhe = thisObj.parent().find("#BijiZuozhe").val();
+        var Peiduren = thisObj.parent().find("#Peiduren").val();
+        var Shumu = thisObj.parent().find("#Shumu").val();
+        var Pinglunren = thisObj.parent().find("#Pinglunren").val();
+        var Dianzanren = thisObj.parent().find("#PinglunReplyren").val();
+        var DianzanBiji = thisObj.parent().find("#PinglunBiji").val();
+        var Dushuying = thisObj.parent().find("#Dushuying").val();
+        var DZPinglun = thisObj.parent().find("#ReplyPinlun").val();
+        var token = $('[name=__RequestVerificationToken]').val();
+        var headers = {};
+        headers["__RequestVerificationToken"] = token;
+        $.ajax({
+            type: "POST",
+            url: "/Ucenter/XihuanPinglun",
+            data: {
+                BijiZuozhe: BijiZuozhe,
+                Peiduren: Peiduren,
+                Shumu: Shumu,
+                Dianzanren: Dianzanren,
+                DianzanBiji: DianzanBiji,
+                Dushuying: Dushuying,
+                DZPinglun: DZPinglun,
+                Pinglunren:Pinglunren,
+                status: status,
+                __RequestVerificationToken: token,
+
+            },
+            dataType: "json",
+            success: function (msg) {
+                if (msg.MessageStatus == 'true') {
+                   window.location.reload();
+                }
+                else {
+                    // alertconfirm('感谢你的喜欢！');
+                }
+            },
+            error: function (e) {
+                //  alertconfirm('网络有问题，点赞失败，再点一次吧！');
+            }
+        });
+
+        
+    
+
+    }
     </script>
 }
 

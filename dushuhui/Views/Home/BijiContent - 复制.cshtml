@@ -1,0 +1,177 @@
+﻿@using dushuhuiEntity;
+@using DushuhuiService;
+@model dushuhuiEntity.Biji
+@{
+    Ren ren = ViewData["user"] as Ren;
+}
+
+
+<div class="container" style="margin-top:80px">
+    <div class="row">
+
+        <div class="col-md-8">
+
+            <h3 class="webTitle">@Model.BijiTitle</h3>
+            <div class="bijismalltitle">
+                <span>来自：@YingService.GetYingById(Model.Dushuying).YingTitle</span> 
+                <br/><span>陪读人：@RenService.GetRenById(Model.Peiduren).RenNickName</span>
+               <span>作者：@RenService.GetRenById(Model.BijiZuozhe).RenNickName</span><span>打卡时间：@Model.BijiTime.ToString("yyyy年MM月dd日 HH:mm:ss")</span>
+            </div>
+
+            <div class="box-body" style="word-break: break-all;line-height:30px;">
+                @Html.Raw(Model.BijiContent)
+            </div>
+
+            @if (!String.IsNullOrEmpty(Model.Tags))
+            {
+                <p> 标签：@Model.Tags</p>
+            }
+            <p>
+                <span style="color:#dddddd;">本文来自于 @YingService.GetYingById(Model.Dushuying).YingTitle</span>
+                <span class="pull-right text-gray" style="color:#dddddd;">
+                    此内容由作者提供与本网站无关
+                </span>
+            </p>
+
+           
+            <h3>参与评论</h3>
+
+            @if (Session["uname"] == null)
+            {
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4>登陆后可发表评论</h4>
+                        <h3><a href="@Url.Action("Login","Account")">点击登陆</a></h3>
+                    </div>
+                </div>
+            }
+            else
+            { @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.BijiZuozhe)
+            @Html.HiddenFor(model => model.Dushuying)
+            @Html.HiddenFor(model => model.Peiduren)
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.Shumu)
+            <input type="hidden" value="@Session["uid"].ToString()" name="Canyuren" id="Canyuren" />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <textarea rows="5" style="width: 100%; border: 0px; background-color: #eeeeee; resize: none;padding:15px; margin-bottom:10px;" placeholder="请在此处输入你的评论" id="pinglun"></textarea>
+                        <button type="button" class="btn btn-primary pull-right" id="biji-pinglun">&nbsp;&nbsp;&nbsp;&nbsp;发表评论&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    </div>
+                </div>
+            }
+            <h3>评论</h3>
+
+            @foreach (BijiPinglun pinglun in ViewData["Pingluns"] as List<BijiPinglun>)
+            {
+                <div class="row">
+                    <div class="col-md-12 biji-comment">
+                        <div class="comment-avatar"><img src="/Resource/img/zz.jpg" class="img-circle" /></div>
+                        <div class="comment-title"><strong>赵征</strong><br /><span class="text-gray">评论于：@pinglun.CreateTime.ToString("yyyy-MM-dd hh:mm:ss")</span></div>
+                        <div class="biji-comment-content">
+                            @pinglun.PinglunContent
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+        <div class="col-md-4">
+            <h3>创始人说</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section BottomScripts {
+
+<script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#xihuanbiji').click(function () {
+                var token = $('[name=__RequestVerificationToken]').val();
+                var headers = {};
+                headers["__RequestVerificationToken"] = token;
+                $.ajax({
+                    type: "POST",
+                    url: "/Ucenter/XihuanBiji",
+                    data: {
+                        Canyuren: $("#Canyuren").val(),
+                        BijiZuozhe: $("#BijiZuozhe").val(),
+                        Dushuying: $("#Dushuying").val(),
+                        Peiduren: $("#Peiduren").val(),
+                        Shumu: $("#Shumu").val(),
+                        Biji: $("#Id").val(),
+                        __RequestVerificationToken: token,
+                        status: $(this).attr("data-status")
+                    },
+                    dataType: "json",
+                    success: function (msg) {
+                        if (msg.MessageStatus == 'true') {
+                            window.location.reload();
+                            //window.location.href = tourl;
+                        }
+                        else {
+                            // alertconfirm('感谢你的喜欢！');
+                        }
+                    },
+                    error: function (e) {
+                        //  alertconfirm('网络有问题，点赞失败，再点一次吧！');
+                    }
+                });
+            });
+        });
+
+        $("#biji-pinglun").on("click", function () {
+            var token = $('[name=__RequestVerificationToken]').val();
+            var headers = {};
+            headers["__RequestVerificationToken"] = token;
+            $.ajax({
+                type: "POST",
+                url: "/Ucenter/PinglunBiji",
+                data: {
+                    Canyuren: $("#Canyuren").val(),
+                    BijiZuozhe: $("#BijiZuozhe").val(),
+                    Dushuying: $("#Dushuying").val(),
+                    Peiduren: $("#Peiduren").val(),
+                    Shumu: $("#Shumu").val(),
+                    Biji: $("#Id").val(),
+                    __RequestVerificationToken: token,
+                    Pinglun: $("#pinglun").val()
+                },
+                dataType: "json",
+                success: function (msg) {
+                    if (msg.MessageStatus == 'true') {
+                        $("#pinglun").val("");
+                        window.location.reload();
+                        //window.location.href = tourl;
+                    }
+                    else {
+                        // alertconfirm('感谢你的喜欢！');
+                    }
+                },
+                error: function (e) {
+                    //  alertconfirm('网络有问题，点赞失败，再点一次吧！');
+                }
+            });
+        });
+
+
+
+    </script>
+}
+
+
+
+
+
+
+

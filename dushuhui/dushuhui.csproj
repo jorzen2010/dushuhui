@@ -8619,6 +8619,8 @@
     <Content Include="Views\Ucenter\YingList.cshtml" />
     <Content Include="Views\Ucenter\AccountSetting.cshtml" />
     <Content Include="Views\Ucenter\_PartialPinglun.cshtml" />
+    <Content Include="Views\Home\BijiContent - 复制.cshtml" />
+    <Content Include="Views\Home\_PartialPinglun.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

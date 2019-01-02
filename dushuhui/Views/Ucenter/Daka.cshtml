@@ -7,7 +7,7 @@
 @section Topcss {
 
     <link href="~/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet">
-
+<link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
 
 
 }
@@ -41,9 +41,9 @@
                  </div>
                 
                 
-                <div class="checkbox">
+               <div class="form-group">
                     <label>
-                        <input type="checkbox"> 私密（仅限陪读人和自己可见）
+                        <input type="checkbox" name="Yinsi" id="Yinsi" value="true"> 私密（仅限陪读人和自己可见）
                     </label>
                 </div>
                 @Html.HiddenFor(model => model.BijiZuozhe, new { @Value=Session["uid"]})
@@ -68,7 +68,8 @@
 
 
 @section BottomScripts {
-
+<script type="text/javascript" src="~/plugins/bootbox.min.js"></script>
+<script type="text/javascript" src="~/plugins/iCheck/icheck.js"></script>
     <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.all.min.js"> </script>
     <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>

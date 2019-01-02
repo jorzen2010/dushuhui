@@ -23,7 +23,7 @@
                     <div class="row dushuying">
                         <div class="col-md-4 text-center"><a href="#"><img src="/Resource/img/shu.png" alt="..." class="img-thumbnail" style="width:100%"></a></div>
                         <div class="col-md-6" style="line-height:25px;">
-                            读书会：@YingService.GetYingById(item.Dushuying).YingTitle<br />
+                            读书会：@YingService.GetYingById(item.Dushuying).YingTitle <span class="label label-@(item.Status == "shenqing" ? "danger" : "success")">@(item.Status == "shenqing" ? "未审核" : "已通过")</span><br />
                             陪读人: @RenService.GetRenById(YingService.GetYingById(item.Dushuying).Peiduren).RenNickName <br />
                             书目：@BookService.GetBookById(YingService.GetYingById(item.Dushuying).Shumu).BookName<br />
                             开营时间：@YingService.GetYingById(item.Dushuying).YingStartTime.ToString("yyyy-MM-dd") 至 @YingService.GetYingById(item.Dushuying).YingEndTime.ToString("yyyy-MM-dd")<br />
@@ -58,7 +58,8 @@
 
                             @if (item.Status == "shenqing")
                             {
-                                if (System.DateTime.Now < YingService.GetYingById(item.Dushuying).YingStartTime)
+                               
+                                if (System.DateTime.Now > YingService.GetYingById(item.Dushuying).YingStartTime)
                                 {
                                     <button class="btn btn-success" style="margin-top:20px;">本营已开始您未交费希望你下次抓紧时间哦</button>
                                 }
@@ -66,6 +67,11 @@
                                 {
                                     <button class="btn btn-success" style="margin-top:20px;">请联系陪读人缴费</button>
                                 }
+                                if (System.DateTime.Now > YingService.GetYingById(item.Dushuying).YingEndTime)
+                                {
+                                    <button class="btn btn-default" style="margin-top:20px;">本营已结束</button>
+                                }
+                                
 
                             }
 

@@ -175,7 +175,6 @@ namespace dushuhuiEntity
         public int PinglunReplyren { get; set; }
         [Display(Name = "评论Id")]
         public int ReplyPinlun { get; set; }
-
         [Display(Name = "笔记作者")]
         public int BijiZuozhe { get; set; }
         [Display(Name = "读书营")]
@@ -194,22 +193,7 @@ namespace dushuhuiEntity
     
     }
 
-    public class DianzanPinglun
-    {
-        [Key]
-        public int Id { get; set; }
-        [Display(Name = "评论人")]
-        public int Pinglunren { get; set; }
-        [Display(Name = "点赞人")]
-        public int DianzanPinglunren { get; set; }
-        [Display(Name = "评论Id")]
-        public int ReplyPinlun { get; set; }
-        [Display(Name = "点赞")]
-        public bool Dianzan { get; set; }
-        [Display(Name = "创建时间")]
-        public DateTime CreateTime { get; set; }
- 
-    }
+   
 
     public class BijiDianzan
     {
@@ -227,12 +211,38 @@ namespace dushuhuiEntity
         public int Peiduren { get; set; }
         [Display(Name = "笔记Id")]
         public int DianzanBiji { get; set; }
+        [Display(Name = "评论人")]
+        public int Pinglunren { get; set; }
         [Display(Name = "点赞")]
         public bool Dianzan { get; set; }
         [Display(Name = "创建时间")]
         public DateTime CreateTime { get; set; }
     }
 
-   
+    public class DianzanPinglun
+    {
+        [Key]
+        public int Id { get; set; }
+        [Display(Name = "点赞人")]
+        public int Dianzanren { get; set; }
+        [Display(Name = "笔记作者")]
+        public int BijiZuozhe { get; set; }
+        [Display(Name = "读书营")]
+        public int Dushuying { get; set; }
+        [Display(Name = "书目")]
+        public int Shumu { get; set; }
+        [Display(Name = "陪读人")]
+        public int Peiduren { get; set; }
+        [Display(Name = "评论Id")]
+        public int DZPinglun { get; set; }
+        [Display(Name = "评论人")]
+        public int Pinglunren { get; set; }
+        [Display(Name = "点赞")]
+        public bool Dianzan { get; set; }
+        [Display(Name = "创建时间")]
+        public DateTime CreateTime { get; set; }
+    }
+
+
 
 }

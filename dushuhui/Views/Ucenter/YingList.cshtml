@@ -12,11 +12,12 @@
     <div class="row">
 
         <div class="col-md-8">
-            
+
             <h3 class="webTitle">
-            “@YingService.GetYingById(ViewBag.yid).YingTitle”
-            
-            ---报名人员名单</h3>
+                “@YingService.GetYingById(ViewBag.yid).YingTitle”
+                @Html.AntiForgeryToken()
+                ---报名人员名单
+            </h3>
             <table class="table table-responsive table-hover">
                 <tr>
                     <th>序号</th>
@@ -32,28 +33,28 @@
                         <td>
                             @if (item.Status == "shenqing")
                             {
-                                
-                                 <span class="label label-danger">申请时间：@item.ShenqingTime.ToString("yyyy-MM-dd hh:mm:ss")</span>
+
+                                <span class="label label-danger">申请时间：@item.ShenqingTime.ToString("yyyy-MM-dd hh:mm:ss")</span>
                             }
                             else if (item.Status == "success")
                             {
-                                
-                                 <span class="label label-info">审核时间：@item.SuccessTime.ToString("yyyy-MM-dd hh:mm:ss")</span>
+
+                                <span class="label label-info">审核时间：@item.SuccessTime.ToString("yyyy-MM-dd hh:mm:ss")</span>
                             }
                         </td>
                         <td>
                             @if (item.Status == "shenqing")
                             {
-                                <button class="btn btn-danger btn-sm" type="button">审核通过</button>
+                                <button class="btn btn-danger btn-sm" type="button" onclick="ShenheYing(@item.Id,'success')">审核通过</button>
                             }
                             else if (item.Status == "success")
                             {
-                                <button class="btn btn-info btn-sm" type="button">审核已通过</button>
+                                <button class="btn btn-info btn-sm" type="button" onclick="ShenheYing(@item.Id,'shenqing')">审核已通过</button>
                             }
-                          
+
                         </td>
                     </tr>
-                    n++;
+                            n++;
                 }
             </table>
 
@@ -88,3 +89,67 @@
     </div>
 
 </div>
+@section BottomScripts {
+    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+
+    <script type="text/javascript">
+
+        function ShenheYing(id,status) {
+            bootbox.confirm({
+                buttons: {
+                    confirm: {
+                        label: '审核通过',
+                        className: 'btn-danger'
+                    },
+                    cancel: {
+                        label: '取消',
+                        className: 'btn-default'
+                    }
+                },
+                message: '你确定要审核通过吗？',
+                callback: function (result) {
+                    if (result) {
+                        var token = $('[name=__RequestVerificationToken]').val();
+                        var headers = {};
+                        var url = '/Ucenter/ShenheCanjiaren';
+                        //防伪标记放入headers
+                        //也可以将防伪标记放入data
+                        headers["__RequestVerificationToken"] = token;
+                        $.ajax({
+                            url: url,
+                            headers: headers,
+                            type: 'post',
+                            timeout: 3000,
+                            data: {
+                                id: id,
+                                __RequestVerificationToken: token,
+                                status: status,
+                            },
+                            success: function (msg) {
+                                if (msg.MessageStatus == 'true') {
+                                   // alertconfirm('审核成功');
+                                    window.location.reload();
+                                   // window.location.href = tourl;
+                                }
+                                else {
+                                    alertconfirm('审核失败');
+                                }
+                            },
+                            error: function (e) {
+                                alertconfirm('出现意外错误，审核失败！');
+                            }
+                        });
+                    }
+                    else {
+                        // alertconfirm('您已经取消删除了');
+                    }
+                },
+                title: "审核确认提示框",
+            });
+        }
+
+
+
+    </script>
+}

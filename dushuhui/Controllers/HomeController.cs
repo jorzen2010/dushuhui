@@ -172,6 +172,21 @@ namespace dushuhui.Controllers
                 Biji biji = unitOfWork.bijisRepository.GetByID(bid);
                 var Pingluns = unitOfWork.bijiPinglunsRepository.Get(filter: u => u.PinglunBiji == bid, orderBy: q => q.OrderByDescending(u => u.Id));
                 ViewData["Pingluns"] = Pingluns;
+                ViewBag.dianzan = false;
+                if (Session["uid"] == null)
+                {
+                    ViewBag.dianzan = false;
+                }
+                else
+                {
+                    int dianzanren = int.Parse(Session["uid"].ToString());
+                    var dianzan = unitOfWork.bijiDianzansRepository.Get(filter: u => u.DianzanBiji == bid && u.Dianzanren == dianzanren && u.Dianzan == true);
+                    ViewBag.dianzan = false;
+                    if (dianzan.Count() > 0)
+                    {
+                        ViewBag.dianzan = true;
+                    }
+                }
                 return View(biji);
            
         }
@@ -186,7 +201,39 @@ namespace dushuhui.Controllers
         }
 
 
-       
+        public ActionResult PinglunList(int bid)
+        {
+            var Pingluns = unitOfWork.bijiPinglunsRepository.Get(filter: u => u.PinglunBiji == bid, orderBy: q => q.OrderByDescending(u => u.Id));
+            ViewData["Pingluns"] = Pingluns;
+
+            return View("~/Views/Home/_PartialPinglun.cshtml");
+        }
+
+        public ActionResult CanjiaYing(int yid)
+        {
+            Ying ying = unitOfWork.yingsRepository.GetByID(yid);
+            if (Session["uid"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                YingList yinglist = new YingList();
+                yinglist.Canjiaren = int.Parse(Session["uid"].ToString());
+                yinglist.Dushuying = ying.Id;
+                yinglist.Status = "shenqing";
+                yinglist.Peiduren = ying.Peiduren;
+                yinglist.Shumu = ying.Shumu;
+                yinglist.ShenqingTime = DateTime.Now;
+                yinglist.SuccessTime = DateTime.Now;
+                unitOfWork.yinglistsRepository.Insert(yinglist);
+                unitOfWork.Save();
+                return RedirectToAction("Ucenter", "Ucenter");
+ 
+            }
+            
+
+        }
 
     }
 }

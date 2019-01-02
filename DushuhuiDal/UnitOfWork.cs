@@ -167,7 +167,7 @@ namespace DushuhuiDal
 
          private GenericRepository<PinglunReply> PinglunReplysRepository;
 
-         public GenericRepository<PinglunReply> pinglunReplysRepositorysRepository
+         public GenericRepository<PinglunReply> pinglunReplysRepositorys
          {
              get
              {

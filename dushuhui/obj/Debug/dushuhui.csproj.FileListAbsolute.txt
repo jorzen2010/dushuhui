@@ -178,3 +178,5 @@ E:\2018\dushuhui\dushuhui\bin\DushuhuiService.dll
 E:\2018\dushuhui\dushuhui\bin\DushuhuiService.pdb
 E:\2018\dushuhui\dushuhui\bin\aliyun-net-sdk-core.dll
 E:\2018\dushuhui\dushuhui\bin\aliyun-net-sdk-dysmsapi.dll
+D:\MyPro\2018\dushuhui\dushuhui\bin\aliyun-net-sdk-core.dll
+D:\MyPro\2018\dushuhui\dushuhui\bin\aliyun-net-sdk-dysmsapi.dll

@@ -176,13 +176,7 @@ namespace dushuhui.Controllers
              return View("~/Views/Ucenter/_PartialUcenterInfo.cshtml");
         }
 
-        public ActionResult PinglunList(int bid)
-        {
-            var Pingluns = unitOfWork.bijiPinglunsRepository.Get(filter: u => u.PinglunBiji == bid, orderBy: q => q.OrderByDescending(u => u.Id));
-            ViewData["Pingluns"] = Pingluns;
-
-            return View("~/Views/Ucenter/_PartialPinglun.cshtml");
-        }
+       
 
         public ActionResult YingList(int? page,int yid)
         {
@@ -340,7 +334,7 @@ namespace dushuhui.Controllers
             try
             {
 
-                unitOfWork.pinglunReplysRepositorysRepository.Insert(huifupinglun);
+                unitOfWork.pinglunReplysRepositorys.Insert(huifupinglun);
                 unitOfWork.Save();
 
                 msg.MessageStatus = "true";
@@ -355,6 +349,86 @@ namespace dushuhui.Controllers
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult PinglunList(int bid)
+        {
+            var Pingluns = unitOfWork.bijiPinglunsRepository.Get(filter: u => u.PinglunBiji == bid, orderBy: q => q.OrderByDescending(u => u.Id));
+            ViewData["Pingluns"] = Pingluns;
 
+            return View("~/Views/Ucenter/_PartialPinglun.cshtml");
+        }
+
+
+        //喜欢评论
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult XihuanPinglun(int Dianzanren, int BijiZuozhe, int Dushuying, int Shumu, int Peiduren, int DZPinglun, int Pinglunren, bool status)
+        {
+            DianzanPinglun dianzan = new DianzanPinglun();
+            dianzan.Dianzan = status;
+            dianzan.Dianzanren = Dianzanren;
+            dianzan.BijiZuozhe = BijiZuozhe;
+            dianzan.Dushuying = Dushuying;
+            dianzan.Shumu = Shumu;
+            dianzan.Peiduren = Peiduren;
+            dianzan.DZPinglun = DZPinglun;
+            dianzan.Pinglunren = Pinglunren;
+            dianzan.Dianzanren = Dianzanren;
+            dianzan.CreateTime = System.DateTime.Now;
+
+            Message msg = new Message();
+            try
+            {
+                var dianzan_pinglun = unitOfWork.dianzanPinglunsRepository.Get(filter: u => u.DZPinglun == DZPinglun && u.Dianzanren == Dianzanren);
+
+                if (dianzan_pinglun.Count() > 0)
+                {
+                    DianzanPinglun _dianzan = dianzan_pinglun.First();
+                    _dianzan.Dianzan = dianzan.Dianzan;
+                    _dianzan.CreateTime = System.DateTime.Now;
+                    unitOfWork.dianzanPinglunsRepository.Update(_dianzan);
+                }
+                else
+                {
+                    dianzan.CreateTime = System.DateTime.Now;
+                    unitOfWork.dianzanPinglunsRepository.Insert(dianzan);
+                }
+                unitOfWork.Save();
+
+                msg.MessageStatus = "true";
+                msg.MessageInfo = "点赞成功";
+            }
+            catch
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "点赞失败";
+            }
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
+        //彻底删除
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult ShenheCanjiaren(int id,string status)
+        {
+            Message msg = new Message();
+
+            
+            try
+            {
+                YingList yinglist = unitOfWork.yinglistsRepository.GetByID(id);
+                yinglist.Status = status;
+                unitOfWork.Save();
+                msg.MessageStatus = "true";
+                msg.MessageInfo = "审核成功";
+            }
+            catch
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "审核失败";
+            }
+           
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
 	}
 }

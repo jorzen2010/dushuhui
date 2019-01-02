@@ -32,7 +32,7 @@
 
                         @if (ViewBag.baomingbtn)
                         {
-                              <button class="btn btn-danger" style="margin-top:20px;">立刻报名</button>
+                              <a class="btn btn-danger" style="margin-top:20px;" href="@Url.Action("CanjiaYing", "Home", new { yid=item.Id})">立刻报名</a>
                         }
                        
                     </div>

@@ -1,0 +1,118 @@
+﻿@using dushuhuiEntity;
+@using DushuhuiService;
+@{
+    Layout = null;
+    var pinglunscount = ViewData["Pingluns"] as List<BijiPinglun>;
+    var n = pinglunscount.Count();
+}
+
+<h3>参与评论</h3>
+
+@if (Session["uname"] == null)
+{
+    <div class="row">
+        <div class="col-md-12 text-center well">
+            <h4>登陆后可发表评论</h4>
+            <h5><a href="@Url.Action("Login","Account")">点击这里登录</a></h5>
+        </div>
+    </div>
+}
+else
+{
+
+    <div class="row">
+        <div class="col-md-12">
+            <textarea rows="5" style="width: 100%; border: 0px; background-color: #eeeeee; resize: none;padding:5px; margin-bottom:10px;" placeholder="请在此处输入你的评论" id="pinglun"></textarea>
+            <button type="button" class="btn btn-primary pull-right" id="biji-pinglun">&nbsp;&nbsp;&nbsp;&nbsp;发表评论&nbsp;&nbsp;&nbsp;&nbsp;</button>
+        </div>
+    </div>
+}
+
+
+
+@foreach (BijiPinglun pinglun in ViewData["Pingluns"] as List<BijiPinglun>)
+{
+
+    <div class="row">
+        <div class="col-md-12 biji-comment">
+            <div class="comment-avatar"><img src="/Resource/img/zz.jpg" class="img-circle" /></div>
+            <div class="comment-title">
+                <strong>@RenService.GetRenById(pinglun.Pinglunren).RenNickName</strong><br />
+
+                <span style="color: #bbbbbb;">@n 楼 评论于：@pinglun.CreateTime.ToString("yyyy-MM-dd hh:mm")</span>
+            </div>
+            <div class="biji-comment-content">
+                @pinglun.PinglunContent
+                <p>
+                    @if (Session["uid"] != null)
+                    {
+
+                        if (PinglunService.GetDianzanById(pinglun.Id, int.Parse(Session["uid"].ToString())))
+                        {
+                            <span class="comment-zan" onclick="dainzanPinglun(this)" data-status="false">
+                                <a href="javascript:void(0);" style="color:#ff0000"><span class="glyphicon glyphicon-thumbs-up"></span> 赞</a>
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="comment-zan" onclick="dainzanPinglun(this)" data-status="true">
+                                <a href="javascript:void(0);"><span class="glyphicon glyphicon-thumbs-up"></span> 赞</a>
+                            </span>
+
+                        }
+                        <span class="huifu">&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);"><span class="glyphicon glyphicon-comment"></span> 回复</a></span>
+                    }
+                    <input type="hidden" value="@pinglun.Pinglunren" id="Pinglunren" name="Pinglunren" />
+                    <input type="hidden" value="@pinglun.PinglunBiji" id="PinglunBiji" name="PinglunBiji" />
+                    <input type="hidden" value="@pinglun.Shumu" id="Shumu" name="Shumu" />
+                    <input type="hidden" value="@pinglun.Peiduren" id="Peiduren" name="Peiduren" />
+                    <input type="hidden" value="@pinglun.BijiZuozhe" id="BijiZuozhe" name="BijiZuozhe" />
+                    <input type="hidden" value="@pinglun.Id" id="ReplyPinlun" name="ReplyPinlun" />
+                    <input type="hidden" value="@pinglun.Dushuying" id="Dushuying" name="Dushuying" />
+                    @if (Session["uname"] != null)
+                    {
+                        <input type="hidden" value="@int.Parse(Session["uid"].ToString())" id="PinglunReplyren" name="PinglunReplyren" />
+                    }
+
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-12" style="margin:10px 0px 0px 5px;border-left:3px solid #cccccc">
+            @foreach (PinglunReply pinglunreply in PinglunService.GetPinglunReplyByPinglunId(pinglun.Id))
+            {
+                <div class="comment-title"><strong>@RenService.GetRenById(pinglunreply.PinglunReplyren).RenNickName</strong></div>
+
+                <div class="biji-comment-content">
+                    回复：<a href="@Url.Action("Ren", "Home", new { rid = pinglunreply.Pinglunren })" style="text-decoration: none;"> @RenService.GetRenById(pinglunreply.Pinglunren).RenNickName </a> @pinglunreply.PinglunContent
+
+                    <p style="color: #bbbbbb;">
+                        @pinglunreply.CreateTime.ToString("yyyy-MM-dd hh:mm") &nbsp;&nbsp;&nbsp;&nbsp;
+                         @if (Session["uid"] != null)
+                    {
+                            <span class="huifu"><a href="javascript:void(0);"><span class="glyphicon glyphicon-comment"></span> 回复</a></span>
+                        }
+                        <input type="hidden" value="@pinglunreply.PinglunReplyren" id="Pinglunren" name="Pinglunren" />
+                        <input type="hidden" value="@pinglun.PinglunBiji" id="PinglunBiji" name="PinglunBiji" />
+                        <input type="hidden" value="@pinglun.Shumu" id="Shumu" name="Shumu" />
+                        <input type="hidden" value="@pinglun.Peiduren" id="Peiduren" name="Peiduren" />
+                        <input type="hidden" value="@pinglun.BijiZuozhe" id="BijiZuozhe" name="BijiZuozhe" />
+                        <input type="hidden" value="@pinglun.Id" id="ReplyPinlun" name="ReplyPinlun" />
+                        <input type="hidden" value="@pinglun.Dushuying" id="Dushuying" name="Dushuying" />
+                        @if (Session["uid"] != null)
+                    {
+                            <input type="hidden" value="@int.Parse(Session["uid"].ToString())" id="PinglunReplyren" name="PinglunReplyren" />
+                        }
+                    </p>
+
+                </div>
+
+
+            }
+
+        </div>
+
+    </div>
+            n--;
+
+}
