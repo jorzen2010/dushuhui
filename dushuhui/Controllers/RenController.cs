@@ -64,8 +64,12 @@ namespace dushuhui.Controllers
             {
 
                 Ren ren = unitOfWork.rensRepository.GetByID(id);
-                ren.RenQuanxian = ren.RenQuanxian + ",peiduren";
-                ren.PeiduStatus = "shenqing";
+                if (!ren.RenQuanxian.Contains("peiduren"))
+                {
+                    ren.RenQuanxian = ren.RenQuanxian + ",peiduren";
+                    ren.PeiduStatus = "shenqing";
+                
+                }              
                 unitOfWork.rensRepository.Update(ren);
                 unitOfWork.Save();
 

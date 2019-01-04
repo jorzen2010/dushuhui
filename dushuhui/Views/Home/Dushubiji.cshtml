@@ -22,8 +22,8 @@
                         </div>
                         <div class="footertitle">
                            <span style="padding-top:5px;">作者：@RenService.GetRenById(item.BijiZuozhe).RenNickName</span>
-                            <span class="pull-right"><span class="glyphicon glyphicon-comment"></span>评论 @PinglunService.GetPinglunCount(item.Id) &nbsp;&nbsp;&nbsp;&nbsp;
-                            <span class="glyphicon glyphicon-heart"></span>喜欢 @PinglunService.GetZanCount(item.Id)</span>
+                            <span class="pull-right"><span class="glyphicon glyphicon-comment"></span>评论 @TongjiService.GetBijiPinglunCount(item.Id) &nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="glyphicon glyphicon-heart"></span>喜欢 @TongjiService.GetBijiZanCount(item.Id)</span>
                         </div>
                     </div>
                 }

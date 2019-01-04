@@ -38,23 +38,6 @@ namespace DushuhuiService
 
         }
 
-        public static int GetPinglunCount(int bid)
-        {
-            UnitOfWork unitOfWork = new UnitOfWork();
-            int pingluncount = 0;
-            var pinglun = unitOfWork.bijiPinglunsRepository.Get(filter:u =>u.PinglunBiji==bid);
-            var pinglunreply = unitOfWork.pinglunReplysRepositorys.Get(filter:u =>u.PinglunBiji==bid);
-            pingluncount = pinglun.Count() + pinglunreply.Count();
-            return pingluncount;
-        }
-
-        public static int GetZanCount(int bid)
-        {
-            UnitOfWork unitOfWork = new UnitOfWork();
-            int zancount = 0;
-            var pinglunZan = unitOfWork.bijiDianzansRepository.Get(filter: u => u.DianzanBiji == bid);
-            zancount = pinglunZan.Count();
-            return zancount;
-        }
+       
     }
 }

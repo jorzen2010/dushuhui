@@ -1,10 +1,10 @@
-﻿@model StaticPagedList<dushuhuiEntity.Ying>
+﻿@model StaticPagedList<dushuhuiEntity.YingList>
 @using PagedList;
 @using PagedList.Mvc;
 @using DushuhuiService;
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    ViewBag.title = "读书营管理";
+    ViewBag.title = YingService.GetYingById(int.Parse(Request.QueryString["yid"])).YingTitle;
 }
 @section Topcss {
     <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
@@ -28,10 +28,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">
-                            <a class="btn btn-primary btn-sm" href="@Url.Action("Create", "Book")">全部</a>
-                            <a class="btn btn-default btn-sm" href="@Url.Action("Create", "Book")">未开始</a>
-                            <a class="btn btn-default btn-sm" href="@Url.Action("Create", "Book")">正在进行</a>
-                            <a class="btn btn-default btn-sm" href="@Url.Action("Create", "Book")">已结束</a>
+                            @YingService.GetYingById(int.Parse(Request.QueryString["yid"])).YingTitle
                 
                         </h3>
                         
@@ -45,17 +42,17 @@
                                         序号
                                     </th>
                                     <th class="col-sm-2">
-                                        标题
+                                        参加人
                                     </th>
                                     <th class="col-sm-2">
-                                        书目
+                                        读书营
                                     </th>
                                     
                                     <th class="col-sm-2">
                                         陪读人
                                     </th>
                                     <th class="col-sm-2">
-                                        读书会时间
+                                        书目
                                     </th>
                                     <th class="col-sm-2">状态</th>
                                   
@@ -69,24 +66,22 @@
                                         @Html.DisplayFor(modelItem => item.Id)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.YingTitle)
+                                        @RenService.GetRenById(item.Canjiaren).RenNickName
+                                    </td>
+                                    <td>
+                                        @YingService.GetYingById(item.Dushuying).YingTitle
+                                    </td>
+                                    <td>
+                                        @RenService.GetRenById(item.Peiduren).RenNickName
                                     </td>
                                     <td>
                                         @BookService.GetBookById(item.Shumu).BookName
-
-                                    </td>                                 
-                                    <td>
-                                        @RenService.GetRenById(item.Peiduren).RenNickName
                                     </td>  
                                     <td>
-                                        <span class="label label-@(item.YingStartTime>DateTime.Now?"success":"danger")">@item.YingStartTime.ToString("yyyy-MM-dd")</span> 至
-                                        <span class="label label-@(item.YingEndTime>DateTime.Now?"success":"danger")">@item.YingEndTime.ToString("yyyy-MM-dd")</span>
-                                    </td>                                 
-                                    <td>
-                                        <a class="btn btn-success btn-sm" href="@Url.Action("Yinglist", "Ying", new { yid=item.Id})"><i class="fa fa-pencil"></i> 查看本营学员</a>
-                                        @Html.AntiForgeryToken()
-                                    </td>
-                                   
+                                        <span class="lable label-@(item.Status=="success"?"success":"danger")">@item.Status</span> 
+                                    </td>                                
+                                      
+                                                                    
 
                                 </tr>
 
@@ -98,7 +93,7 @@
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
                         <ul class="pagination pagination-sm no-margin pull-right">
-                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { type = Request.QueryString["type"], page = page }),
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { yid = Request.QueryString["yid"], page = page }),
                             new PagedListRenderOptions
                             {
                                 LinkToPreviousPageFormat = "上一页",
