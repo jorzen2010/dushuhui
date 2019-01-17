@@ -1,0 +1,13 @@
+D:\MyPro\2018\EduGroup\SkyWechatService\bin\Release\SkyWechatService.dll
+D:\MyPro\2018\EduGroup\SkyWechatService\bin\Release\SkyWechatService.pdb
+D:\MyPro\2018\EduGroup\SkyWechatService\bin\Release\LitJson.dll
+D:\MyPro\2018\EduGroup\SkyWechatService\bin\Release\Newtonsoft.Json.dll
+D:\MyPro\2018\EduGroup\SkyWechatService\bin\Release\SkyCommon.dll
+D:\MyPro\2018\EduGroup\SkyWechatService\bin\Release\Microsoft.ApplicationBlocks.Data.dll
+D:\MyPro\2018\EduGroup\SkyWechatService\bin\Release\ChnCharInfo.dll
+D:\MyPro\2018\EduGroup\SkyWechatService\bin\Release\ThoughtWorks.QRCode.dll
+D:\MyPro\2018\EduGroup\SkyWechatService\bin\Release\SkyCommon.pdb
+D:\MyPro\2018\EduGroup\SkyWechatService\bin\Release\Newtonsoft.Json.xml
+D:\MyPro\2018\EduGroup\SkyWechatService\obj\Release\SkyWechat.csprojResolveAssemblyReference.cache
+D:\MyPro\2018\EduGroup\SkyWechatService\obj\Release\SkyWechatService.dll
+D:\MyPro\2018\EduGroup\SkyWechatService\obj\Release\SkyWechatService.pdb

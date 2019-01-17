@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DushuhuiDal", "DushuhuiDal\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DushuhuiService", "DushuhuiService\DushuhuiService.csproj", "{36A82E2B-D40F-455C-9DDA-A720C2C7AC5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyWechat", "SkyWechatService\SkyWechat.csproj", "{819A09D8-21E2-47B4-91FC-10B1A780FA6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{36A82E2B-D40F-455C-9DDA-A720C2C7AC5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36A82E2B-D40F-455C-9DDA-A720C2C7AC5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36A82E2B-D40F-455C-9DDA-A720C2C7AC5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{819A09D8-21E2-47B4-91FC-10B1A780FA6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{819A09D8-21E2-47B4-91FC-10B1A780FA6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{819A09D8-21E2-47B4-91FC-10B1A780FA6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{819A09D8-21E2-47B4-91FC-10B1A780FA6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
